@@ -1,11 +1,15 @@
 import { createGlobalStyle } from 'styled-components'
 
+
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Poppins', sans-serif;
+    background-color:white;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
   }
 `;
  
