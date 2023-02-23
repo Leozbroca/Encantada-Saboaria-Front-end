@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import slid from "../../assets/slide.webp";
+import back from "../../assets/back7.png";
 
 export const MainDiv = styled.div`
   width: 100%;
@@ -9,12 +10,15 @@ export const MainDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  margin-bottom:500px;
 `;
 
 export const Slide = styled.div`
@@ -27,6 +31,7 @@ export const Slide = styled.div`
   background-size: cover;
   display: flex;
   align-items: center;
+ 
 
   @media (max-width: 1400px) {
     height: 80vh;
@@ -168,3 +173,61 @@ export const ButtonShop2 = styled.button`
     cursor: pointer;
   }
 `;
+
+export const Option = styled.div`
+width:100%;
+height:40%;
+background-image: url(${back});
+background-size: cover;
+display: flex;
+flex-direction: column;
+`
+
+export const OptionName = styled.div`
+height:20%;
+font-size: 30px;
+text-align: center;
+margin-top:2rem;
+padding-bottom:2rem;
+
+`
+
+export const OptionCategory = styled.div`
+height:60%;
+display: flex;
+flex-direction: row;
+margin-bottom:2rem;
+justify-content: space-between;
+padding: 0rem 15rem 0rem 15rem;
+flex-wrap: nowrap;
+
+`
+
+export const OptionCategories = styled.div`
+width:250px;
+height:200px;
+display:flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+font-size: 25px;
+p{
+  margin:0px 0 15px 0;
+  font-weight: 700;
+  transition: 0.5s;
+
+  :hover {
+    color: #efbae1;
+    cursor: pointer;
+  }
+}
+`
+
+export const OptionCategoryIcon = styled.a`
+width:200px;
+height:200px;
+margin-top:25px;
+display:flex;
+align-items: center;
+justify-content: center;
+`

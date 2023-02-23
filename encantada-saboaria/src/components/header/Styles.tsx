@@ -10,7 +10,7 @@ export const MainHeader = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  /* box-shadow: 0px 0px 5px 1px gray; */
+   box-shadow: 0px 0px 5px 2px gray; 
 
   -moz-user-select: none;
   -khtml-user-select: none;
