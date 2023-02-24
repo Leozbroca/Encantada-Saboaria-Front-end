@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import slid from "../../assets/slide.webp";
 import back from "../../assets/back7.png";
+import product from "../../assets/producto1.avif";
 
 export const MainDiv = styled.div`
   width: 100%;
@@ -18,7 +19,7 @@ export const MainDiv = styled.div`
   -ms-user-select: none;
   user-select: none;
 
-  margin-bottom:500px;
+  margin-bottom: 500px;
 `;
 
 export const Slide = styled.div`
@@ -31,7 +32,6 @@ export const Slide = styled.div`
   background-size: cover;
   display: flex;
   align-items: center;
- 
 
   @media (max-width: 1400px) {
     height: 80vh;
@@ -175,59 +175,137 @@ export const ButtonShop2 = styled.button`
 `;
 
 export const Option = styled.div`
-width:100%;
-height:40%;
-background-image: url(${back});
-background-size: cover;
-display: flex;
-flex-direction: column;
-`
+  width: 100%;
+  background-image: url(${back});
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+`;
 
 export const OptionName = styled.div`
-height:20%;
-font-size: 30px;
-text-align: center;
-margin-top:2rem;
-padding-bottom:2rem;
-
-`
+  height: 20%;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+`;
 
 export const OptionCategory = styled.div`
-height:60%;
-display: flex;
-flex-direction: row;
-margin-bottom:2rem;
-justify-content: space-between;
-padding: 0rem 15rem 0rem 15rem;
-flex-wrap: nowrap;
-
-`
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+  padding: 0rem 15rem 0rem 15rem;
+  flex-wrap: nowrap;
+`;
 
 export const OptionCategories = styled.div`
-width:250px;
-height:200px;
-display:flex;
-flex-direction: column;
-align-items: center;
-text-align: center;
-font-size: 25px;
-p{
-  margin:0px 0 15px 0;
-  font-weight: 700;
-  transition: 0.5s;
+  width: 250px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 25px;
+  p {
+    margin: 0px 0 15px 0;
+    font-weight: 700;
+    transition: 0.5s;
 
-  :hover {
-    color: #efbae1;
-    cursor: pointer;
+    :hover {
+      color: #efbae1;
+      cursor: pointer;
+    }
   }
-}
-`
+
+  .hover-div:hover + .color-div {
+    background-color: black;
+  }
+`;
 
 export const OptionCategoryIcon = styled.a`
-width:200px;
-height:200px;
-margin-top:25px;
+  width: 200px;
+  height: 200px;
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const BestSellerMain = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const BestSellerName = styled.div`
+  margin-top: 50px;
+  p {
+    font-size: 30px;
+  }
+`;
+
+export const BestSellerButtons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 500px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+`;
+
+export const ButtonSeller = styled.button`
+  text-transform: uppercase;
+  min-width: 110px;
+  height: 42px;
+  line-height: 40px;
+  border: 1px solid #efbae1;
+  font-weight: 500;
+  text-align: center;
+  padding: 0 15px;
+  transition: all .25s linear 0s;
+
+  :hover{
+    cursor:pointer;
+  }
+`;
+
+export const BestSellerProducts = styled.div`
+display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  gap:50px;
+  margin-top:50px;
+`;
+
+export const Products = styled.div`
+border:1px solid red;
+width:300px;
+height:400px;
+`
+
+export const TwoDiv = styled.div`
+width:100%;
+height:100vh;
+margin-top:50px;
 display:flex;
-align-items: center;
-justify-content: center;
+flex-direction: row;
+`
+
+export const Offer1 = styled.div`
+width:50%;
+height:100vh;
+background-color: #f2f2f2;
+
+`
+
+export const Offer2 = styled.div`
+width:50%;
+height:100vh;
+background-image: url(${product});
+background-size: cover;
 `
