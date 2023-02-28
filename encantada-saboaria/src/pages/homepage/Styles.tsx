@@ -300,7 +300,35 @@ export const Offer1 = styled.div`
 width:50%;
 height:100vh;
 background-color: #f2f2f2;
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
+
+h2{
+  font-size:50px;
+  letter-spacing:1px;
+  margin-bottom:0px;
+}
+
+.encantada{
+  margin:0px;
+  margin-bottom:10px
+}
+
+p{
+  color:gray;
+  margin-bottom:30px;
+}
+`
+
+export const OfferInside = styled.div`
+width:70%;
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 `
 
 export const Offer2 = styled.div`
@@ -308,4 +336,21 @@ width:50%;
 height:100vh;
 background-image: url(${product});
 background-size: cover;
+`
+
+export const ButtonOffer = styled.button`
+  min-width: 250px;
+  height: 50px;
+  line-height: 40px;
+  font-size:18px;
+  letter-spacing: 1px;
+  border: 1px solid #111111;;
+  font-weight: 500;
+  text-align: center;
+  padding: 0 15px;
+  transition: all .25s linear 0s;
+
+  :hover{
+    cursor:pointer;
+  }
 `

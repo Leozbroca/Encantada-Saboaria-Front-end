@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import {
   MainDiv,
   Slide,
@@ -16,10 +17,11 @@ import {
   BestSellerName,
   BestSellerProducts,
   ButtonSeller,
-  Products,
   TwoDiv,
   Offer1,
-  Offer2
+  Offer2,
+  OfferInside,
+  ButtonOffer
 } from "./Styles";
 import slid from "../../assets/slide.webp";
 import CardProduto from "../../components/CardProduto/CardProduto";
@@ -29,6 +31,8 @@ import { FaSoap } from "react-icons/fa";
 import { ImDroplet } from "react-icons/im";
 import { GiDelicatePerfume, GiCandleFlame } from "react-icons/gi";
 import { useState } from "react";
+import useRequestData from "../../hooks/useRequestData";
+import { Url } from "../../constants/Url";
 
 const HomePage = () => {
   const [NewColor, SetNewColor] = useState("black");
@@ -40,6 +44,7 @@ const HomePage = () => {
   const [Color3, SetColor3] = useState("#efbae1");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const products = useRequestData([], `${Url}/products`)
 
   const goToPag1 = () => {
     SetBackgColor1("#efbae1");
@@ -68,12 +73,23 @@ const HomePage = () => {
     SetColor3("white");
   };
 
+  const productsList = products.map((product:any) => {
+    return <CardProduto 
+    key={product.id} 
+    nome={product.nome}
+    foto={product.foto}
+    preco={product.preco}
+    />
+  })
+
+  console.log(products)
   return (
     <MainDiv>
       <Slide>
         <SlideMain>
           <h2>Soapin Store</h2>
           <h1>Handmade Soap</h1>
+          
           <p>
             New arrivals with naturre fruits, juice milks,
             <br /> essential for summer.
@@ -166,28 +182,22 @@ const HomePage = () => {
           </ButtonSeller>
         </BestSellerButtons>
         <BestSellerProducts>
-          <Products className="grid-item">Item 1</Products>
-          <Products className="grid-item">Item 2</Products>
-          <Products className="grid-item">Item 3</Products>
-          <Products className="grid-item">Item 4</Products>
-          <Products className="grid-item">Item 5</Products>
-          <Products className="grid-item">Item 6</Products>
-          <Products className="grid-item">Item 7</Products>
-          <Products className="grid-item">Item 8</Products>
-          <Products className="grid-item">Item 9</Products>
-          <Products className="grid-item">Item 10</Products>
-          <Products className="grid-item">Item 11</Products>
-          <Products className="grid-item">Item 12</Products>
-          <Products className="grid-item">Item 13</Products>
-          <Products className="grid-item">Item 14</Products>
-          <Products className="grid-item">Item 15</Products>
-          <Products className="grid-item">Item 16</Products>
+          {productsList}
         </BestSellerProducts>
       </BestSellerMain>
 
       <TwoDiv>
-        <Offer1></Offer1>
-        <Offer2></Offer2>
+        <Offer1>
+        <OfferInside>
+        <h2>Get Up To 15% Off </h2>
+        <h2 className="encantada">Encantada Saboaria</h2>
+        <p>Highest Quality</p>
+        <ButtonOffer>Shop Now - $20</ButtonOffer>
+        </OfferInside>
+        
+
+        </Offer1>
+        <Offer2/>
       </TwoDiv>
     </MainDiv>
   );
