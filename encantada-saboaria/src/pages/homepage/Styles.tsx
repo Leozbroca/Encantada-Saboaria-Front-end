@@ -231,7 +231,15 @@ export const OptionCategoryIcon = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: width 1s, height 1s;
+  #Teste:hover{
+    width: 150px;
+    height: 150px;
+  }
+  cursor: pointer;
 `;
+
+
 
 export const BestSellerMain = styled.div`
   display: flex;

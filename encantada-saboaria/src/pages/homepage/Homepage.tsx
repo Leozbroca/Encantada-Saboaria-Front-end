@@ -115,11 +115,11 @@ const HomePage = () => {
                 className="color-div"
                 style={{ color: NewColor }}
               >
-                <FaSoap />
+                <FaSoap/>
               </OptionCategoryIcon>
             </IconContext.Provider>
 
-            <p className="hover-div">Sabonetes</p>
+            <p className="hover-div" >Sabonetes</p>
           </OptionCategories>
           <OptionCategories>
             <IconContext.Provider
