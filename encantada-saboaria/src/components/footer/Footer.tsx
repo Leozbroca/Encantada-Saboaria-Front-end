@@ -1,16 +1,45 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { IconContext } from "react-icons";
 import { AiFillInstagram, AiFillPhone } from "react-icons/ai";
 import { FaCcVisa, FaCcPaypal, FaCcMastercard } from "react-icons/fa";
+import { Url } from "../../constants/Url";
 import {
   MainFooter,
   MainCopyRight,
   OptionPaymentIcon,
   IconsPayment,
   Menu,
-  IconContact
+  IconContact,
 } from "./Styles";
+
+interface ICategory {
+  nome: string;
+  _id: string;
+}
+
 const Footer = () => {
+  const [categories, setCategories] = useState<ICategory[]>([]);
+
+  const getCategories = async () => {
+    await axios
+      .get(`${Url}/allCateories`)
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const renderCategory = categories.map((category,index) => {
+    return <p key={category._id}>{category.nome}</p>;
+  });
+
   const [NewColor, SetNewColor] = useState("black");
   return (
     <MainFooter>
@@ -54,10 +83,7 @@ const Footer = () => {
         </div>
         <div>
           <h3>Categorias</h3>
-          <p>Sabonetes</p>
-          <p>Difusor de Aromas</p>
-          <p>Água para lenços</p>
-          <p>Velas aromáticas</p>
+          {renderCategory}
         </div>
       </Menu>
       <MainCopyRight>
