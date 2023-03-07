@@ -41,6 +41,18 @@ import { useState } from "react";
 import useRequestData from "../../hooks/useRequestData";
 import { Url } from "../../constants/Url";
 
+interface IProducts {
+  id: string,
+  categoria_id: string,
+  descricao: string,
+  foto: string,
+  ingredientes: string,
+  nome: string
+  preco:number,
+  quantidade: number,
+  tamanho: string,
+}
+
 const HomePage = () => {
   const [NewColor, SetNewColor] = useState("black");
   const [BackgColor1, SetBackgColor1] = useState("#efbae1");
@@ -51,7 +63,8 @@ const HomePage = () => {
   const [Color3, SetColor3] = useState("#efbae1");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const products = useRequestData([], `${Url}/products`)
+  const products:IProducts[] = useRequestData([], `${Url}/products`);
+
 
   const goToPag1 = () => {
     SetBackgColor1("#efbae1");
@@ -80,23 +93,24 @@ const HomePage = () => {
     SetColor3("white");
   };
 
-  const productsList = products.map((product:any) => {
-    return <CardProduto 
-    key={product.id} 
-    nome={product.nome}
-    foto={product.foto}
-    preco={product.preco}
-    />
-  })
+  const productsList = products.map((product: IProducts) => {
+    return (
+      <CardProduto
+        key={product.id}
+        nome={product.nome}
+        foto={product.foto}
+        preco={product.preco}
+      />
+    );
+  });
 
-  console.log(products)
   return (
     <MainDiv>
       <Slide>
         <SlideMain>
           <h2>Soapin Store</h2>
           <h1>Handmade Soap</h1>
-          
+
           <p>
             New arrivals with naturre fruits, juice milks,
             <br /> essential for summer.
@@ -122,11 +136,11 @@ const HomePage = () => {
                 className="color-div"
                 style={{ color: NewColor }}
               >
-                <FaSoap/>
+                <FaSoap />
               </OptionCategoryIcon>
             </IconContext.Provider>
 
-            <p className="hover-div" >Sabonetes</p>
+            <p className="hover-div">Sabonetes</p>
           </OptionCategories>
           <OptionCategories>
             <IconContext.Provider
@@ -188,9 +202,7 @@ const HomePage = () => {
             Top Rates
           </ButtonSeller>
         </BestSellerButtons>
-        <BestSellerProducts>
-          {productsList}
-        </BestSellerProducts>
+        <BestSellerProducts>{productsList}</BestSellerProducts>
       </BestSellerMain>
 
       <TwoDiv>
