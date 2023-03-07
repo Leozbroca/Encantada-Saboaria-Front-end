@@ -2,6 +2,7 @@ import styled from "styled-components";
 import slid from "../../assets/slide.webp";
 import back from "../../assets/back7.png";
 import product from "../../assets/producto1.avif";
+import banner from "../../assets/bannerV2-bg.jpg"
 
 export const MainDiv = styled.div`
   width: 100%;
@@ -362,3 +363,85 @@ export const ButtonOffer = styled.button`
     cursor:pointer;
   }
 `
+
+export const DivRow = styled.div`
+width:80%;
+height:500px;
+display:flex;
+flex-direction: row;
+justify-content: space-between;
+margin-top:50px;
+`
+
+export const DivColumn = styled.div`
+width:31%;
+height:100%;
+display:flex;
+flex-direction:column;
+`
+
+export const DivName = styled.div`
+width:100%;
+height:10%;
+font-size:22px;
+display:flex;
+flex-direction:row;
+align-items: flex-end;
+letter-spacing: 1px;
+border-bottom: 1px solid gray;
+`
+
+export const TopSaleProducts = styled.div`
+width:32%;
+height:100%;
+background-color: green;
+
+`
+
+export const PhotoBackground = styled.div`
+width:80%;
+height:400px;
+background-image: url(${banner});
+background-size: cover;
+
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items:center;
+
+p{
+color:white;
+font-size: 30px;
+margin:0;
+}
+
+h1{
+  color:white;
+  font-size:40px;
+}
+`
+
+export const ButtonOffer2 = styled.button`
+  min-width: 150px;
+  height: 50px;
+  line-height: 40px;
+  font-size:18px;
+  letter-spacing: 1px;
+  border: 1px solid #111111;;
+  font-weight: 500;
+  text-align: center;
+  padding: 0 15px;
+  transition: all .25s linear 0s;
+
+  :hover{
+    cursor:pointer;
+  }
+`
+
+export const DivColumn2 = styled.div`
+height:85%;
+width:100%;
+display:flex;
+flex-direction:column;
+`
+

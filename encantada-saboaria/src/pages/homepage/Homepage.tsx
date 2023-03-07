@@ -21,10 +21,17 @@ import {
   Offer1,
   Offer2,
   OfferInside,
-  ButtonOffer
+  ButtonOffer,
+  PhotoBackground,
+  ButtonOffer2,
+  DivRow,
+  DivColumn,
+  DivName,
+  DivColumn2,
 } from "./Styles";
 import slid from "../../assets/slide.webp";
 import CardProduto from "../../components/CardProduto/CardProduto";
+import Product3 from "../../components/Product3/Products3";
 
 import { IconContext } from "react-icons";
 import { FaSoap } from "react-icons/fa";
@@ -194,11 +201,39 @@ const HomePage = () => {
         <p>Highest Quality</p>
         <ButtonOffer>Shop Now - $20</ButtonOffer>
         </OfferInside>
-        
-
         </Offer1>
-        <Offer2/>
+        <Offer2/>       
       </TwoDiv>
+
+
+      <DivRow>
+        <DivColumn>
+          <DivName>Featured Projects</DivName>
+          <DivColumn2>
+            <Product3/>
+          </DivColumn2>
+        </DivColumn>
+        <DivColumn>
+          <DivName>Top Rated Products</DivName>
+          <DivColumn2>
+          <Product3/>
+          </DivColumn2>
+          </DivColumn>
+        <DivColumn>
+        <DivName>Top Sales Products</DivName>
+        <DivColumn2>
+          <Product3/>
+          </DivColumn2>
+        </DivColumn>
+      </DivRow>
+
+
+
+      <PhotoBackground>
+        <p>Start from $39.99</p>
+        <h1>Handmade Soap Up To 20% Off</h1>
+        <ButtonOffer2>Shop Now</ButtonOffer2>
+      </PhotoBackground>
     </MainDiv>
   );
 };
