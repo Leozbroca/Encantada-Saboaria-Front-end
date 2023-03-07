@@ -26,6 +26,9 @@ export const Menu = styled.div`
     font-weight: 700;
     transition: 0.5s;
 
+    ::first-letter {
+      text-transform: uppercase;
+    }
     :hover {
       color: #efbae1;
       cursor: pointer;
