@@ -1,36 +1,58 @@
+import axios from "axios";
 import react, { useState } from "react";
+import { Url } from "../../constants/Url";
+import { useForm } from "../../hooks/useForm";
 import { Main, InputContact, ButtonSendForm, Form } from "./Styles";
 
 const Contact = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [text, setText] = useState("");
+  const { form, onChangeForm, clean } = useForm({
+    name: "",
+    email: "",
+    text: "",
+  });
 
+  const sendData = async () => {
+    await axios
+      .post(`${Url}/contactSend`, form)
+      .then((response) => {
+        alert(response.data.message);
+        clean();
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
+  };
 
-  console.log({name,email,text})
+  const onSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    sendData();
+  };
 
   return (
     <Main>
       <p>Envie-Nos Uma Mensagem</p>
       <div>
-        <Form>
+        <Form onSubmit={onSubmitForm}>
           <InputContact
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="name"
+            value={form.name}
+            onChange={onChangeForm}
             type="text"
             placeholder="Seu nome..."
             required
           />
           <InputContact
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={form.email}
+            onChange={onChangeForm}
             type="email"
             placeholder="Seu email..."
             required
           />
           <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            name="text"
+            value={form.text}
+            onChange={onChangeForm}
             rows={4}
             cols={100}
             placeholder={"Sua mensagem ..."}
