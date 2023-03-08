@@ -6,16 +6,27 @@ export default function Product3(props: any) {
     <Main>
       <DivRow2>
         <DivPhoto></DivPhoto>
-        <DivText></DivText>
+        <DivText>
+          <p>Natural Wholesale Press Soap</p>
+          <div></div>
+          <p className="price">$52.00</p>
+        </DivText>
       </DivRow2>
       <DivRow2>
         <DivPhoto></DivPhoto>
-        <DivText></DivText>
+        <DivText>
+        <p>Natural Wholesale Press Soap</p>
+          <div></div>
+          <p className="price">$52.00</p>
+        </DivText>
       </DivRow2>
       <DivRow3>
-        //arrumar responsividade photo
         <DivPhoto></DivPhoto>
-        <DivText></DivText>
+        <DivText>
+        <p>Natural Wholesale Press Soap</p>
+          <div></div>
+          <p className="price">$52.00</p>
+        </DivText>
       </DivRow3>
     </Main>
   );

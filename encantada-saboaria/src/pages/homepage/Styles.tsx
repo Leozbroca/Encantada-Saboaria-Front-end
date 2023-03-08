@@ -411,7 +411,7 @@ align-items:center;
 
 p{
 color:white;
-font-size: 30px;
+font-size: 28px;
 margin:0;
 }
 
@@ -425,7 +425,7 @@ export const ButtonOffer2 = styled.button`
   min-width: 150px;
   height: 50px;
   line-height: 40px;
-  font-size:18px;
+  font-size:15px;
   letter-spacing: 1px;
   border: 1px solid #111111;;
   font-weight: 500;
@@ -443,5 +443,21 @@ height:85%;
 width:100%;
 display:flex;
 flex-direction:column;
+`
+
+export const InstagramText = styled.h1`
+font-size:35px;
+text-align: center;
+margin-top:75px;
+`
+
+export const EncantadaText = styled.h1`
+font-size:24px;
+text-align: center;
+color:#efbae1;
+border-top:2px solid #efbae1;
+margin:0;
+margin-top:-20px;
+padding-top:20px;
 `
 

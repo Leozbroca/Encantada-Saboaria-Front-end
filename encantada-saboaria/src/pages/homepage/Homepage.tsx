@@ -28,6 +28,9 @@ import {
   DivColumn,
   DivName,
   DivColumn2,
+  InstagramText,
+  EncantadaText,
+
 } from "./Styles";
 import slid from "../../assets/slide.webp";
 import CardProduto from "../../components/CardProduto/CardProduto";
@@ -203,6 +206,7 @@ const HomePage = () => {
           </ButtonSeller>
         </BestSellerButtons>
         <BestSellerProducts>{productsList}</BestSellerProducts>
+        
       </BestSellerMain>
 
       <TwoDiv>
@@ -214,7 +218,7 @@ const HomePage = () => {
         <ButtonOffer>Shop Now - $20</ButtonOffer>
         </OfferInside>
         </Offer1>
-        <Offer2/>       
+        <Offer2/>      
       </TwoDiv>
 
 
@@ -246,6 +250,10 @@ const HomePage = () => {
         <h1>Handmade Soap Up To 20% Off</h1>
         <ButtonOffer2>Shop Now</ButtonOffer2>
       </PhotoBackground>
+
+      <InstagramText>#Instagram</InstagramText>
+      <EncantadaText>#Encantada</EncantadaText>
+
     </MainDiv>
   );
 };
