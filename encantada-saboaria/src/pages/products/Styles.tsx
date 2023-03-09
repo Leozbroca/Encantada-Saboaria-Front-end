@@ -15,11 +15,22 @@ export const Pagination = styled.div`
   justify-content: center;
 `;
 
-export const SpanPagination = styled.span`
+const colors ={
+  white:"#ffffff",
+  pink:"#ebbaa9"
+}
+
+interface isActiveBoolean{
+  isActive:boolean,
+  activeColor:"white" | "pink"
+  activeColor2:"white" | "pink"
+}
+
+export const SpanPagination = styled.span<isActiveBoolean>`
   margin: 10px;
-  background: #ebbaa9;
+  background: ${(props)=> props.isActive ? colors[props.activeColor]:colors[props.activeColor2]};
   border-color: #ebbaa9;
-  color: #fff;
+  color: #000;
   width: 42px;
   height: 42px;
   border: 1px solid #e3e3e3;
