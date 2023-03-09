@@ -1,12 +1,34 @@
+import { Button, IconButton } from "@chakra-ui/button";
+import { useColorModeValue } from "@chakra-ui/color-mode";
+import { useDisclosure } from "@chakra-ui/hooks";
 import { useState } from "react";
+import { BiMailSend } from "react-icons/bi";
 import CardProduto from "../../components/CardProduto/CardProduto";
+import { ICategory } from "../../components/footer/Footer";
+import ModalFilter from "../../components/modalFilter/modalFilter";
 import { Url } from "../../constants/Url";
 import useRequestData from "../../hooks/useRequestData";
 import { IProducts } from "../homepage/Homepage";
-import { Pagination, ProductsScreen, SpanPagination } from "./Styles";
-
+import {
+  Filter,
+  Main,
+  Pagination,
+  ProductsScreen,
+  SpanPagination,
+  ProductNotFound
+} from "./Styles";
+export interface IFilter {
+  nome: string;
+  _id: string;
+}
 const ProductPage = () => {
   const [page, setPage] = useState(1);
+  const [filterEssence, setFilterEssence] = useState<IFilter>({
+    nome: "",
+    _id: "",
+  });
+  const { isOpen, onToggle } = useDisclosure();
+
   const products: IProducts[] = useRequestData(
     [],
     `${Url}/products?page=${page}`
@@ -14,25 +36,43 @@ const ProductPage = () => {
 
   const [clickPage, setClickPage] = useState(false);
 
-  const productsList = products.map((product: IProducts) => {
-    return (
-      <CardProduto
-        key={product.id}
-        nome={product.nome}
-        foto={product.foto}
-        preco={product.preco}
-      />
-    );
-  });
+  const productsList = products.filter((product: IProducts) =>
+    filterEssence.nome ? product.categoria_id === filterEssence._id : true
+  );
 
   const onClickPage = (numero: number) => {
     setPage(numero);
     setClickPage(!clickPage);
   };
 
+  console.log("filterEssence", filterEssence);
+
   return (
-    <div>
-      <ProductsScreen>{productsList}</ProductsScreen>
+    <>
+      <Main>
+        <Button onClick={onToggle}>Filtro</Button>
+        <Filter>
+          <ModalFilter isOpen={isOpen} setFilterEssence={setFilterEssence} />
+        </Filter>
+        <ProductsScreen>
+          {productsList.length > 0 ? (
+            productsList.map((product: IProducts) => {
+              return (
+                <CardProduto
+                  key={product.id}
+                  nome={product.nome}
+                  foto={product.foto}
+                  preco={product.preco}
+                />
+              );
+            })
+          ) : (
+            <ProductNotFound>
+              <p>Não há produtos com essa categoria</p>
+            </ProductNotFound>
+          )}
+        </ProductsScreen>
+      </Main>
       <Pagination>
         <SpanPagination
           activeColor="white"
@@ -51,8 +91,7 @@ const ProductPage = () => {
           2
         </SpanPagination>
       </Pagination>
-      
-    </div>
+    </>
   );
 };
 export default ProductPage;

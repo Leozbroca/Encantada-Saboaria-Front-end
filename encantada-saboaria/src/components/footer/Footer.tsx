@@ -21,7 +21,7 @@ import { Url } from "../../constants/Url";
 import logo from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
-interface ICategory {
+export interface ICategory {
   nome: string;
   _id: string;
 }
