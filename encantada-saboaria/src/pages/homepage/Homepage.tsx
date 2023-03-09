@@ -35,6 +35,7 @@ import {
 import slid from "../../assets/slide.webp";
 import CardProduto from "../../components/CardProduto/CardProduto";
 import Product3 from "../../components/Product3/Products3";
+import Gallery from "../../components/Carousel/Carousel";
 
 import { IconContext } from "react-icons";
 import { FaSoap } from "react-icons/fa";
@@ -253,7 +254,7 @@ const HomePage = () => {
 
       <InstagramText>#Instagram</InstagramText>
       <EncantadaText>#Encantada</EncantadaText>
-
+      <Gallery/>
     </MainDiv>
   );
 };
