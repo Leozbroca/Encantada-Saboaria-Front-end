@@ -1,5 +1,6 @@
 import React from "react";
 import { Main, Photo } from "./Styles";
+
 interface IProps {
   nome: string;
   foto: string;
