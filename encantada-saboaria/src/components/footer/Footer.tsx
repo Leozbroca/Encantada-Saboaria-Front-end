@@ -1,18 +1,24 @@
+import {
+  Box,
+  chakra,
+  Container,
+  Link,
+  SimpleGrid,
+  Stack,
+  Text,
+  VisuallyHidden,
+  Input,
+  IconButton,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { ReactNode } from "react";
+import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { BiMailSend } from "react-icons/bi";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { IconContext } from "react-icons";
-import { AiFillInstagram, AiFillPhone } from "react-icons/ai";
-import { FaCcVisa, FaCcPaypal, FaCcMastercard } from "react-icons/fa";
 import { Url } from "../../constants/Url";
-import {
-  MainFooter,
-  MainCopyRight,
-  OptionPaymentIcon,
-  IconsPayment,
-  Menu,
-  IconContact,
-} from "./Styles";
 
+import logo from "../../assets/logo1.png";
 interface ICategory {
   nome: string;
   _id: string;
@@ -36,95 +42,138 @@ const Footer = () => {
     getCategories();
   }, []);
 
-  const renderCategory = categories.map((category,index) => {
-    return <p key={category._id}>{category.nome}</p>;
+  const renderCategory = categories.map((category, index) => {
+    return (
+      <Link _hover={{ color: " #efbae1" }} key={category._id} href={"#"}>
+        {category.nome}
+      </Link>
+    );
   });
 
-  const [NewColor, SetNewColor] = useState("black");
+  const Logo = () => {
+    return <img src={logo} alt={"Imagem de logo"} />;
+  };
+
+  const SocialButton = ({
+    children,
+    label,
+    href,
+  }: {
+    children: ReactNode;
+    label: string;
+    href: string;
+  }) => {
+    return (
+      <chakra.button
+        bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+        rounded={"full"}
+        w={8}
+        h={8}
+        cursor={"pointer"}
+        as={"a"}
+        href={href}
+        display={"inline-flex"}
+        alignItems={"center"}
+        justifyContent={"center"}
+        transition={"background 0.3s ease"}
+        _hover={{
+          bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
+        }}
+      >
+        <VisuallyHidden>{label}</VisuallyHidden>
+        {children}
+      </chakra.button>
+    );
+  };
+
+  const ListHeader = ({ children }: { children: ReactNode }) => {
+    return (
+      <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
+        {children}
+      </Text>
+    );
+  };
+
   return (
-    <MainFooter>
-      <Menu>
-        <div>
-          <h3>Soapin</h3>
-          <h4>Saboaria encantada tudo para você.</h4>
-          <IconContact>
-            <IconContext.Provider
-              value={{ className: "global-class-name", size: "3em" }}
-            >
-              <OptionPaymentIcon
-                className="color-div"
-                style={{ color: NewColor }}
-              >
-                <AiFillInstagram />
-              </OptionPaymentIcon>
-            </IconContext.Provider>
-            <IconContext.Provider
-              value={{ className: "global-class-name", size: "3em" }}
-            >
-              <OptionPaymentIcon
-                className="color-div"
-                style={{ color: NewColor }}
-              >
-                <AiFillPhone />
-              </OptionPaymentIcon>
-            </IconContext.Provider>
-          </IconContact>
-        </div>
-        <div>
-          <h3>Ajuda e Informações</h3>
-          <p>Sobre nos</p>
-          <p>Politica de privacidade</p>
-          <p>Termos de condições</p>
-        </div>
-        <div>
-          <h3>Busca rapida de Produtos</h3>
-          <p>Paginação</p>
-          <p>Contato</p>
-        </div>
-        <div>
-          <h3>Categorias</h3>
-          {renderCategory}
-        </div>
-      </Menu>
-      <MainCopyRight>
-        <p>
-          © Copyright 2023 | Saboaria Encantada By Desenvolvedores Saboaria
-          Encantada.
-        </p>
-        <IconsPayment>
-          <IconContext.Provider
-            value={{ className: "global-class-name", size: "3em" }}
-          >
-            <OptionPaymentIcon
-              className="color-div"
-              style={{ color: NewColor }}
-            >
-              <FaCcVisa />
-            </OptionPaymentIcon>
-          </IconContext.Provider>
-          <IconContext.Provider
-            value={{ className: "global-class-name", size: "3em" }}
-          >
-            <OptionPaymentIcon
-              className="color-div"
-              style={{ color: NewColor }}
-            >
-              <FaCcPaypal />
-            </OptionPaymentIcon>
-          </IconContext.Provider>
-          <IconContext.Provider
-            value={{ className: "global-class-name", size: "3em" }}
-          >
-            <OptionPaymentIcon
-              className="color-div"
-              style={{ color: NewColor }}
-            >
-              <FaCcMastercard />
-            </OptionPaymentIcon>
-          </IconContext.Provider>
-        </IconsPayment>
-      </MainCopyRight>
-    </MainFooter>
+    <Box
+      bg={useColorModeValue("gray.50", "gray.900")}
+      color={useColorModeValue("gray.700", "gray.200")}
+    >
+      <Container as={Stack} maxW={"6xl"} py={10}>
+        <SimpleGrid
+          templateColumns={{ sm: "1fr 1fr ", md: "2fr 1fr 1fr 1fr 2fr" }}
+          spacing={9}
+        >
+          <Stack spacing={6}>
+            <Box>
+              <Logo />
+            </Box>
+            <Text fontSize={"sm"}>
+              © Copyright 2023 | Saboaria Encantada By Desenvolvedores Saboaria
+              Encantada.
+            </Text>
+            <Stack direction={"row"} spacing={6}>
+              <SocialButton label={"Twitter"} href={"#"}>
+                <FaTwitter />
+              </SocialButton>
+              <SocialButton label={"YouTube"} href={"#"}>
+                <FaYoutube />
+              </SocialButton>
+              <SocialButton label={"Instagram"} href={"#"}>
+                <FaInstagram />
+              </SocialButton>
+            </Stack>
+          </Stack>
+          <Stack align={"flex-start"}>
+            <ListHeader>Ajuda e Informações</ListHeader>
+            <Link _hover={{ color: " #efbae1" }} href={"#"}>
+              Sobre nos
+            </Link>
+            <Link _hover={{ color: " #efbae1" }} href={"#"}>
+              Politica de privacidade
+            </Link>
+            <Link _hover={{ color: " #efbae1" }} href={"#"}>
+              Termos de condições
+            </Link>
+          </Stack>
+          <Stack align={"flex-start"}>
+            <ListHeader>Busca rapida de Produtos</ListHeader>
+            <Link _hover={{ color: " #efbae1" }} href={"#"}>
+              Paginação
+            </Link>
+            <Link _hover={{ color: " #efbae1" }} href={"#"}>
+              Contato
+            </Link>
+          </Stack>
+          <Stack align={"flex-start"}>
+            <ListHeader>Categorias</ListHeader>
+            {renderCategory}
+          </Stack>
+          <Stack align={"flex-start"}>
+            <ListHeader>Cadastre o seu email</ListHeader>
+            <Stack direction={"row"}>
+              <Input
+                placeholder={"Seu endereço de email"}
+                bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+                border={0}
+                _focus={{
+                  bg: "whiteAlpha.300",
+                }}
+              />
+              <IconButton
+                bg={useColorModeValue("green.400", "green.800")}
+                color={useColorModeValue("white", "gray.800")}
+                _hover={{
+                  bg: "green.600",
+                }}
+                aria-label="Subscribe"
+                icon={<BiMailSend />}
+              />
+            </Stack>
+          </Stack>
+        </SimpleGrid>
+      </Container>
+    </Box>
   );
 };
 

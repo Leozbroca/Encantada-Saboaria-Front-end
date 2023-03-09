@@ -44,7 +44,7 @@ import { useState } from "react";
 import useRequestData from "../../hooks/useRequestData";
 import { Url } from "../../constants/Url";
 
-interface IProducts {
+export interface IProducts {
   id: string,
   categoria_id: string,
   descricao: string,

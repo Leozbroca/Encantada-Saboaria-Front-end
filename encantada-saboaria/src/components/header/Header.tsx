@@ -17,8 +17,13 @@ import {
   HiOutlineShoppingBag,
 } from "react-icons/hi2";
 import { IconContext } from "react-icons";
+import { useNavigate } from "react-router-dom";
+import { goTo } from "../../routes/Coordinator";
 
 const Header = () => {
+
+  const navigate = useNavigate()
+
   return (
     <MainHeader>
       <MenuButton />
@@ -26,11 +31,11 @@ const Header = () => {
       <MenuOptions>
         <Option>
           <span />
-          <p>Home</p>
+          <p onClick={()=>goTo(navigate,"/")}>Home</p>
         </Option>
         <Option>
           <span />
-          <p>Shop</p>
+          <p onClick={()=>goTo(navigate,"/produtos")}>Produtos</p>
         </Option>
         <Option>
           <span />
@@ -42,7 +47,7 @@ const Header = () => {
         </Option>
         <Option>
           <span />
-          <p>Blogs</p>
+          <p onClick={()=>goTo(navigate,"/contato")}>Contato</p>
         </Option>
       </MenuOptions>
       <MenuItens>
