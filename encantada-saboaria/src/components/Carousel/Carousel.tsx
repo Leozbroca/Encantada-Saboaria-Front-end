@@ -7,11 +7,11 @@ import { Main, ImgCar } from "./Styles"
 const handleDragStart = (e:any) => e.preventDefault();
 
 const responsive = {
-  0: { items: 1},
+  400: { items: 1, itemsFit:"contain"},
   500: { items: 2},
-  600: { items: 3},
-  1600: { items: 4 },
-  1800: { items: 5 },
+  700: { items: 3},
+  1000: { items: 4 },
+  1500: { items: 5 },
 }
 
 const items = [
@@ -33,6 +33,7 @@ const Gallery = () => {
     autoPlay={true}
     autoPlayInterval={8000}
     keyboardNavigation={true}
+    disableButtonsControls={true}
     />
     </Main>
   );
