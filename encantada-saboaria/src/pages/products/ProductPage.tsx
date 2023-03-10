@@ -1,10 +1,7 @@
-import { Button, IconButton } from "@chakra-ui/button";
-import { useColorModeValue } from "@chakra-ui/color-mode";
+import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { useState } from "react";
-import { BiMailSend } from "react-icons/bi";
 import CardProduto from "../../components/CardProduto/CardProduto";
-import { ICategory } from "../../components/footer/Footer";
 import ModalFilter from "../../components/modalFilter/modalFilter";
 import { Url } from "../../constants/Url";
 import useRequestData from "../../hooks/useRequestData";
@@ -15,7 +12,7 @@ import {
   Pagination,
   ProductsScreen,
   SpanPagination,
-  ProductNotFound
+  ProductNotFound,
 } from "./Styles";
 export interface IFilter {
   nome: string;
@@ -23,6 +20,7 @@ export interface IFilter {
 }
 const ProductPage = () => {
   const [page, setPage] = useState(1);
+  const [priceCategory, setPriceCategory] = useState(0);
   const [filterEssence, setFilterEssence] = useState<IFilter>({
     nome: "",
     _id: "",
@@ -36,23 +34,33 @@ const ProductPage = () => {
 
   const [clickPage, setClickPage] = useState(false);
 
-  const productsList = products.filter((product: IProducts) =>
-    filterEssence.nome ? product.categoria_id === filterEssence._id : true
-  );
+  const productsList = products
+    .filter((product: IProducts) =>
+      filterEssence.nome ? product.categoria_id === filterEssence._id : true
+    )
+    .filter((product: IProducts) =>
+      priceCategory
+        ? priceCategory >= product.preco && priceCategory <= product.preco
+        : true
+    );
 
   const onClickPage = (numero: number) => {
     setPage(numero);
     setClickPage(!clickPage);
   };
-
-  console.log("filterEssence", filterEssence);
-
+  
   return (
     <>
       <Main>
-        <Button onClick={onToggle}>Filtro</Button>
+        <Button onClick={onToggle} _hover={{ background: "#ebbaa9" }}>
+          Filtro
+        </Button>
         <Filter>
-          <ModalFilter isOpen={isOpen} setFilterEssence={setFilterEssence} />
+          <ModalFilter
+            isOpen={isOpen}
+            setFilterEssence={setFilterEssence}
+            setPriceCategory={setPriceCategory}
+          />
         </Filter>
         <ProductsScreen>
           {productsList.length > 0 ? (
@@ -68,7 +76,7 @@ const ProductPage = () => {
             })
           ) : (
             <ProductNotFound>
-              <p>Não há produtos com essa categoria</p>
+              <p>Não há produtos com essa categoria ou preço</p>
             </ProductNotFound>
           )}
         </ProductsScreen>

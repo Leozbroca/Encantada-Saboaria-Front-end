@@ -10,9 +10,9 @@ export const Filter = styled.div`
   margin-top: 100px;
 `;
 export const ProductsScreen = styled.div`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-flow: dense;
   gap: 50px;
   padding: 20px;
   width: 70%;
@@ -29,7 +29,7 @@ export const ProductNotFound = styled.div`
   align-items: center;
   justify-content: center;
   width: 800px;
-  p{
+  p {
     font-size: 40px;
   }
 `;
