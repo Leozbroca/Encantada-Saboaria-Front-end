@@ -16,6 +16,7 @@ export const MainHeader = styled.div`
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  z-index:5;
 `;
 
 export const MenuButton = styled.div`
