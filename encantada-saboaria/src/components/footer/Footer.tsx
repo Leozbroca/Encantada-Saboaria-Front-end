@@ -19,7 +19,9 @@ import React, { useEffect, useState } from "react";
 import { Url } from "../../constants/Url";
 
 import logo from "../../assets/logo1.png";
-interface ICategory {
+import { useNavigate } from "react-router-dom";
+import { goTo } from "../../routes/Coordinator";
+export interface ICategory {
   nome: string;
   _id: string;
 }
@@ -93,6 +95,7 @@ const Footer = () => {
       </Text>
     );
   };
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -126,7 +129,7 @@ const Footer = () => {
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Ajuda e Informações</ListHeader>
-            <Link _hover={{ color: " #efbae1" }} href={"#"}>
+            <Link _hover={{ color: " #efbae1" }} >
               Sobre nos
             </Link>
             <Link _hover={{ color: " #efbae1" }} href={"#"}>
@@ -141,7 +144,7 @@ const Footer = () => {
             <Link _hover={{ color: " #efbae1" }} href={"#"}>
               Paginação
             </Link>
-            <Link _hover={{ color: " #efbae1" }} href={"#"}>
+            <Link _hover={{ color: " #efbae1" }}  onClick={()=>goTo(navigate,"/contato")}>
               Contato
             </Link>
           </Stack>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+
 import {
   MainDiv,
   Slide,
@@ -30,7 +31,6 @@ import {
   DivColumn2,
   InstagramText,
   EncantadaText,
-
 } from "./Styles";
 import slid from "../../assets/slide.webp";
 import CardProduto from "../../components/CardProduto/CardProduto";
@@ -46,15 +46,15 @@ import useRequestData from "../../hooks/useRequestData";
 import { Url } from "../../constants/Url";
 
 export interface IProducts {
-  id: string,
-  categoria_id: string,
-  descricao: string,
-  foto: string,
-  ingredientes: string,
-  nome: string
-  preco:number,
-  quantidade: number,
-  tamanho: string,
+  id: string;
+  categoria_id: string;
+  descricao: string;
+  foto: string;
+  ingredientes: string;
+  nome: string;
+  preco: number;
+  quantidade: number;
+  tamanho: string;
 }
 
 const HomePage = () => {
@@ -67,8 +67,7 @@ const HomePage = () => {
   const [Color3, SetColor3] = useState("#efbae1");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-  const products:IProducts[] = useRequestData([], `${Url}/products`);
-
+  const products: IProducts[] = useRequestData([], `${Url}/products`);
 
   const goToPag1 = () => {
     SetBackgColor1("#efbae1");
@@ -207,44 +206,40 @@ const HomePage = () => {
           </ButtonSeller>
         </BestSellerButtons>
         <BestSellerProducts>{productsList}</BestSellerProducts>
-        
       </BestSellerMain>
 
       <TwoDiv>
         <Offer1>
-        <OfferInside>
-        <h2>Get Up To 15% Off </h2>
-        <h2 className="encantada">Encantada Saboaria</h2>
-        <p>Highest Quality</p>
-        <ButtonOffer>Shop Now - $20</ButtonOffer>
-        </OfferInside>
+          <OfferInside>
+            <h2>Get Up To 15% Off </h2>
+            <h2 className="encantada">Encantada Saboaria</h2>
+            <p>Highest Quality</p>
+            <ButtonOffer>Shop Now - $20</ButtonOffer>
+          </OfferInside>
         </Offer1>
-        <Offer2/>      
+        <Offer2 />
       </TwoDiv>
-
 
       <DivRow>
         <DivColumn>
           <DivName>Featured Projects</DivName>
           <DivColumn2>
-            <Product3/>
+            <Product3 />
           </DivColumn2>
         </DivColumn>
         <DivColumn>
           <DivName>Top Rated Products</DivName>
           <DivColumn2>
-          <Product3/>
+            <Product3 />
           </DivColumn2>
-          </DivColumn>
+        </DivColumn>
         <DivColumn>
-        <DivName>Top Sales Products</DivName>
-        <DivColumn2>
-          <Product3/>
+          <DivName>Top Sales Products</DivName>
+          <DivColumn2>
+            <Product3 />
           </DivColumn2>
         </DivColumn>
       </DivRow>
-
-
 
       <PhotoBackground>
         <p>Start from $39.99</p>
@@ -254,7 +249,7 @@ const HomePage = () => {
 
       <InstagramText>#Instagram</InstagramText>
       <EncantadaText>#Encantada</EncantadaText>
-      <Gallery/>
+      <Gallery />
     </MainDiv>
   );
 };
