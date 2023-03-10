@@ -19,8 +19,6 @@ export const MainDiv = styled.div`
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-  margin-bottom: 500px;
 `;
 
 export const Slide = styled.div`
@@ -457,7 +455,7 @@ text-align: center;
 color:#efbae1;
 border-top:2px solid #efbae1;
 margin:0;
-margin-top:-20px;
-padding-top:20px;
+margin-top:0px;
+padding-top:10px;
 `
 
