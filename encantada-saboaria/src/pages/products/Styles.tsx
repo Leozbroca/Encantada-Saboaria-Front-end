@@ -1,13 +1,30 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  background-color: white;
   display: flex;
-  margin-top: 100px;
+  flex-direction: column;
+  margin: 100px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+`;
+
+export const ButtonFilter = styled.div`
+  width: 100%;
+`
+
+export const MainFilterProduct = styled.div`
+  display: flex;
   width: 100%;
   justify-content: space-evenly;
+  
 `;
 export const Filter = styled.div`
-  margin-top: 100px;
 `;
 export const ProductsScreen = styled.div`
   display: flex;
@@ -46,7 +63,7 @@ interface isActiveBoolean {
 }
 
 export const SpanPagination = styled.span<isActiveBoolean>`
-  margin: 10px;
+  /* margin: 10px; */
   background: ${(props) =>
     props.isActive ? colors[props.activeColor] : colors[props.activeColor2]};
   border-color: #ebbaa9;

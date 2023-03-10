@@ -13,6 +13,8 @@ import {
   ProductsScreen,
   SpanPagination,
   ProductNotFound,
+  MainFilterProduct,
+  ButtonFilter,
 } from "./Styles";
 export interface IFilter {
   nome: string;
@@ -27,10 +29,7 @@ const ProductPage = () => {
   });
   const { isOpen, onToggle } = useDisclosure();
 
-  const products: IProducts[] = useRequestData(
-    [],
-    `${Url}/products?page=${page}`
-  );
+  const products: IProducts[] = useRequestData([], `${Url}/products`);
 
   const [clickPage, setClickPage] = useState(false);
 
@@ -40,7 +39,7 @@ const ProductPage = () => {
     )
     .filter((product: IProducts) =>
       priceCategory
-        ? priceCategory >= product.preco && priceCategory <= product.preco
+        ? priceCategory >= product.preco && product.preco >= priceCategory - 10
         : true
     );
 
@@ -48,13 +47,17 @@ const ProductPage = () => {
     setPage(numero);
     setClickPage(!clickPage);
   };
-  
+
+
   return (
-    <>
-      <Main>
-        <Button onClick={onToggle} _hover={{ background: "#ebbaa9" }}>
-          Filtro
-        </Button>
+    <Main>
+      <ButtonFilter>
+          <Button onClick={onToggle} _hover={{ background: "#ebbaa9" }}>
+            Filtro
+          </Button>
+        </ButtonFilter>
+      <MainFilterProduct>
+        
         <Filter>
           <ModalFilter
             isOpen={isOpen}
@@ -80,7 +83,7 @@ const ProductPage = () => {
             </ProductNotFound>
           )}
         </ProductsScreen>
-      </Main>
+      </MainFilterProduct>
       <Pagination>
         <SpanPagination
           activeColor="white"
@@ -99,7 +102,7 @@ const ProductPage = () => {
           2
         </SpanPagination>
       </Pagination>
-    </>
+    </Main>
   );
 };
 export default ProductPage;
