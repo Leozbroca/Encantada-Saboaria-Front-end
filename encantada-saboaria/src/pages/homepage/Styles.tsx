@@ -302,6 +302,13 @@ height:100vh;
 margin-top:50px;
 display:flex;
 flex-direction: row;
+
+
+@media (max-width: 600px) {
+  flex-direction: column;
+  width:100%;
+  margin-bottom:250px;
+}
 `
 
 export const Offer1 = styled.div`
@@ -313,6 +320,10 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 
+@media (max-width: 600px) {
+  width:100%;
+  min-height:100%;
+}
 
 h2{
   font-size:50px;
@@ -337,6 +348,19 @@ display:flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+
+@media (max-width: 1300px) {
+   h2{
+    font-size:25px;
+   }
+  }
+
+  @media (max-width: 800px) {
+   h2{
+    font-size:18px;
+   }
+  }
+
 `
 
 export const Offer2 = styled.div`
@@ -344,10 +368,15 @@ width:50%;
 height:100vh;
 background-image: url(${product});
 background-size: cover;
+
+@media (max-width: 600px) {
+  width:100%;
+  min-height:100%;
+}
 `
 
 export const ButtonOffer = styled.button`
-  min-width: 250px;
+  width: 250px;
   height: 50px;
   line-height: 40px;
   font-size:18px;
@@ -361,7 +390,21 @@ export const ButtonOffer = styled.button`
   :hover{
     cursor:pointer;
   }
+
+  @media (max-width: 1300px) {
+  font-size:12px;
+  width:150px;
+  height: 40px;
+  }
+
+  @media (max-width: 800px) {
+  font-size:6px;
+  width:100px;
+  height: 30px;
+  line-height: 20px;
+  }
 `
+
 
 export const DivRow = styled.div`
 width:95%;
@@ -372,7 +415,7 @@ flex-direction: row;
 justify-content: space-between;
 margin-top:50px;
 
-@media (max-width: 1250px) {
+@media (max-width: 800px) {
     flex-direction: column;
     justify-content: center;
     align-items:center;
@@ -387,13 +430,14 @@ margin-top:50px;
 `
 
 export const DivColumn = styled.div`
-width:31%;
+width:30%;
 height:100%;
 display:flex;
 flex-direction:column;
 
-@media (max-width: 1250px) {
-    width:50%;
+@media (max-width: 800px) {
+    width:80%;
+    height:100%;
   }
   
 `
@@ -408,7 +452,7 @@ align-items: flex-end;
 letter-spacing: 1px;
 border-bottom: 1px solid rgba(0,0,0,0.2);
 
-@media (max-width: 600px) {
+  @media (max-width: 1000px) {
    font-size:18px;
   }
 `
