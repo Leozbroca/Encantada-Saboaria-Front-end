@@ -7,7 +7,7 @@ import { Main, ImgCar } from "./Styles"
 const handleDragStart = (e:any) => e.preventDefault();
 
 const responsive = {
-  400: { items: 1, itemsFit:"contain"},
+  400: { items: 1},
   500: { items: 2},
   700: { items: 3},
   1000: { items: 4 },
