@@ -281,11 +281,11 @@ export const ButtonSeller = styled.button`
 `;
 
 export const BestSellerProducts = styled.div`
-display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-auto-flow: dense;
-  gap:50px;
+  display:flex;
+  flex-direction:row;
+  gap:20px;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top:50px;
 `;
 
@@ -447,15 +447,18 @@ export const ButtonOffer2 = styled.button`
   line-height: 40px;
   font-size:15px;
   letter-spacing: 1px;
-  border: 1px solid #111111;;
   font-weight: 500;
   text-align: center;
   padding: 0 15px;
   margin-top:20px;
   transition: all .25s linear 0s;
+  background-color:white;
 
   :hover{
     cursor:pointer;
+    transition: all .25s linear 0s;
+    color:white;
+    background-color:pink;
   }
 `
 

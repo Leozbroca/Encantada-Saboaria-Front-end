@@ -28,6 +28,7 @@ declare module '@mui/material/styles' {
     status: {
       danger: orange[500],
     },
+   
   });
   
 //   export default function CustomStyles() {

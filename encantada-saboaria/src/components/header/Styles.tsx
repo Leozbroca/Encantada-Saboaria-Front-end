@@ -17,6 +17,8 @@ export const MainHeader = styled.div`
   -ms-user-select: none;
   user-select: none;
   z-index:5;
+  
+  letter-spacing:1px;
 `;
 
 export const MenuButton = styled.div`
@@ -89,12 +91,12 @@ export const Option = styled.a`
   }
 
   p {
-    font-size: 17px;
     letter-spacing: 1px;
     text-decoration: none;
     font-weight: 600;
     margin: 0;
     text-transform: uppercase;
+    font-size:14px;
   }
 `;
 

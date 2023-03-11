@@ -6,18 +6,25 @@ height:400px;
 display:flex;
 flex-direction: column;
 align-items: center;
+font-family: 'Bree Serif', serif;
 
 .nome{
     font-size:18px;
     margin:0px;
     margin-top:10px;
+    transition:.5s;
+    :hover{
+        transition:.5s;
+        color: pink;
+    cursor:pointer;
+}
 }
 
 .preco{
     font-size:18px;
     margin:0px;
     margin-top:10px;
-    color:pink;
+    color: pink;
 }
 
 p{
@@ -61,10 +68,17 @@ width:50px;
 height:50px;
 background-color:white;
 border-radius: 180px;
-box-shadow: 0px 0px 5px 2px gray; 
+box-shadow: 0px 0px 5px 1px gray; 
 display:flex;
 justify-content: center;
 align-items: center;
+transition: .5s;
+
+:hover{
+transition: .5s;
+background-color:pink;
+color:white;
+}
 
 
 
