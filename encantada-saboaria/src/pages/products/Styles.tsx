@@ -8,6 +8,7 @@ export const Main = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
