@@ -6,6 +6,7 @@ import ModalFilter from "../../components/modalFilter/modalFilter";
 import { Url } from "../../constants/Url";
 import useRequestData from "../../hooks/useRequestData";
 import { IProducts } from "../homepage/Homepage";
+import { AiFillFilter } from "react-icons/ai";
 import {
   Filter,
   Main,
@@ -15,13 +16,19 @@ import {
   ProductNotFound,
   MainFilterProduct,
   ButtonFilter,
+  PhotoBackgroundProduct,
+  ButtonOfferProduct,
+  OptionSelect
 } from "./Styles";
+import { Select, Stack } from "@chakra-ui/react";
+
 export interface IFilter {
   nome: string;
   _id: string;
 }
 const ProductPage = () => {
   const [page, setPage] = useState(1);
+  const [priceFilter, setPriceFilter] = useState("crescente");
   const [priceCategory, setPriceCategory] = useState(0);
   const [filterEssence, setFilterEssence] = useState<IFilter>({
     nome: "",
@@ -41,6 +48,11 @@ const ProductPage = () => {
       priceCategory
         ? priceCategory >= product.preco && product.preco >= priceCategory - 10
         : true
+    )
+    .sort((firstProduct: IProducts, secondProduct: IProducts) =>
+      priceFilter === "crescente"
+        ? firstProduct.preco - secondProduct.preco
+        : secondProduct.preco - firstProduct.preco
     );
 
   const onClickPage = (numero: number) => {
@@ -48,16 +60,35 @@ const ProductPage = () => {
     setClickPage(!clickPage);
   };
 
-
   return (
     <Main>
+      <PhotoBackgroundProduct>
+        <h1>Produtos</h1>
+        <p>home {">"} Produtos</p>
+      </PhotoBackgroundProduct>
       <ButtonFilter>
-          <Button onClick={onToggle} _hover={{ background: "#ebbaa9" }}>
-            Filtro
-          </Button>
-        </ButtonFilter>
+        <Button
+          onClick={onToggle}
+          fontSize="15px"
+          leftIcon={<AiFillFilter />}
+          _hover={{ background: "#ebbaa9" }}
+          variant="outline"
+        >
+          Filtro
+        </Button>
+        <Stack spacing={3}>
+          <Select
+            value={priceFilter}
+            onChange={(e) => setPriceFilter(e.target.value)}
+            variant="outline"
+            _hover={{color:"#efbae1" , cursor:"pointer"}}
+          >
+            <OptionSelect value="crescente">Crescente</OptionSelect>
+            <OptionSelect value="decrescente">Decrescente</OptionSelect>
+          </Select>
+        </Stack>
+      </ButtonFilter>
       <MainFilterProduct>
-        
         <Filter>
           <ModalFilter
             isOpen={isOpen}
