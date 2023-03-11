@@ -1,5 +1,6 @@
 import React from "react";
-import { Main, DivRow2, DivRow3, DivPhoto, DivText } from "./Styles";
+import { Main, DivRow2, DivRow3, DivPhoto, DivText,StarRow } from "./Styles";
+import BasicRating from "../StarRate/Star";
 
 export default function Product3(props: any) {
   return (
@@ -8,7 +9,7 @@ export default function Product3(props: any) {
         <DivPhoto></DivPhoto>
         <DivText>
           <p>Natural Wholesale Press Soap</p>
-          <div></div>
+          <BasicRating/>
           <p className="price">$52.00</p>
         </DivText>
       </DivRow2>
@@ -16,7 +17,7 @@ export default function Product3(props: any) {
         <DivPhoto></DivPhoto>
         <DivText>
         <p>Natural Wholesale Press Soap</p>
-          <div></div>
+        <BasicRating/>
           <p className="price">$52.00</p>
         </DivText>
       </DivRow2>
@@ -24,7 +25,7 @@ export default function Product3(props: any) {
         <DivPhoto></DivPhoto>
         <DivText>
         <p>Natural Wholesale Press Soap</p>
-          <div></div>
+        <BasicRating/>
           <p className="price">$52.00</p>
         </DivText>
       </DivRow3>

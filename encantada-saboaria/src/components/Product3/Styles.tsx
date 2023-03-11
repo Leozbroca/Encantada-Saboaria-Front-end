@@ -14,7 +14,6 @@ height:30%;
 border-bottom:1px solid gray;
 display:flex;
 flex-direction:row;
-justify-content: space-between;
 align-items:center;
 `
 
@@ -33,22 +32,36 @@ height:75px;
 background-color:red;
 background-image:url(${banner});
 background-size: cover;
+outline: 0 !important;
+box-sizing: border-box;
+position:absolute;
 `
 
 export const DivText = styled.div`
 width:375px;
-height:65%;
-
+margin-left:90px;
 display:flex;
 flex-direction: column;
+position:absolute;
 
 p{
     margin:0;
     font-size:1rem;
+    margin-bottom:5px;
 }
 
 .price{
-    margin-top:30px;
+    margin-top:0px;
 }
 
+`
+export const StarRow = styled.div`
+display:flex;
+flex-direction: row;
+height:20px;
+flex-wrap: wrap;
+
+.react-simple-star-rating{
+    margin-top: 1000px;
+}
 `

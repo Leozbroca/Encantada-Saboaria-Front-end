@@ -44,6 +44,7 @@ import { GiDelicatePerfume, GiCandleFlame } from "react-icons/gi";
 import { useState } from "react";
 import useRequestData from "../../hooks/useRequestData";
 import { Url } from "../../constants/Url";
+import Star from "../../components/StarRate/Star";
 
 export interface IProducts {
   id: string;

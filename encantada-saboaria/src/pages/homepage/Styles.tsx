@@ -369,6 +369,19 @@ display:flex;
 flex-direction: row;
 justify-content: space-between;
 margin-top:50px;
+
+@media (max-width: 1250px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    height:100%;
+  }
+
+  @media (max-width: 600px) {
+   align-items: flex-start;
+   margin-left:50px;
+
+}
 `
 
 export const DivColumn = styled.div`
@@ -376,6 +389,11 @@ width:31%;
 height:100%;
 display:flex;
 flex-direction:column;
+
+@media (max-width: 1250px) {
+    width:50%;
+  }
+  
 `
 
 export const DivName = styled.div`
@@ -387,6 +405,10 @@ flex-direction:row;
 align-items: flex-end;
 letter-spacing: 1px;
 border-bottom: 1px solid gray;
+
+@media (max-width: 600px) {
+   font-size:18px;
+  }
 `
 
 export const TopSaleProducts = styled.div`
@@ -429,6 +451,7 @@ export const ButtonOffer2 = styled.button`
   font-weight: 500;
   text-align: center;
   padding: 0 15px;
+  margin-top:20px;
   transition: all .25s linear 0s;
 
   :hover{
@@ -441,6 +464,10 @@ height:85%;
 width:100%;
 display:flex;
 flex-direction:column;
+
+@media (max-width: 1250px) {
+    height:400px;
+  }
 `
 
 export const InstagramText = styled.h1`
