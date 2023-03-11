@@ -1,6 +1,6 @@
 import React from "react";
 import { Main, Photo, DivRow, IconRow } from "./Styles";
-import { AiOutlineShopping } from "react-icons/ai";
+import { AiOutlineShopping, AiOutlineHeart, AiOutlineSearch } from "react-icons/ai";
 import { IconContext } from "react-icons";
 
 interface IProps {
@@ -30,14 +30,14 @@ export default function CardProduto({ nome, foto, preco }: IProps) {
             <IconContext.Provider
               value={{ className: "global-class-name", size: "1.5em" }}
             >
-              <AiOutlineShopping />
+              <AiOutlineSearch />
             </IconContext.Provider>
           </IconRow>
           <IconRow>
             <IconContext.Provider
               value={{ className: "global-class-name", size: "1.5em" }}
             >
-              <AiOutlineShopping />
+              <AiOutlineHeart />
             </IconContext.Provider>
           </IconRow>
         </DivRow>

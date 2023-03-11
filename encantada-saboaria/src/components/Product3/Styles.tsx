@@ -35,6 +35,10 @@ background-size: cover;
 outline: 0 !important;
 box-sizing: border-box;
 position:absolute;
+
+:hover{
+    cursor:pointer;
+}
 `
 
 export const DivText = styled.div`
@@ -54,6 +58,15 @@ p{
     margin-top:0px;
 }
 
+.name {
+    transition:.5s;
+    :hover{
+        transition: .5s;
+        cursor:pointer;
+        color: #efbae1;
+    }
+}
+
 `
 export const StarRow = styled.div`
 display:flex;
@@ -61,7 +74,4 @@ flex-direction: row;
 height:20px;
 flex-wrap: wrap;
 
-.react-simple-star-rating{
-    margin-top: 1000px;
-}
 `

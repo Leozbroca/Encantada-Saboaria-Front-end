@@ -55,3 +55,7 @@ export const IconsPayment = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `;
+
+export const BurnImg = styled.img`
+
+`

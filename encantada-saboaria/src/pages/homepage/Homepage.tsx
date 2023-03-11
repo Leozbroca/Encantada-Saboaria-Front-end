@@ -97,15 +97,16 @@ const HomePage = () => {
     SetColor3("white");
   };
 
-  const productsList = products.map((product: IProducts) => {
-    return (
-      <CardProduto
-        key={product.id}
-        nome={product.nome}
-        foto={product.foto}
-        preco={product.preco}
-      />
-    );
+  const productsList = products.map((product: IProducts, indice, array) => {
+      if(indice < 16){
+        return(
+          <CardProduto
+            key={product.id}
+            nome={product.nome}
+            foto={product.foto}
+            preco={product.preco}
+        />)
+      }
   });
 
   return (
@@ -251,6 +252,7 @@ const HomePage = () => {
       <InstagramText>#Instagram</InstagramText>
       <EncantadaText>#Encantada</EncantadaText>
       <Gallery />
+      
     </MainDiv>
   );
 };

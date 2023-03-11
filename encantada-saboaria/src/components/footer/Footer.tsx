@@ -10,6 +10,7 @@ import {
   Input,
   IconButton,
   useColorModeValue,
+  
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
@@ -21,6 +22,8 @@ import { Url } from "../../constants/Url";
 import logo from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
+import { BurnImg } from "./Styles"
+
 export interface ICategory {
   nome: string;
   _id: string;
@@ -53,7 +56,7 @@ const Footer = () => {
   });
 
   const Logo = () => {
-    return <img src={logo} alt={"Imagem de logo"} />;
+    return <BurnImg src={logo} alt={"Imagem de logo"} />;
   };
 
   const SocialButton = ({
