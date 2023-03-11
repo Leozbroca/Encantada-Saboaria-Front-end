@@ -23,7 +23,6 @@ font-family: 'Bree Serif', serif;
 .preco{
     font-size:18px;
     margin:0px;
-    margin-top:10px;
     color: pink;
 }
 

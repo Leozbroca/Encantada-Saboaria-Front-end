@@ -287,6 +287,7 @@ export const BestSellerProducts = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin-top:50px;
+  max-width: 1400px;
 `;
 
 export const Products = styled.div`
@@ -363,7 +364,8 @@ export const ButtonOffer = styled.button`
 `
 
 export const DivRow = styled.div`
-width:80%;
+width:95%;
+max-width: 1400px;
 height:500px;
 display:flex;
 flex-direction: row;
@@ -404,7 +406,7 @@ display:flex;
 flex-direction:row;
 align-items: flex-end;
 letter-spacing: 1px;
-border-bottom: 1px solid gray;
+border-bottom: 1px solid rgba(0,0,0,0.2);
 
 @media (max-width: 600px) {
    font-size:18px;
@@ -419,7 +421,8 @@ background-color: green;
 `
 
 export const PhotoBackground = styled.div`
-width:80%;
+width:95%;
+max-width:1400px;
 height:400px;
 background-image: url(${banner});
 background-size: cover;
