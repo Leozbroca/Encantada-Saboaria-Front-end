@@ -11,7 +11,7 @@ flex-direction: column;
 export const DivRow2 = styled.div`
 width:100%;
 height:30%;
-border-bottom:1px solid gray;
+border-bottom: 1px solid rgba(0,0,0,0.2);
 display:flex;
 flex-direction:row;
 align-items:center;
