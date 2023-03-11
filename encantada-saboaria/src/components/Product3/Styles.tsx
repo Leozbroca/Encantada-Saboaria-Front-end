@@ -42,7 +42,7 @@ position:absolute;
 `
 
 export const DivText = styled.div`
-width:375px;
+width:320px;
 margin-left:90px;
 display:flex;
 flex-direction: column;
@@ -60,6 +60,10 @@ p{
 
 .name {
     transition:.5s;
+    
+@media (max-width: 1000px) {
+    font-size:12px;
+  }
     :hover{
         transition: .5s;
         cursor:pointer;
