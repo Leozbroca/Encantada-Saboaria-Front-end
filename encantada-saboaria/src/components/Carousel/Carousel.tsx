@@ -39,7 +39,7 @@ const Gallery = () => {
     infinite={true} 
     responsive={responsive} 
     controlsStrategy="alternate"
-    // autoPlay={true}
+    autoPlay={true}
     autoPlayInterval={8000}
     keyboardNavigation={true}
     disableButtonsControls={true}
