@@ -18,6 +18,10 @@ type OrderSummaryItemProps = {
   children?: React.ReactNode;
 };
 
+interface CartOrderProps{
+  total:number;
+}
+
 const OrderSummaryItem = (props: OrderSummaryItemProps) => {
   const { label, value, children } = props;
   return (
@@ -30,21 +34,15 @@ const OrderSummaryItem = (props: OrderSummaryItemProps) => {
   );
 };
 
-export const CartOrderSummary = (props: any) => {
-const [totalCart,setTotalCart] = useState(0)
- 
-  useEffect(()=>{
-    const total = props.total.reduce((item:any,current:any)=> item + current , 0)
-    console.log("total",total)
-    setTotalCart(total)
-  },[props.total])
+export const CartOrderSummary = ({total}: CartOrderProps) => {
+
   
   return (
     <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">
       <Heading size="md">Total do Pedido</Heading>
 
       <Stack spacing="6">
-        <OrderSummaryItem label="Subtotal" value={formatPrice(totalCart)} />
+        <OrderSummaryItem label="Subtotal" value={formatPrice(total)} />
         <OrderSummaryItem label="Calculo do frete">
           <Link href="#" textDecor="underline">
             Frete
@@ -55,7 +53,7 @@ const [totalCart,setTotalCart] = useState(0)
             Total
           </Text>
           <Text fontSize="xl" fontWeight="extrabold">
-            {formatPrice(totalCart)}
+            {formatPrice(total)}
           </Text>
         </Flex>
       </Stack>
