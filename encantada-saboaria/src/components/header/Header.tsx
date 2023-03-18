@@ -39,7 +39,7 @@ const Header = () => {
         </Option>
         <Option>
           <span />
-          <p>Featured</p>
+          <p onClick={()=>goTo(navigate,"/carrinho")}>Carrinho</p>
         </Option>
         <Option>
           <span />
