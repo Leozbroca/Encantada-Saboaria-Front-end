@@ -9,9 +9,11 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { CartPurchase } from "./CartProduct";
 import { CartProductMeta } from "./CartProductMeta";
 
 type CartItemProps = {
+  id: string;
   isGiftWrapping?: boolean;
   name: string;
   description: string;
@@ -19,11 +21,12 @@ type CartItemProps = {
   price: number;
   currency: string;
   imageUrl: string;
-  total:Number[]
-  setTotal: React.Dispatch<React.SetStateAction<Number[]>>
+  total: CartPurchase[];
+  setTotal: React.Dispatch<React.SetStateAction<CartPurchase[]>>;
   onChangeQuantity?: (quantity: number) => void;
   onClickGiftWrapping?: () => void;
   onClickDelete?: () => void;
+  addToCart:(item: CartPurchase) => void
 };
 
 export function formatPrice(value: number) {
@@ -46,31 +49,38 @@ export const CartItem = (props: CartItemProps) => {
     total,
     setTotal,
     price,
+    id,
+    addToCart,
     onClickDelete,
   } = props;
 
   const [quantidade, setQuantidade] = useState(1);
 
-  const QuantitySelect = (props: SelectProps) => {
+  const QuantitySelect = () => {
     return (
       <Select
         maxW="64px"
         focusBorderColor={useColorModeValue("blue.500", "blue.200")}
+        value={quantidade}
         onChange={(event) => setQuantidade(Number(event.target.value))}
       >
-        <option value={"1"}>1</option>
-        <option value={"2"}>2</option>
-        <option value={"3"}>3</option>
-        <option value={"4"}>4</option>
-        <option value={"5"}>5</option>
+        <option value={1}>1</option>
+        <option value={2}>2</option>
+        <option value={3}>3</option>
+        <option value={4}>4</option>
+        <option value={5}>5</option>
       </Select>
     );
   };
 
   useEffect(() => {
     let totalCart;
-    totalCart = quantidade * price
-    setTotal([...total,totalCart]);
+    totalCart = quantidade * price;
+    const objetoCart: CartPurchase = {
+      id,
+      total: totalCart,
+    };
+    addToCart(objetoCart);
   }, [quantidade]);
 
   return (
@@ -92,7 +102,7 @@ export const CartItem = (props: CartItemProps) => {
         justify="space-between"
         display={{ base: "none", md: "flex" }}
       >
-        <QuantitySelect value={quantity} />
+        <QuantitySelect />
         <HStack spacing="1">
           <Text as="span" fontWeight="medium">
             {formatPrice(price * quantidade)}
@@ -116,7 +126,7 @@ export const CartItem = (props: CartItemProps) => {
         <Link fontSize="sm" textDecor="underline">
           Deletar
         </Link>
-        <QuantitySelect value={quantity} />
+        <QuantitySelect />
         <HStack spacing="1">
           <Text as="span" fontWeight="medium">
             {formatPrice(price * quantidade)}

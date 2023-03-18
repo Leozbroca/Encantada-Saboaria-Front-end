@@ -27,11 +27,65 @@ interface Cart {
   imageUrl: string;
 }
 
+export interface CartPurchase {
+  id: string | undefined;
+  total: number| undefined;
+}
+export interface CartShip {
+  id: string;
+  price: number;
+}
+
 const CartProduct = () => {
   const navigate = useNavigate();
-  const [total, setTotal] = useState<Number[]>([]);
- 
- 
+  const [total, setTotal] = useState<CartPurchase[]>([]);
+  const [totalCart, setTotalCart] = useState(0);
+
+  /**
+ * @author Gabriel Mina - Essa função ainda falta terminar , os itens não estão alterando 
+ */
+  const addToCart = (item: CartPurchase) => {
+    console.log("CHAMOU", item);
+    const productCart = total.find(
+      (product: CartPurchase) => product.id === item.id
+    );
+
+    let incrementQuantity;
+    if (productCart) {
+      incrementQuantity = total.map((product: CartPurchase) => {
+        if (product.id === item.id) {
+          return {
+            ...product,
+          };
+        }
+        return product;
+      });
+      setTotal(incrementQuantity);
+    } else {
+      if (cartData) {
+        const addProduct = cartData.find((product: Cart) => {
+          if (product.id === item.id) {
+            return {
+              id: product.id,
+              price: product.price,
+            };
+          }
+        });
+
+        const objeto:CartPurchase = {
+          id:addProduct?.id,
+          total:item.total
+        }
+
+        const newProduct = [...total, objeto];
+        setTotal(newProduct);
+      }
+
+    }
+  };
+
+  console.log("TOTAL",total)
+
   return (
     <Box
       maxW={{ base: "3xl", lg: "7xl" }}
@@ -57,16 +111,17 @@ const CartProduct = () => {
                   {...item}
                   total={total}
                   setTotal={setTotal}
+                  addToCart={addToCart}
                 />
               ))
             ) : (
-              <p>Nenhuma item no carrinho</p>
+              <p>Nenhum item no carrinho</p>
             )}
           </Stack>
         </Stack>
 
         <Flex direction="column" align="center" flex="1">
-          <CartOrderSummary total={total} />
+          <CartOrderSummary total={totalCart} />
           <HStack mt="6" fontWeight="semibold">
             <p>ou</p>
             <Link
