@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { formatPrice } from "./CartItem";
-
+import { CartPurchase } from "./CartProduct";
 
 type OrderSummaryItemProps = {
   label: string;
@@ -18,8 +18,8 @@ type OrderSummaryItemProps = {
   children?: React.ReactNode;
 };
 
-interface CartOrderProps{
-  total:number;
+interface CartOrderProps {
+  total: CartPurchase[];
 }
 
 const OrderSummaryItem = (props: OrderSummaryItemProps) => {
@@ -34,15 +34,22 @@ const OrderSummaryItem = (props: OrderSummaryItemProps) => {
   );
 };
 
-export const CartOrderSummary = ({total}: CartOrderProps) => {
 
-  
+export const CartOrderSummary = ({ total }: CartOrderProps) => {
+  const [totalCart, setTotalCart] = useState(0);
+
+  useEffect(() => {
+    let totalCartReduce;
+    totalCartReduce = total.reduce((item, current) => item + current.total, 0);
+    setTotalCart(totalCartReduce);
+  }, [total]);
+
   return (
     <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">
       <Heading size="md">Total do Pedido</Heading>
 
       <Stack spacing="6">
-        <OrderSummaryItem label="Subtotal" value={formatPrice(total)} />
+        <OrderSummaryItem label="Subtotal" value={formatPrice(totalCart)} />
         <OrderSummaryItem label="Calculo do frete">
           <Link href="#" textDecor="underline">
             Frete
@@ -53,7 +60,7 @@ export const CartOrderSummary = ({total}: CartOrderProps) => {
             Total
           </Text>
           <Text fontSize="xl" fontWeight="extrabold">
-            {formatPrice(total)}
+            {formatPrice(totalCart)}
           </Text>
         </Flex>
       </Stack>
@@ -63,7 +70,7 @@ export const CartOrderSummary = ({total}: CartOrderProps) => {
         fontSize="md"
         rightIcon={<FaArrowRight />}
       >
-        Checkout
+        Comprar
       </Button>
     </Stack>
   );

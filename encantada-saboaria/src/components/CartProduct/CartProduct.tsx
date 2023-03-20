@@ -29,63 +29,41 @@ interface Cart {
 
 export interface CartPurchase {
   id: string | undefined;
-  total: number| undefined;
-}
-export interface CartShip {
-  id: string;
-  price: number;
+  total: number;
 }
 
 const CartProduct = () => {
   const navigate = useNavigate();
   const [total, setTotal] = useState<CartPurchase[]>([]);
-  const [totalCart, setTotalCart] = useState(0);
 
   /**
- * @author Gabriel Mina - Essa função ainda falta terminar , os itens não estão alterando 
- */
-  const addToCart = (item: CartPurchase) => {
-    console.log("CHAMOU", item);
-    const productCart = total.find(
-      (product: CartPurchase) => product.id === item.id
-    );
+   * @author Gabriel Mina - Essa função ainda falta terminar , o valor do total não é alterado quando o produto é removido
+   */
 
-    let incrementQuantity;
-    if (productCart) {
-      incrementQuantity = total.map((product: CartPurchase) => {
-        if (product.id === item.id) {
+  const addToCart = (item: CartPurchase) => {
+    const newProductShip = [...total];
+
+    let findProduct = newProductShip.find((product) => product.id === item.id);
+
+    // Se nao achar o produto , enviar ele no array. Se achar , substituir ele pelo item novo vindo do objeto
+    if (!findProduct) {
+      newProductShip.push(item);
+      setTotal(newProductShip);
+    } else {
+      const novoCart = newProductShip.map((itemCart) => {
+        if (itemCart.id === item.id) {
           return {
-            ...product,
+            id: item.id,
+            total: item.total,
           };
         }
-        return product;
+        return itemCart;
       });
-      setTotal(incrementQuantity);
-    } else {
-      if (cartData) {
-        const addProduct = cartData.find((product: Cart) => {
-          if (product.id === item.id) {
-            return {
-              id: product.id,
-              price: product.price,
-            };
-          }
-        });
-
-        const objeto:CartPurchase = {
-          id:addProduct?.id,
-          total:item.total
-        }
-
-        const newProduct = [...total, objeto];
-        setTotal(newProduct);
-      }
-
+      setTotal(novoCart);
     }
   };
 
-  console.log("TOTAL",total)
-
+ 
   return (
     <Box
       maxW={{ base: "3xl", lg: "7xl" }}
@@ -121,7 +99,7 @@ const CartProduct = () => {
         </Stack>
 
         <Flex direction="column" align="center" flex="1">
-          <CartOrderSummary total={totalCart} />
+          <CartOrderSummary total={total} />
           <HStack mt="6" fontWeight="semibold">
             <p>ou</p>
             <Link

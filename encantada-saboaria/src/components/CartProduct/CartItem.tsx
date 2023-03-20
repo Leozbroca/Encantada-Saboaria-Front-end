@@ -4,11 +4,10 @@ import {
   HStack,
   Link,
   Select,
-  SelectProps,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CartPurchase } from "./CartProduct";
 import { CartProductMeta } from "./CartProductMeta";
 
@@ -26,7 +25,7 @@ type CartItemProps = {
   onChangeQuantity?: (quantity: number) => void;
   onClickGiftWrapping?: () => void;
   onClickDelete?: () => void;
-  addToCart:(item: CartPurchase) => void
+  addToCart: (item: CartPurchase) => void;
 };
 
 export function formatPrice(value: number) {
@@ -43,11 +42,7 @@ export const CartItem = (props: CartItemProps) => {
     isGiftWrapping,
     name,
     description,
-    quantity,
     imageUrl,
-    currency,
-    total,
-    setTotal,
     price,
     id,
     addToCart,
@@ -77,7 +72,7 @@ export const CartItem = (props: CartItemProps) => {
     let totalCart;
     totalCart = quantidade * price;
     const objetoCart: CartPurchase = {
-      id,
+      id: id,
       total: totalCart,
     };
     addToCart(objetoCart);
