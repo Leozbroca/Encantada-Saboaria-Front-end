@@ -31,6 +31,7 @@ export const Slide = styled.div`
   background-size: cover;
   display: flex;
   align-items: center;
+  overflow: hidden;
 
   @media (max-width: 1400px) {
     height: 80vh;
@@ -55,6 +56,7 @@ export const Slide = styled.div`
 
 export const SlideMain = styled.div`
   margin-left: 100px;
+  margin-top:-100px;
   height: 35%;
   width: 50%;
   display: flex;
@@ -157,6 +159,7 @@ export const ButtonShop2 = styled.button`
   align-items: center;
   background-color: black;
   border: none;
+  transition: 0.5s;
 
   p {
     margin: 0;

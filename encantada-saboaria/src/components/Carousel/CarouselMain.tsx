@@ -26,14 +26,6 @@ import { GrInstagram } from "react-icons/gr";
 
 const handleDragStart = (e: any) => e.preventDefault();
 
-// const responsive = {
-//   400: { items: 1},
-//   500: { items: 2},
-//   600: { items: 3},
-//   1200: { items: 4 },
-//   1400: { items: 5 },
-// }
-
 const items = [
   <CoverImg2>
     <ImgCar2 src={insta1} onDragStart={handleDragStart} role="presentation"></ImgCar2>
@@ -55,7 +47,19 @@ const items = [
       </SlideRow>
     </SlideMain>
   </CoverImg2>,
-  <CoverImg2 onDragStart={handleDragStart} role="presentation"></CoverImg2>,
+  <CoverImg2 onDragStart={handleDragStart} role="presentation">
+<ImgCar2 src={insta2} onDragStart={handleDragStart} role="presentation"></ImgCar2>
+    <SlideMain>
+      <h2>100% health and affordable</h2>
+      <h1>Natural Soap</h1>
+
+      <p>
+        Organic food is in the heart of what we do.
+        <br /> Our organic whole foods are high quality.
+      </p>
+  
+    </SlideMain>
+  </CoverImg2>,
 ];
 
 const GalleryMain = () => {
