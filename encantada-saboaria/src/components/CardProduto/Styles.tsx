@@ -26,9 +26,6 @@ cursor: pointer;
     color: pink;
 }
 
-p{
-
-}
 `
 
 export const Photo = styled.div`
@@ -39,12 +36,13 @@ justify-content: center;
 align-items:flex-end;
 
 :hover{
-    cursor:pointer;
+    
     .divInvi{
         margin-top:-80px;
     transform: translateY(-50%);
     transition: .5s;
     opacity: 1;
+    cursor: pointer;
     }
    
 }
