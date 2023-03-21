@@ -29,7 +29,6 @@ align-items:center;
 export const DivPhoto = styled.div`
 width:75px;
 height:75px;
-background-color:red;
 background-image:url(${banner});
 background-size: cover;
 outline: 0 !important;
@@ -77,5 +76,4 @@ display:flex;
 flex-direction: row;
 height:20px;
 flex-wrap: wrap;
-
 `

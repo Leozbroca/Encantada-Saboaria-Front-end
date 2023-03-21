@@ -36,6 +36,7 @@ import slid from "../../assets/slide.webp";
 import CardProduto from "../../components/CardProduto/CardProduto";
 import Product3 from "../../components/Product3/Products3";
 import Gallery from "../../components/Carousel/Carousel";
+import GalleryMain from "../../components/Carousel/CarouselMain";
 
 import { IconContext } from "react-icons";
 import { FaSoap } from "react-icons/fa";
@@ -114,26 +115,9 @@ const HomePage = () => {
 
   return (
     <MainDiv>
-      <Slide>
-        <SlideMain>
-          <h2>Soapin Store</h2>
-          <h1>Handmade Soap</h1>
+        <GalleryMain/>
 
-          <p>
-            New arrivals with naturre fruits, juice milks,
-            <br /> essential for summer.
-          </p>
-          <SlideRow>
-            <ButtonShop1>
-              <p>Shop now</p>
-            </ButtonShop1>
-            <ButtonShop2>
-              <p>About us</p>
-            </ButtonShop2>
-          </SlideRow>
-        </SlideMain>
-      </Slide>
-      <Option>
+      {/* <Option>
         <OptionName>Shop By Category</OptionName>
         <OptionCategory>
           <OptionCategories>
@@ -181,7 +165,7 @@ const HomePage = () => {
             <p>Velas Aromáticas</p>
           </OptionCategories>
         </OptionCategory>
-      </Option>
+      </Option> */}
 
       <BestSellerMain>
         <BestSellerName>

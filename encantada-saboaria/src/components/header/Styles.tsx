@@ -106,6 +106,10 @@ export const MenuItens = styled.div`
   flex-direction: row;
   width: 150px;
   justify-content: space-between;
+
+  @media (max-width: 1200px) {
+   justify-content: space-evenly;
+  }
 `;
 
 export const MenuItem = styled.a`

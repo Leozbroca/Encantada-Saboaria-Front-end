@@ -7,7 +7,7 @@ import insta1 from "../../assets/insta1.jpeg"
 import insta2 from "../../assets/insta2.jpeg"
 import insta3 from "../../assets/insta3.jpeg"
 import insta4 from "../../assets/insta4.jpeg"
-import insta5 from "../../assets/insta5.jpeg"
+import insta5 from "../../assets/insta_new_5.jpeg"
 import insta6 from "../../assets/insta6.jpeg"
 import { IconContext } from "react-icons";
 import { FaSoap } from "react-icons/fa";
