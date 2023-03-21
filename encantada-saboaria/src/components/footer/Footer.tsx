@@ -10,7 +10,6 @@ import {
   Input,
   IconButton,
   useColorModeValue,
-  
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
@@ -22,7 +21,7 @@ import { Url } from "../../constants/Url";
 import logo from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
-import { BurnImg } from "./Styles"
+import { BurnImg } from "./Styles";
 
 export interface ICategory {
   nome: string;
@@ -77,6 +76,7 @@ const Footer = () => {
         cursor={"pointer"}
         as={"a"}
         href={href}
+        target={"_blank"}
         display={"inline-flex"}
         alignItems={"center"}
         justifyContent={"center"}
@@ -119,22 +119,23 @@ const Footer = () => {
               Encantada.
             </Text>
             <Stack direction={"row"} spacing={6}>
-              <SocialButton label={"Twitter"} href={"#"}>
+              {/* <SocialButton label={"Twitter"} href={"#"}>
                 <FaTwitter />
               </SocialButton>
               <SocialButton label={"YouTube"} href={"#"}>
                 <FaYoutube />
-              </SocialButton>
-              <SocialButton label={"Instagram"} href={"#"}>
+              </SocialButton> */}
+              <SocialButton
+                label={"Instagram"}
+                href={"https://www.instagram.com/encantada_saboaria/"}
+              >
                 <FaInstagram />
               </SocialButton>
             </Stack>
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Ajuda e Informações</ListHeader>
-            <Link _hover={{ color: " #efbae1" }} >
-              Sobre nos
-            </Link>
+            <Link _hover={{ color: " #efbae1" }} onClick={()=>goTo(navigate,"/sobre")}>Sobre nos</Link>
             <Link _hover={{ color: " #efbae1" }} href={"#"}>
               Politica de privacidade
             </Link>
@@ -144,10 +145,11 @@ const Footer = () => {
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Busca rapida de Produtos</ListHeader>
-            <Link _hover={{ color: " #efbae1" }} href={"#"}>
-              Paginação
-            </Link>
-            <Link _hover={{ color: " #efbae1" }}  onClick={()=>goTo(navigate,"/contato")}>
+            <Link _hover={{ color: " #efbae1" }} onClick={()=>goTo(navigate,"/produtos")}>Produtos</Link>
+            <Link
+              _hover={{ color: " #efbae1" }}
+              onClick={() => goTo(navigate, "/contato")}
+            >
               Contato
             </Link>
           </Stack>
@@ -156,7 +158,7 @@ const Footer = () => {
             {renderCategory}
           </Stack>
           <Stack align={"flex-start"}>
-            <ListHeader>Cadastre o seu email</ListHeader>
+            <ListHeader>Cadastre o seu email para receber novidades sobre nossos produtos</ListHeader>
             <Stack direction={"row"}>
               <Input
                 placeholder={"Seu endereço de email"}

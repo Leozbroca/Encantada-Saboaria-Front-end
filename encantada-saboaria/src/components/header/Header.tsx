@@ -21,8 +21,7 @@ import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
 
 const Header = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <MainHeader>
@@ -31,23 +30,23 @@ const Header = () => {
       <MenuOptions>
         <Option>
           <span />
-          <p onClick={()=>goTo(navigate,"/")}>Home</p>
+          <p onClick={() => goTo(navigate, "/")}>Home</p>
         </Option>
         <Option>
           <span />
-          <p onClick={()=>goTo(navigate,"/produtos")}>Produtos</p>
+          <p onClick={() => goTo(navigate, "/produtos")}>Produtos</p>
         </Option>
         <Option>
           <span />
-          <p onClick={()=>goTo(navigate,"/carrinho")}>Carrinho</p>
+          <p onClick={() => goTo(navigate, "/carrinho")}>Carrinho</p>
         </Option>
         <Option>
           <span />
-          <p>Pages</p>
+          <p onClick={() => goTo(navigate, "/sobre")}>Sobre</p>
         </Option>
         <Option>
           <span />
-          <p onClick={()=>goTo(navigate,"/contato")}>Contato</p>
+          <p onClick={() => goTo(navigate, "/contato")}>Contato</p>
         </Option>
       </MenuOptions>
       <MenuItens>

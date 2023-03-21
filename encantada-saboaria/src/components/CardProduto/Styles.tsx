@@ -7,7 +7,7 @@ display:flex;
 flex-direction: column;
 align-items: center;
 font-family: 'Bree Serif', serif;
-
+cursor: pointer;
 .nome{
     font-size:18px;
     margin:0px;

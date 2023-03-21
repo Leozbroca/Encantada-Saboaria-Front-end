@@ -8,6 +8,8 @@ import {
 import { IconContext } from "react-icons";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import { CartPurchase } from "../../Global/GlobalState";
+import { goTo } from "../../routes/Coordinator";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   id: string;
@@ -33,9 +35,10 @@ export default function CardProduto({
     foto,
     preco,
   };
-
+  const navigate = useNavigate()
+  
   return (
-    <Main>
+    <Main onClick={()=>goTo(navigate,`/produto/${id}`)}>
       <Photo
         style={{
           backgroundImage: `url(${foto})`,
