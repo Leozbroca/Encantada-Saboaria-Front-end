@@ -36,9 +36,9 @@ export default function CardProduto({
     preco,
   };
   const navigate = useNavigate()
-  
+  // onClick={()=>goTo(navigate,`/produto/${id}`)}
   return (
-    <Main onClick={()=>goTo(navigate,`/produto/${id}`)}>
+    <Main >
       <Photo
         style={{
           backgroundImage: `url(${foto})`,
@@ -47,14 +47,14 @@ export default function CardProduto({
         }}
       >
         <DivRow className="divInvi">
-          <IconRow>
+          <IconRow  onClick={() => addToCart(objetoCart)} >
             <IconContext.Provider
               value={{ className: "global-class-name", size: "1.5em" }}
             >
-              <AiOutlineShopping onClick={() => addToCart(objetoCart)} />
+              <AiOutlineShopping/>
             </IconContext.Provider>
           </IconRow>
-          <IconRow>
+          <IconRow onClick={()=>goTo(navigate,`/produto/${id}`)}>
             <IconContext.Provider
               value={{ className: "global-class-name", size: "1.5em" }}
             >

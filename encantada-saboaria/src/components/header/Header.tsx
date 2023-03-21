@@ -19,9 +19,24 @@ import {
 import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
+import {
+  Box,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Button,
+  useDisclosure,
+  Input,
+} from '@chakra-ui/react'
 
 const Header = () => {
   const navigate = useNavigate();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const btnRef:any = React.useRef()
 
   return (
     <MainHeader>
@@ -77,7 +92,7 @@ const Header = () => {
         <IconContext.Provider
           value={{ className: "global-class-name", size: "2em" }}
         >
-          <MenuItem>
+          <MenuItem onClick={onOpen} ref={btnRef}>
             <HiOutlineShoppingBag />
           </MenuItem>
         </IconContext.Provider>
@@ -87,6 +102,32 @@ const Header = () => {
                 <MenuItem><HiOutlineHeart/></MenuItem>
                 <MenuItem><HiOutlineShoppingBag/></MenuItem> */}
       </MenuItens>
+
+      <Drawer
+          isOpen={isOpen}
+          placement='right'
+          onClose={onClose}
+          finalFocusRef={btnRef}
+          colorScheme="pink"
+        >
+          <DrawerOverlay />
+          <DrawerContent>
+            <DrawerCloseButton />
+            <DrawerHeader>Carrinho</DrawerHeader>
+  
+            <DrawerBody>
+              <Input placeholder='Type here...' />
+            </DrawerBody>
+  
+            <DrawerFooter>
+              <Button variant='outline' mr={3} onClick={onClose}>
+                Voltar
+              </Button>
+              <Button colorScheme='blue'>Finalizar Compra</Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+
     </MainHeader>
   );
 };
