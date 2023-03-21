@@ -44,10 +44,9 @@ import { GiDelicatePerfume, GiCandleFlame } from "react-icons/gi";
 import { useState } from "react";
 import useRequestData from "../../hooks/useRequestData";
 import { Url } from "../../constants/Url";
-import Star from "../../components/StarRate/Star";
 
 export interface IProducts {
-  id: string;
+  _id: string;
   categoria_id: string;
   descricao: string;
   foto: string;
@@ -70,6 +69,7 @@ const HomePage = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const products: IProducts[] = useRequestData([], `${Url}/products`);
 
+  
   const goToPag1 = () => {
     SetBackgColor1("#efbae1");
     SetBackgColor2("transparent");
@@ -98,15 +98,18 @@ const HomePage = () => {
   };
 
   const productsList = products.map((product: IProducts, indice, array) => {
-      if(indice < 16){
-        return(
-          <CardProduto
-            key={product.id}
-            nome={product.nome}
-            foto={product.foto}
-            preco={product.preco}
-        />)
-      }
+    if (indice < 16) {
+      return (
+        <CardProduto
+          key={product._id}
+          descricao={product.descricao}
+          id={product._id}
+          nome={product.nome}
+          foto={product.foto}
+          preco={product.preco}
+        />
+      );
+    }
   });
 
   return (
@@ -252,7 +255,6 @@ const HomePage = () => {
       <InstagramText>#Instagram</InstagramText>
       <EncantadaText>#Encantada</EncantadaText>
       <Gallery />
-      
     </MainDiv>
   );
 };

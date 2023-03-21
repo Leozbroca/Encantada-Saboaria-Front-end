@@ -8,25 +8,9 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { CartPurchase } from "./CartProduct";
+import { CartPurchase } from "../../Global/GlobalState";
+import { useGlobal } from "../../Global/GlobalStateContext";
 import { CartProductMeta } from "./CartProductMeta";
-
-type CartItemProps = {
-  id: string;
-  isGiftWrapping?: boolean;
-  name: string;
-  description: string;
-  quantity: number;
-  price: number;
-  currency: string;
-  imageUrl: string;
-  total: CartPurchase[];
-  setTotal: React.Dispatch<React.SetStateAction<CartPurchase[]>>;
-  onChangeQuantity?: (quantity: number) => void;
-  onClickGiftWrapping?: () => void;
-  onClickDelete?: () => void;
-  addToCart: (item: CartPurchase) => void;
-};
 
 export function formatPrice(value: number) {
   const formatter = new Intl.NumberFormat("pt-BR", {
@@ -37,18 +21,9 @@ export function formatPrice(value: number) {
   return formatter.format(value);
 }
 
-export const CartItem = (props: CartItemProps) => {
-  const {
-    isGiftWrapping,
-    name,
-    description,
-    imageUrl,
-    price,
-    id,
-    addToCart,
-    onClickDelete,
-  } = props;
-
+export const CartItem = (props: CartPurchase) => {
+  const { id, nome, descricao, foto, preco } = props;
+  const { addToCart, removeToCart } = useGlobal();
   const [quantidade, setQuantidade] = useState(1);
 
   const QuantitySelect = () => {
@@ -70,10 +45,14 @@ export const CartItem = (props: CartItemProps) => {
 
   useEffect(() => {
     let totalCart;
-    totalCart = quantidade * price;
+    totalCart = quantidade * Number(preco);
     const objetoCart: CartPurchase = {
       id: id,
       total: totalCart,
+      nome,
+      descricao,
+      foto,
+      preco,
     };
     addToCart(objetoCart);
   }, [quantidade]);
@@ -85,10 +64,9 @@ export const CartItem = (props: CartItemProps) => {
       align="center"
     >
       <CartProductMeta
-        name={name}
-        description={description}
-        image={imageUrl}
-        isGiftWrapping={isGiftWrapping}
+        name={nome ? nome : ""}
+        description={descricao ? descricao : ""}
+        image={foto ? foto : ""}
       />
 
       {/* Desktop */}
@@ -100,13 +78,13 @@ export const CartItem = (props: CartItemProps) => {
         <QuantitySelect />
         <HStack spacing="1">
           <Text as="span" fontWeight="medium">
-            {formatPrice(price * quantidade)}
+            {formatPrice(Number(preco) * quantidade)}
           </Text>
         </HStack>
 
         <CloseButton
-          aria-label={`Delete ${name} from cart`}
-          onClick={onClickDelete}
+          aria-label={`Delete ${nome} from cart`}
+          onClick={() => removeToCart(String(id))}
         />
       </Flex>
 
@@ -118,13 +96,17 @@ export const CartItem = (props: CartItemProps) => {
         justify="space-between"
         display={{ base: "flex", md: "none" }}
       >
-        <Link fontSize="sm" textDecor="underline">
+        <Link
+          fontSize="sm"
+          textDecor="underline"
+          onClick={() => removeToCart(String(id))}
+        >
           Deletar
         </Link>
         <QuantitySelect />
         <HStack spacing="1">
           <Text as="span" fontWeight="medium">
-            {formatPrice(price * quantidade)}
+            {formatPrice(Number(preco) * quantidade)}
           </Text>
         </HStack>
       </Flex>

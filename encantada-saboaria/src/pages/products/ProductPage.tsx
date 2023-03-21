@@ -40,7 +40,6 @@ const ProductPage = () => {
 
   const products: IProducts[] = useRequestData([], `${Url}/products?page=${page}`);
 
- 
   const productsList = products
     .filter((product: IProducts) =>
       filterEssence.nome ? product.categoria_id === filterEssence._id : true
@@ -96,7 +95,9 @@ const ProductPage = () => {
             productsList.map((product: IProducts, index: number) => {
               return (
                 <CardProduto
-                  key={product.id}
+                  key={product._id}
+                  descricao={product.descricao}
+                  id={product._id}
                   nome={product.nome}
                   foto={product.foto}
                   preco={product.preco}

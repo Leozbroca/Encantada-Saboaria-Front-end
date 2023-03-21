@@ -9,8 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { useGlobal } from "../../Global/GlobalStateContext";
 import { formatPrice } from "./CartItem";
-import { CartPurchase } from "./CartProduct";
 
 type OrderSummaryItemProps = {
   label: string;
@@ -18,9 +18,6 @@ type OrderSummaryItemProps = {
   children?: React.ReactNode;
 };
 
-interface CartOrderProps {
-  total: CartPurchase[];
-}
 
 const OrderSummaryItem = (props: OrderSummaryItemProps) => {
   const { label, value, children } = props;
@@ -35,8 +32,9 @@ const OrderSummaryItem = (props: OrderSummaryItemProps) => {
 };
 
 
-export const CartOrderSummary = ({ total }: CartOrderProps) => {
+export const CartOrderSummary = (props:any) => {
   const [totalCart, setTotalCart] = useState(0);
+  const {total} = useGlobal()
 
   useEffect(() => {
     let totalCartReduce;

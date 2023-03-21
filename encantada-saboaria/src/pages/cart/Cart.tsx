@@ -1,12 +1,16 @@
-import CartProduct from "../../components/CartProduct/CartProduct"
-import { Main } from "./Styles"
+import CartProduct from "../../components/CartProduct/CartProduct";
+import { useGlobal } from "../../Global/GlobalStateContext";
+import { Main } from "./Styles";
 
-const Cart = () =>{
-    return(
-        <Main>
-            <CartProduct/>
-        </Main>
-    )
-}
+const Cart = () => {
+  const { total } = useGlobal();
 
-export default Cart
+   
+  return (
+    <Main>
+      <CartProduct total={total} />
+    </Main>
+  );
+};
+
+export default Cart;

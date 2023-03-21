@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CartPurchase } from "../../Global/GlobalState";
 import { goTo } from "../../routes/Coordinator";
 import { CartItem } from "./CartItem";
 import { CartOrderSummary } from "./CartOrderSummary";
@@ -27,43 +28,13 @@ interface Cart {
   imageUrl: string;
 }
 
-export interface CartPurchase {
-  id: string | undefined;
-  total: number;
+interface ItotalCart {
+  total: CartPurchase[];
 }
 
-const CartProduct = () => {
+const CartProduct = ({ total }: ItotalCart) => {
   const navigate = useNavigate();
-  const [total, setTotal] = useState<CartPurchase[]>([]);
 
-  /**
-   * @author Gabriel Mina - Essa função ainda falta terminar , o valor do total não é alterado quando o produto é removido
-   */
-
-  const addToCart = (item: CartPurchase) => {
-    const newProductShip = [...total];
-
-    let findProduct = newProductShip.find((product) => product.id === item.id);
-
-    // Se nao achar o produto , enviar ele no array. Se achar , substituir ele pelo item novo vindo do objeto
-    if (!findProduct) {
-      newProductShip.push(item);
-      setTotal(newProductShip);
-    } else {
-      const novoCart = newProductShip.map((itemCart) => {
-        if (itemCart.id === item.id) {
-          return {
-            id: item.id,
-            total: item.total,
-          };
-        }
-        return itemCart;
-      });
-      setTotal(novoCart);
-    }
-  };
-
- 
   return (
     <Box
       maxW={{ base: "3xl", lg: "7xl" }}
@@ -78,19 +49,13 @@ const CartProduct = () => {
       >
         <Stack spacing={{ base: "8", md: "10" }} flex="2">
           <Heading fontSize="2xl" fontWeight="extrabold">
-            Itens no Carrinho ({cartData.length} items)
+            Itens no Carrinho ({total.length} items)
           </Heading>
 
           <Stack spacing="6">
-            {cartData.length > 0 ? (
-              cartData.map((item: Cart) => (
-                <CartItem
-                  key={item.id}
-                  {...item}
-                  total={total}
-                  setTotal={setTotal}
-                  addToCart={addToCart}
-                />
+            {total.length > 0 ? (
+              total.map((item: CartPurchase) => (
+                <CartItem key={item.id} {...item} />
               ))
             ) : (
               <p>Nenhum item no carrinho</p>
@@ -99,7 +64,7 @@ const CartProduct = () => {
         </Stack>
 
         <Flex direction="column" align="center" flex="1">
-          <CartOrderSummary total={total} />
+          <CartOrderSummary />
           <HStack mt="6" fontWeight="semibold">
             <p>ou</p>
             <Link
