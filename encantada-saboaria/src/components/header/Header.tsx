@@ -8,6 +8,7 @@ import {
   MenuItens,
   MenuItem,
   MenuItemFlex,
+  CartTop,
 } from "./Styles";
 import logo2 from "../../assets/logo2.png";
 import {
@@ -32,11 +33,13 @@ import {
   useDisclosure,
   Input,
 } from '@chakra-ui/react'
+import { useGlobal } from "../../Global/GlobalStateContext";
 
 const Header = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef:any = React.useRef()
+  const { total } = useGlobal();
 
   return (
     <MainHeader>
@@ -113,11 +116,7 @@ const Header = () => {
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-            <DrawerHeader>Carrinho</DrawerHeader>
-  
-            <DrawerBody>
-              <Input placeholder='Type here...' />
-            </DrawerBody>
+            <CartTop></CartTop>
   
             <DrawerFooter>
               <Button variant='outline' mr={3} onClick={onClose}>
