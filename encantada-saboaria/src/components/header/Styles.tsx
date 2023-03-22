@@ -17,7 +17,6 @@ export const MainHeader = styled.div`
   -ms-user-select: none;
   user-select: none;
   z-index:5;
-  
   letter-spacing:1px;
 `;
 
