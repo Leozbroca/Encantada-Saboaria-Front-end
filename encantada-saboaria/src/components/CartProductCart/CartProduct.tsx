@@ -16,7 +16,6 @@ import { CartPurchase } from "../../Global/GlobalState";
 import { goTo } from "../../routes/Coordinator";
 import { CartItem } from "./CartItem";
 import { CartOrderSummary } from "./CartOrderSummary";
-import { cartData } from "./data";
 
 interface Cart {
   id: string;

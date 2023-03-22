@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainHeader = styled.div`
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: 90px;
   background-color: white;
   display: flex;
@@ -19,6 +19,7 @@ export const MainHeader = styled.div`
   z-index:5;
   letter-spacing:1px;
 `;
+
 
 export const MenuButton = styled.div`
   height: 60px;
