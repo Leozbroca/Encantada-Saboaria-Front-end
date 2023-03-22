@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Gallery from "../../components/Carousel/Carousel";
+import CarouselProductDetail from "../../components/Carouseul/CarouselProdctDetail";
 import ProductDetail from "../../components/ProductDetail/ProductDetailt";
 
 import { Url } from "../../constants/Url";
@@ -14,15 +16,15 @@ export interface Iingredients {
 }
 
 export interface IProductDetail {
-  _id: string | undefined;
-  nome: string | undefined;
-  foto: string | undefined;
-  preco: number | undefined;
-  descricao: string | undefined;
-  quantidade: number | undefined;
-  tamanho: string | undefined;
-  categoria_id?: string | undefined;
-  essencia_id?: string | undefined;
+  _id: string;
+  nome: string;
+  foto: string;
+  preco: number;
+  descricao: string;
+  quantidade: number;
+  tamanho: string;
+  categoria_id?: string;
+  essencia_id?: string;
 }
 
 const Product = () => {
@@ -41,6 +43,22 @@ const Product = () => {
     essencia_id: "",
   });
 
+  const [productRelativeDetail, setProductRelativeDetail] = useState<
+    IProductDetail[]
+  >([
+    {
+      _id: "",
+      nome: "",
+      foto: "",
+      preco: 0,
+      descricao: "",
+      quantidade: 0,
+      tamanho: "",
+      categoria_id: "",
+      essencia_id: "",
+    },
+  ]);
+
   const [ingredients, setIngredients] = useState<Iingredients[]>([
     { __v: 0, id: "", _id: "", nome: "" },
   ]);
@@ -58,6 +76,7 @@ const Product = () => {
           quantidade: result.data.newProductId.quantidade,
           tamanho: result.data.newProductId.tamanho,
         });
+        setProductRelativeDetail(result.data.productRelative);
         setIngredients(result.data.newProductId.ingredients);
       } catch (error) {
         console.log(error);
@@ -71,8 +90,8 @@ const Product = () => {
       <ProductDetail productDetail={productDetail} ingredients={ingredients} />
       <MainGallery>
         <p>Produtos Relativos</p>
+        <CarouselProductDetail productRelativeDetail={productRelativeDetail} />
       </MainGallery>
-     
     </MainProduct>
   );
 };
