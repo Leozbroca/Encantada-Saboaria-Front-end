@@ -15,7 +15,7 @@ export const Button = styled.div`
    width: 2.5rem;
    height:2.5rem;
    bottom: 100px;
-   right:20px;
+   right:15px;
    padding-top:7px;
    z-index: 1;
    cursor: pointer;
