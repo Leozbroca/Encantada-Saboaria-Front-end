@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Gallery from "../../components/Carousel/Carousel";
 import ProductDetail from "../../components/ProductDetail/ProductDetailt";
+
 import { Url } from "../../constants/Url";
 import { MainGallery, MainProduct } from "./Styles";
 
@@ -71,8 +71,8 @@ const Product = () => {
       <ProductDetail productDetail={productDetail} ingredients={ingredients} />
       <MainGallery>
         <p>Produtos Relativos</p>
-        <Gallery />
       </MainGallery>
+     
     </MainProduct>
   );
 };
