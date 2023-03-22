@@ -12,3 +12,9 @@ export const MainProduct = styled.div`
   -ms-user-select: none;
   user-select: none;
 `;
+ export const MainGallery = styled.div`
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ `

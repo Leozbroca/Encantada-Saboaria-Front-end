@@ -15,14 +15,42 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 import { MdLocalShipping } from "react-icons/md";
-import { IProductDetail } from "../../pages/product/Product";
+import { Iingredients, IProductDetail } from "../../pages/product/Product";
+import { Star } from "./Styles";
+import BasicRating from "../StarRate/Star";
+import { CartPurchase } from "../../Global/GlobalState";
+import { useGlobal } from "../../Global/GlobalStateContext";
 
 interface IProdcutDetail {
   productDetail: IProductDetail | undefined;
+  ingredients: Iingredients[];
 }
 
-export default function ProductDetail({ productDetail }: IProdcutDetail) {
-  //   console.log(productDetail)
+export default function ProductDetail({
+  productDetail,
+  ingredients,
+}: IProdcutDetail) {
+  const { addToCart } = useGlobal();
+
+  const objetoCart: CartPurchase = {
+    id: productDetail?._id,
+    total: Number(productDetail?.preco),
+    nome: productDetail?.nome,
+    descricao: productDetail?.descricao,
+    foto: productDetail?.foto,
+    preco: productDetail?.preco,
+  };
+
+  const ingredientsScreen = ingredients.map((ingredient, index) => {
+    return (
+      <>
+        <List spacing={2}>
+          <ListItem>{ingredient.nome}</ListItem>
+        </List>
+      </>
+    );
+  });
+
   return (
     <Container maxW={"7xl"}>
       <SimpleGrid
@@ -41,7 +69,7 @@ export default function ProductDetail({ productDetail }: IProdcutDetail) {
             h={{ base: "100%", sm: "400px", lg: "500px" }}
           />
         </Flex>
-        <Stack spacing={{ base: 6, md: 10 }}>
+        <Stack spacing={{ base: 6, md: 6 }}>
           <Box as={"header"}>
             <Heading
               lineHeight={1.1}
@@ -51,6 +79,7 @@ export default function ProductDetail({ productDetail }: IProdcutDetail) {
               {productDetail?.nome}
             </Heading>
             <Text
+              letterSpacing={"normal"}
               color={useColorModeValue("gray.900", "gray.400")}
               fontWeight={300}
               fontSize={"2xl"}
@@ -62,8 +91,12 @@ export default function ProductDetail({ productDetail }: IProdcutDetail) {
             </Text>
           </Box>
 
+          <Star>
+            <BasicRating />
+          </Star>
+
           <Stack
-            spacing={{ base: 4, sm: 6 }}
+            spacing={{ base: 4, sm: 2 }}
             direction={"column"}
             divider={
               <StackDivider
@@ -91,17 +124,12 @@ export default function ProductDetail({ productDetail }: IProdcutDetail) {
                 Ingredientes
               </Text>
 
-              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                <List spacing={2}>
-                  <ListItem>Chronograph</ListItem>
-                  <ListItem>Master Chronometer Certified</ListItem>{" "}
-                  <ListItem>Tachymeter</ListItem>
-                </List>
-                <List spacing={2}>
-                  <ListItem>Anti‑magnetic</ListItem>
-                  <ListItem>Chronometer</ListItem>
-                  <ListItem>Small seconds</ListItem>
-                </List>
+              <SimpleGrid
+                columns={{ base: 1, md: 2 }}
+                spacing={3}
+                color={useColorModeValue("gray.500", "gray.400")}
+              >
+                {ingredientsScreen}
               </SimpleGrid>
             </Box>
             <Box>
@@ -122,43 +150,6 @@ export default function ProductDetail({ productDetail }: IProdcutDetail) {
                   </Text>{" "}
                   {productDetail?.tamanho}
                 </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Bracelet:
-                  </Text>{" "}
-                  leather strap
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case:
-                  </Text>{" "}
-                  Steel
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Case diameter:
-                  </Text>{" "}
-                  42 mm
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Dial color:
-                  </Text>{" "}
-                  Black
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Crystal:
-                  </Text>{" "}
-                  Domed, scratch‑resistant sapphire crystal with anti‑reflective
-                  treatment inside
-                </ListItem>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Water resistance:
-                  </Text>{" "}
-                  5 bar (50 metres / 167 feet){" "}
-                </ListItem>
               </List>
             </Box>
           </Stack>
@@ -172,10 +163,11 @@ export default function ProductDetail({ productDetail }: IProdcutDetail) {
             bg={useColorModeValue("gray.900", "gray.50")}
             color={useColorModeValue("white", "gray.900")}
             textTransform={"uppercase"}
+            onClick={() => addToCart(objetoCart)}
             _hover={{
               transform: "translateY(2px)",
               boxShadow: "lg",
-              background: "#efbae1"
+              background: "#efbae1",
             }}
           >
             Adicionar no Carrinho
@@ -183,7 +175,7 @@ export default function ProductDetail({ productDetail }: IProdcutDetail) {
 
           <Stack direction="row" alignItems="center" justifyContent={"center"}>
             <MdLocalShipping />
-            <Text>2-3 business days delivery</Text>
+            <Text>Entrega a delivery</Text>
           </Stack>
         </Stack>
       </SimpleGrid>

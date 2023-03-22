@@ -1,4 +1,4 @@
-import CartProduct from "../../components/CartProduct/CartProduct";
+import CartProduct from "../../components/CartProductCart/CartProduct";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import { Main } from "./Styles";
 

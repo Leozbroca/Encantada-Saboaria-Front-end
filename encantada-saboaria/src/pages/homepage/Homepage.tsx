@@ -33,7 +33,7 @@ import {
   EncantadaText,
 } from "./Styles";
 import slid from "../../assets/slide.webp";
-import CardProduto from "../../components/CardProduto/CardProduto";
+import CardProduto from "../../components/CardProduct/CardProduto";
 import Product3 from "../../components/Product3/Products3";
 import Gallery from "../../components/Carousel/Carousel";
 import GalleryMain from "../../components/Carousel/CarouselMain";
