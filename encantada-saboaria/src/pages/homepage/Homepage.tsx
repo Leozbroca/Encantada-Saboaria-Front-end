@@ -45,6 +45,7 @@ import { GiDelicatePerfume, GiCandleFlame } from "react-icons/gi";
 import { useState } from "react";
 import useRequestData from "../../hooks/useRequestData";
 import { Url } from "../../constants/Url";
+import ScrollTop from "../../components/ScrollTop/ScrollTop";
 
 export interface IProducts {
   _id: string;
@@ -257,6 +258,7 @@ const HomePage = () => {
       <InstagramText>#Instagram</InstagramText>
       <EncantadaText>#Encantada</EncantadaText>
       <Gallery />
+      <ScrollTop />
     </MainDiv>
   );
 };
