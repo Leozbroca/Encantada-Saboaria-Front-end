@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { MdLocalShipping } from "react-icons/md";
 import { Iingredients, IProductDetail } from "../../pages/product/Product";
-import { Star } from "./Styles";
+import { ImageDetail, Star } from "./Styles";
 import BasicRating from "../StarRate/Star";
 import { CartPurchase } from "../../Global/GlobalState";
 import { useGlobal } from "../../Global/GlobalStateContext";
@@ -58,7 +58,7 @@ export default function ProductDetail({
         spacing={{ base: 8, md: 10 }}
         py={{ base: 18, md: 24 }}
       >
-        <Flex>
+        <Flex display={"flex"} flexDirection={"column"}>
           <Image
             rounded={"md"}
             alt={"product image"}
@@ -68,6 +68,40 @@ export default function ProductDetail({
             w={"100%"}
             h={{ base: "100%", sm: "400px", lg: "500px" }}
           />
+          <ImageDetail>
+            <Image
+              boxSize={"200px"}
+              alt={"product image"}
+              src={productDetail?.foto}
+              fit={"cover"}
+              align={"center"}
+              w={"23%"}
+            />
+            <Image
+              boxSize={"200px"}
+              alt={"product image"}
+              src={productDetail?.foto}
+              fit={"cover"}
+              align={"center"}
+              w={"23%"}
+            />
+            <Image
+              boxSize={"200px"}
+              alt={"product image"}
+              src={productDetail?.foto}
+              fit={"cover"}
+              align={"center"}
+              w={"23%"}
+            />
+            <Image
+              boxSize={"200px"}
+              alt={"product image"}
+              src={productDetail?.foto}
+              fit={"cover"}
+              align={"center"}
+              w={"23%"}
+            />
+          </ImageDetail>
         </Flex>
         <Stack spacing={{ base: 6, md: 6 }}>
           <Box as={"header"}>

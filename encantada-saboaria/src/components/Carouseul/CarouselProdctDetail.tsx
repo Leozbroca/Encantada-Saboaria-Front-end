@@ -17,19 +17,22 @@ interface ICarouselProduct {
 }
 
 const CarouselProductDetail = ({ productRelativeDetail }: ICarouselProduct) => {
-    
-  const items = productRelativeDetail.map((product: IProductDetail) => {
-    return (
-      <CardProduto
-        key={product._id}
-        descricao={product.descricao}
-        id={product._id}
-        nome={product.nome}
-        foto={product.foto}
-        preco={product.preco}
-      />
-    );
-  });
+  console.log("prosp", productRelativeDetail);
+
+  const items = productRelativeDetail.map(
+    (product: IProductDetail, index: number) => {
+        return (
+            <CardProduto
+              key={product._id}
+              descricao={product.descricao}
+              id={product._id}
+              nome={product.nome}
+              foto={product.foto}
+              preco={product.preco}
+            />
+          );
+    }
+  );
 
   return (
     <MainProductDetailCarousel>
