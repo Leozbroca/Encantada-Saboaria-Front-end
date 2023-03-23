@@ -25,6 +25,7 @@ export interface CartPurchase {
   descricao: string | undefined;
   foto: string | undefined;
   preco: number | undefined;
+  quantidade: number | undefined
 }
 
 export interface ProductContextData {
@@ -59,6 +60,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
             descricao: item.descricao,
             foto: item.foto,
             preco: item.preco,
+            quantidade: item.quantidade
           };
         }
         return itemCart;

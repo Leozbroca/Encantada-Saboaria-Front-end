@@ -39,6 +39,7 @@ export default function ProductDetail({
     descricao: productDetail?.descricao,
     foto: productDetail?.foto,
     preco: productDetail?.preco,
+    quantidade: productDetail?.quantidade
   };
 
   const ingredientsScreen = ingredients.map((ingredient, index) => {

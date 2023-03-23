@@ -33,8 +33,8 @@ const OrderSummaryItem = (props: OrderSummaryItemProps) => {
 
 
 export const CartOrderSummary = (props:any) => {
-  const [totalCart, setTotalCart] = useState(0);
   const {total} = useGlobal()
+  const [totalCart, setTotalCart] = useState(0);
 
   useEffect(() => {
     let totalCartReduce;
