@@ -17,7 +17,6 @@ interface ICarouselProduct {
 }
 
 const CarouselProductDetail = ({ productRelativeDetail }: ICarouselProduct) => {
-  console.log("prosp", productRelativeDetail);
 
   const items = productRelativeDetail.map(
     (product: IProductDetail, index: number) => {
