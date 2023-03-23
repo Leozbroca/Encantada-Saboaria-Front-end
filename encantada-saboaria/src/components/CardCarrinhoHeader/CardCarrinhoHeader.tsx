@@ -9,6 +9,7 @@ interface IProps {
   foto: string;
   preco: number;
   descricao: string;
+  quantidade: number
 }
 
 export default function CardCarrinhoHeader({
@@ -17,6 +18,7 @@ export default function CardCarrinhoHeader({
   preco,
   id,
   descricao,
+  quantidade
 }: IProps) {
 
     const { removeToCart } = useGlobal();
@@ -37,8 +39,8 @@ export default function CardCarrinhoHeader({
           <Icon onClick={() => removeToCart(id)}><BsTrash/></Icon>
           
         </NameAndDelete>
-        <p>Quantidade:</p>
-        <p>Preço:{preco}</p>
+        <p>Quantidade:{quantidade}</p>
+        <p>Preço:{preco * quantidade}</p>
       </InfoProduct>
     </Main>
   );

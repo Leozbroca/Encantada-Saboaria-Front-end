@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   MainHeader,
   MenuButton,
@@ -45,6 +45,7 @@ import SearchDrower from "../SearchDrower/SearchDrower";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import CardCarrinhoHeader from "../CardCarrinhoHeader/CardCarrinhoHeader";
 import { IProducts } from "../../pages/homepage/Homepage";
+import { CartPurchase } from "../../Global/GlobalState";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -52,8 +53,9 @@ const Header = () => {
   const functionOpen = useDisclosure();
   const btnRef:any = React.useRef()
   const { total } = useGlobal();
-
-  const cartProducts = total && total.map((product:any) => {
+  const [totalCart, setTotalCart] = useState(0);
+ 
+  const cartProducts = total && total.map((product: any) => {
     return(<CardCarrinhoHeader
     key={product.id}
             id={product.id}
@@ -61,8 +63,15 @@ const Header = () => {
             descricao={product.descricao}
             foto={product.foto}
             preco={product.preco}
+            quantidade={product.quantidade}
     />)
   })
+
+  useEffect(() => {
+    let totalCartReduce;
+    totalCartReduce = total.reduce((item, current) => item + current.total, 0);
+    setTotalCart(totalCartReduce);
+  }, [total]);
 
   return (
     <MainHeader>
@@ -150,7 +159,7 @@ const Header = () => {
             <CartBottom>
                 <Total>
                   <p>Total:</p>
-                  <p style={{color:"pink"}}>R$20,00</p>
+                  <p style={{color:"pink"}}>R${totalCart}</p>
                 </Total>
                 <Buttons>
                   <ButtonLeft>Ver Carrinho</ButtonLeft>
