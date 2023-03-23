@@ -8,6 +8,15 @@ import {
   MenuItens,
   MenuItem,
   MenuItemFlex,
+  CartTop,
+  CartInsideTop,
+  CartTopNumber,
+  CartBottom,
+  Total,
+  Buttons,
+  ButtonLeft,
+  ButtonRight,
+  CartBody,
 } from "./Styles";
 import logo2 from "../../assets/logo2.png";
 import {
@@ -33,11 +42,26 @@ import {
   Input,
 } from '@chakra-ui/react'
 import SearchDrower from "../SearchDrower/SearchDrower";
+import { useGlobal } from "../../Global/GlobalStateContext";
+import CardCarrinhoHeader from "../CardCarrinhoHeader/CardCarrinhoHeader";
+import { IProducts } from "../../pages/homepage/Homepage";
 
 const Header = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef:any = React.useRef()
+  const { total } = useGlobal();
+
+  const cartProducts = total && total.map((product:any) => {
+    return(<CardCarrinhoHeader
+    key={product.id}
+            id={product.id}
+            nome={product.nome}
+            descricao={product.descricao}
+            foto={product.foto}
+            preco={product.preco}
+    />)
+  })
 
   return (
     <MainHeader>
@@ -111,23 +135,27 @@ const Header = () => {
           placement='right'
           onClose={onClose}
           finalFocusRef={btnRef}
-          colorScheme="pink"
         >
           <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Carrinho</DrawerHeader>
-  
-            <DrawerBody>
-              <Input placeholder='Type here...' />
-            </DrawerBody>
-  
-            <DrawerFooter>
-              <Button variant='outline' mr={3} onClick={onClose}>
-                Voltar
-              </Button>
-              <Button colorScheme='blue'>Finalizar Compra</Button>
-            </DrawerFooter>
+          <DrawerContent sx={{backgroundColor:"#f8f9fa"}}>
+            <DrawerCloseButton sx={{left: 0, marginLeft:"10px", marginRight:"10px", color:"black"}}/>
+            <CartTop>
+                <CartInsideTop><p>Carrinho de compras</p></CartInsideTop>
+                <CartTopNumber>{total.length}</CartTopNumber>
+            </CartTop>
+            <CartBody>
+              {cartProducts}
+            </CartBody>
+            <CartBottom>
+                <Total>
+                  <p>Total:</p>
+                  <p style={{color:"pink"}}>R$20,00</p>
+                </Total>
+                <Buttons>
+                  <ButtonLeft>Ver Carrinho</ButtonLeft>
+                  <ButtonRight>Finalizar compra</ButtonRight>
+                </Buttons>
+            </CartBottom>
           </DrawerContent>
         </Drawer>
 
