@@ -32,6 +32,7 @@ import {
   useDisclosure,
   Input,
 } from '@chakra-ui/react'
+import SearchDrower from "../SearchDrower/SearchDrower";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ const Header = () => {
           <p onClick={() => goTo(navigate, "/contato")}>Contato</p>
         </Option>
       </MenuOptions>
+      <SearchDrower/>
       <MenuItens>
         <IconContext.Provider
           value={{ className: "global-class-name", size: "2em" }}
