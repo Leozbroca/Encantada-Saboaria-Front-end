@@ -49,6 +49,7 @@ import { IProducts } from "../../pages/homepage/Homepage";
 const Header = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const functionOpen = useDisclosure();
   const btnRef:any = React.useRef()
   const { total } = useGlobal();
 
@@ -89,12 +90,12 @@ const Header = () => {
           <p onClick={() => goTo(navigate, "/contato")}>Contato</p>
         </Option>
       </MenuOptions>
-      <SearchDrower/>
+      <SearchDrower functionOpen={functionOpen}/>
       <MenuItens>
         <IconContext.Provider
           value={{ className: "global-class-name", size: "2em" }}
         >
-          <MenuItem>
+          <MenuItem onClick={functionOpen.onOpen}>
             <HiOutlineMagnifyingGlass />
           </MenuItem>
         </IconContext.Provider>
