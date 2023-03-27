@@ -71,7 +71,6 @@ const GlobalState = ({ children }: ProductProviderProps) => {
 
   const removeToCart = (id: string) => {
     const findIndexProduct = total.findIndex((product) => product.id === id);
-    console.log(id)
     const newCart = [...total];
     newCart.splice(findIndexProduct, 1);
     
