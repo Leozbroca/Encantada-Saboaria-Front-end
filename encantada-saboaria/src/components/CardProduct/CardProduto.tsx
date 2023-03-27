@@ -35,6 +35,7 @@ export default function CardProduto({
     descricao,
     foto,
     preco,
+    quantidade:1
   };
   const navigate = useNavigate();
   // onClick={()=>goTo(navigate,`/produto/${id}`)}

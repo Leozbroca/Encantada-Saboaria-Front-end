@@ -53,6 +53,7 @@ export const CartItem = (props: CartPurchase) => {
       descricao,
       foto,
       preco,
+      quantidade
     };
     addToCart(objetoCart);
   }, [quantidade]);
