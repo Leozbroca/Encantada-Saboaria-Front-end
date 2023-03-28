@@ -8,8 +8,6 @@ const Cart = () => {
   // dotenv.config();
   const { total } = useGlobal();
 
-  
-
   return (
     <Main>
       <CartProduct total={total} />

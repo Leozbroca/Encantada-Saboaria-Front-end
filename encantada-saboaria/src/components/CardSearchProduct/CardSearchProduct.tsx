@@ -7,7 +7,6 @@ import { formatPrice } from "../CartProductCart/PrinceTag";
 const CardSearchProduct = (product: any) => {
   const navigate = useNavigate()
 
-  console.log("product",product)
 
   return (
     <Card

@@ -34,13 +34,13 @@ export interface ProductContextData {
   setTotal: React.Dispatch<React.SetStateAction<CartPurchase[]>>;
   removeToCart: (id: string) => void
   addToCart: (item: CartPurchase) => void;
-  sendPayment(total:any): Promise<void>
+  sendPayment(total: any): Promise<void>
 }
 
 const GlobalState = ({ children }: ProductProviderProps) => {
   const [total, setTotal] = useState<CartPurchase[]>([]);
 
-  
+
   const addToCart = (item: CartPurchase) => {
     const newProductShip = [...total];
 
@@ -73,7 +73,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
     const findIndexProduct = total.findIndex((product) => product.id === id);
     const newCart = [...total];
     newCart.splice(findIndexProduct, 1);
-    
+
     setTotal(newCart);
   };
 
@@ -140,15 +140,20 @@ const GlobalState = ({ children }: ProductProviderProps) => {
   // "payment_method_id": "visa",
   // "token": "ff8080814c11e237014c1ff593b57b4d",
   // "transaction_amount": 58.8
-  async function sendPayment(total:any) {
+  async function sendPayment(total: any) {
     const body = {
-      transaction_amount:total,
+      transaction_amount: total,
       description: "produtos da compra",
       payment_method_id: "pix",
       payer: {
         email: "gabriel@gmail.com",
         first_name: "",
         last_name: "",
+      phone: {
+          "area_code": 11,
+          "number": "987654321"
+        },
+        address: {},
         identification: {
           type: "CPF",
           number: "01234567890",
@@ -173,7 +178,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
   }
 
   return (
-    <GlobalStateContext.Provider value={{ addToCart, total, setTotal , removeToCart, sendPayment}}>
+    <GlobalStateContext.Provider value={{ addToCart, total, setTotal, removeToCart, sendPayment }}>
       {children}
     </GlobalStateContext.Provider>
   );
