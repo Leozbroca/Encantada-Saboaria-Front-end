@@ -46,6 +46,8 @@ import { useState } from "react";
 import useRequestData from "../../hooks/useRequestData";
 import { Url } from "../../constants/Url";
 import ScrollTop from "../../components/ScrollTop/ScrollTop";
+import { goTo } from "../../routes/Coordinator";
+import { useNavigate } from "react-router-dom";
 
 export interface IProducts {
   _id: string;
@@ -70,6 +72,8 @@ const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const products: IProducts[] = useRequestData([], `${Url}/products`);
+  const navigate = useNavigate();
+  
 
   
   const goToPag1 = () => {
@@ -126,11 +130,11 @@ const HomePage = () => {
             <br /> essential for summer.
           </p>
           <SlideRow>
-            <ButtonShop1>
+            <ButtonShop1 onClick={() => goTo(navigate, "produtos")}>
               <p>Shop now</p>
             </ButtonShop1>
             <ButtonShop2>
-              <p>About us</p>
+              <p onClick={() => goTo(navigate, "sobre")}>About us</p>
             </ButtonShop2>
           </SlideRow>
         </SlideMain>

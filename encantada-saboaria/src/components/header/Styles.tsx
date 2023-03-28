@@ -256,3 +256,10 @@ letter-spacing: 1px;
   background-color: pink;
 }
 `
+
+export const EmptyCartP = styled.p`
+font-size:18px;
+font-weight:600;
+margin-top:20px;
+text-align: center;
+`

@@ -64,7 +64,7 @@ const SearchDrower = (props: any) => {
         onClose={props.functionOpen.onClose}
         isOpen={props.functionOpen.isOpen}
       >
-        <DrawerOverlay />
+        <DrawerOverlay bg="blackAlpha.700" />
         <DrawerContent minHeight={"40%"} display={"flex"} alignItems={"center"}>
           <MainDraweHeader>
             <DrawerHeader

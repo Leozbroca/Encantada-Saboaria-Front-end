@@ -1,9 +1,20 @@
+import { useDisclosure } from "@chakra-ui/react";
 import { ReactNode, useEffect, useState } from "react";
 import { urlMercadoPago } from "../constants/Url";
 import GlobalStateContext from "./GlobalStateContext";
 
 interface ProductProviderProps {
   children: ReactNode;
+}
+
+export interface IModal {
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  onToggle: () => void;
+  isControlled: boolean;
+  getButtonProps: (props?: any) => any;
+  getDisclosureProps: (props?: any) => any;
 }
 
 export interface InterfaceProducts {
@@ -36,6 +47,9 @@ export interface ProductContextData {
   addToCart: (item: CartPurchase) => void;
   sendPayment(total: any): Promise<void>;
   totalCart: number;
+  loginOpen: IModal;
+  forgotOpen:IModal;
+  registerOpen:IModal;
 }
 
 const GlobalState = ({ children }: ProductProviderProps) => {
@@ -183,6 +197,10 @@ const GlobalState = ({ children }: ProductProviderProps) => {
       });
   }
 
+  const forgotOpen = useDisclosure();
+  const registerOpen = useDisclosure();
+  const loginOpen = useDisclosure();
+
   return (
     <GlobalStateContext.Provider
       value={{
@@ -192,6 +210,9 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         removeToCart,
         sendPayment,
         totalCart,
+        forgotOpen,
+        registerOpen,
+        loginOpen
       }}
     >
       {children}
