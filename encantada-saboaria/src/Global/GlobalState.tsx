@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { urlMercadoPago } from "../constants/Url";
 import GlobalStateContext from "./GlobalStateContext";
 
@@ -26,20 +26,21 @@ export interface CartPurchase {
   descricao: string | undefined;
   foto: string | undefined;
   preco: number | undefined;
-  quantidade: number | undefined
+  quantidade: number | undefined;
 }
 
 export interface ProductContextData {
   total: CartPurchase[];
   setTotal: React.Dispatch<React.SetStateAction<CartPurchase[]>>;
-  removeToCart: (id: string) => void
+  removeToCart: (id: string) => void;
   addToCart: (item: CartPurchase) => void;
-  sendPayment(total: any): Promise<void>
+  sendPayment(total: any): Promise<void>;
+  totalCart: number;
 }
 
 const GlobalState = ({ children }: ProductProviderProps) => {
   const [total, setTotal] = useState<CartPurchase[]>([]);
-
+  const [totalCart, setTotalCart] = useState(0);
 
   const addToCart = (item: CartPurchase) => {
     const newProductShip = [...total];
@@ -60,7 +61,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
             descricao: item.descricao,
             foto: item.foto,
             preco: item.preco,
-            quantidade: item.quantidade
+            quantidade: item.quantidade,
           };
         }
         return itemCart;
@@ -77,6 +78,11 @@ const GlobalState = ({ children }: ProductProviderProps) => {
     setTotal(newCart);
   };
 
+  useEffect(() => {
+    let totalCartReduce;
+    totalCartReduce = total.reduce((item, current) => item + current.total, 0);
+    setTotalCart(totalCartReduce);
+  }, [total]);
 
   // "additional_info": {
   //   "items": [
@@ -149,9 +155,9 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         email: "gabriel@gmail.com",
         first_name: "",
         last_name: "",
-      phone: {
-          "area_code": 11,
-          "number": "987654321"
+        phone: {
+          area_code: 11,
+          number: "987654321",
         },
         address: {},
         identification: {
@@ -178,7 +184,16 @@ const GlobalState = ({ children }: ProductProviderProps) => {
   }
 
   return (
-    <GlobalStateContext.Provider value={{ addToCart, total, setTotal, removeToCart, sendPayment }}>
+    <GlobalStateContext.Provider
+      value={{
+        addToCart,
+        total,
+        setTotal,
+        removeToCart,
+        sendPayment,
+        totalCart,
+      }}
+    >
       {children}
     </GlobalStateContext.Provider>
   );
