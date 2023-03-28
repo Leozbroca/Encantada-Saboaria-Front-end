@@ -5,7 +5,7 @@ import { Main } from "./Styles";
 import * as dotenv from "dotenv";
 
 const Cart = () => {
-  dotenv.config();
+  // dotenv.config();
   const { total } = useGlobal();
 
   async function enviarPagamento() {
