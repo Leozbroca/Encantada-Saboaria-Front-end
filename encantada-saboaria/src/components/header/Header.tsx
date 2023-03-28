@@ -46,11 +46,13 @@ import { useGlobal } from "../../Global/GlobalStateContext";
 import CardCarrinhoHeader from "../CardCarrinhoHeader/CardCarrinhoHeader";
 import { IProducts } from "../../pages/homepage/Homepage";
 import { CartPurchase } from "../../Global/GlobalState";
+import ModalLogin from "../ModalLogin/ModalLogin";
 
 const Header = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure()
   const functionOpen = useDisclosure();
+  const loginOpen = useDisclosure();
   const btnRef:any = React.useRef()
   const { total } = useGlobal();
   const [totalCart, setTotalCart] = useState(0);
@@ -112,7 +114,7 @@ const Header = () => {
         <IconContext.Provider
           value={{ className: "global-class-name", size: "2em" }}
         >
-          <MenuItemFlex>
+          <MenuItemFlex onClick={loginOpen.onOpen}>
             <HiOutlineUser />
           </MenuItemFlex>
         </IconContext.Provider>
@@ -138,7 +140,7 @@ const Header = () => {
                 <MenuItem><HiOutlineHeart/></MenuItem>
                 <MenuItem><HiOutlineShoppingBag/></MenuItem> */}
       </MenuItens>
-
+      <ModalLogin loginOpen={loginOpen}/>
       <Drawer
           size="sm"
           isOpen={isOpen}
