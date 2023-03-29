@@ -50,11 +50,13 @@ export interface ProductContextData {
   loginOpen: IModal;
   forgotOpen:IModal;
   registerOpen:IModal;
+  errorCartEmpty: string;
 }
 
 const GlobalState = ({ children }: ProductProviderProps) => {
   const [total, setTotal] = useState<CartPurchase[]>([]);
   const [totalCart, setTotalCart] = useState(0);
+  const [errorCartEmpty, setErrorCartEmpty] = useState("");
 
   const addToCart = (item: CartPurchase) => {
     const newProductShip = [...total];
@@ -98,81 +100,15 @@ const GlobalState = ({ children }: ProductProviderProps) => {
     setTotalCart(totalCartReduce);
   }, [total]);
 
-  // "additional_info": {
-  //   "items": [
-  //     {
-  //       "id": "MLB2907679857",
-  //       "title": "Point Mini",
-  //       "description": "Producto Point para cobros con tarjetas mediante bluetooth",
-  //       "picture_url": "https://http2.mlstatic.com/resources/frontend/statics/growth-sellers-landings/device-mlb-point-i_medium@2x.png",
-  //       "category_id": "electronics",
-  //       "quantity": 1,
-  //       "unit_price": 58.8
-  //     },
-  //     {
-  //       "id": "MLB2907679857",
-  //       "title": "Point Mini",
-  //       "description": "Producto Point para cobros con tarjetas mediante bluetooth",
-  //       "picture_url": "https://http2.mlstatic.com/resources/frontend/statics/growth-sellers-landings/device-mlb-point-i_medium@2x.png",
-  //       "category_id": "electronics",
-  //       "quantity": 1,
-  //       "unit_price": 58.8
-  //     },
-  //     {
-  //       "id": "MLB2907679857",
-  //       "title": "Point Mini",
-  //       "description": "Producto Point para cobros con tarjetas mediante bluetooth",
-  //       "picture_url": "https://http2.mlstatic.com/resources/frontend/statics/growth-sellers-landings/device-mlb-point-i_medium@2x.png",
-  //       "category_id": "electronics",
-  //       "quantity": 1,
-  //       "unit_price": 58.8
-  //     }
-  //   ],
-  //   "payer": {
-  //     "first_name": "Test",
-  //     "last_name": "Test",
-  //     "phone": {
-  //       "area_code": 11,
-  //       "number": "987654321"
-  //     },
-  //     "address": {}
-  //   },
-  //   "shipments": {
-  //     "receiver_address": {
-  //       "zip_code": "12312-123",
-  //       "state_name": "Rio de Janeiro",
-  //       "city_name": "Buzios",
-  //       "street_name": "Av das Nacoes Unidas",
-  //       "street_number": 3003
-  //     }
-  //   },
-  //   "barcode": {}
-  // },
-  // "description": "Payment for product",
-  // "external_reference": "MP0001",
-  // "installments": 1,
-  // "metadata": {},
-  // "payer": {
-  //   "entity_type": "individual",
-  //   "type": "customer",
-  //   "identification": {}
-  // },
-  // "payment_method_id": "visa",
-  // "token": "ff8080814c11e237014c1ff593b57b4d",
-  // "transaction_amount": 58.8
   async function sendPayment(total: any) {
     const body = {
-      transaction_amount: total,
-      description: "produtos da compra",
-      payment_method_id: "pix",
+      transaction_amount: total.totalCart,
+      description: "produtos",
+      payment_method_id: total.methodPayment,
       payer: {
         email: "gabriel@gmail.com",
-        first_name: "",
-        last_name: "",
-        phone: {
-          area_code: 11,
-          number: "987654321",
-        },
+        first_name: "Gabriel",
+        last_name: "Mina",
         address: {},
         identification: {
           type: "CPF",
@@ -190,17 +126,29 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         },
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        window.location.href =
+          response.data.point_of_interaction.transaction_data.ticket_url;
+          setErrorCartEmpty("")
       })
       .catch((error) => {
-        console.log(error.response.data);
+        if (
+          error.response.data.message.includes(
+            "transaction_amount must be positive"
+          )
+        ) {
+          setErrorCartEmpty(
+            "Não é possivel finalizar compra com carrinho vazio"
+          );
+        }
       });
   }
+
 
   const forgotOpen = useDisclosure();
   const registerOpen = useDisclosure();
   const loginOpen = useDisclosure();
-
+  
   return (
     <GlobalStateContext.Provider
       value={{
@@ -213,6 +161,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         forgotOpen,
         registerOpen,
         loginOpen
+        errorCartEmpty,
       }}
     >
       {children}

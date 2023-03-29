@@ -5,8 +5,7 @@ import { goTo } from "../../routes/Coordinator";
 import { formatPrice } from "../CartProductCart/PrinceTag";
 
 const CardSearchProduct = (product: any) => {
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   return (
     <Card
@@ -16,7 +15,10 @@ const CardSearchProduct = (product: any) => {
       width={"100%"}
       marginTop={"5px"}
       cursor={"pointer"}
-      onClick={()=>{goTo(navigate,`/produto/${product._id}`);product.onClose()}}
+      onClick={() => {
+        goTo(navigate, `/produto/${product._id}`);
+        product.onClose();
+      }}
     >
       <Image
         objectFit="cover"
