@@ -12,13 +12,15 @@ export const MainDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+
 `;
 
 export const Slide = styled.div`
@@ -261,10 +263,15 @@ export const BestSellerName = styled.div`
 export const BestSellerButtons = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  width: 500px;
+  justify-content: center;
+  max-width: 300px;
   margin-top: 10px;
   flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+
+}
+
 `;
 
 export const ButtonSeller = styled.button`
@@ -310,7 +317,7 @@ flex-direction: row;
 @media (max-width: 600px) {
   flex-direction: column;
   width:100%;
-  margin-bottom:250px;
+  margin-bottom:650px;
 }
 `
 
@@ -426,9 +433,7 @@ margin-top:50px;
   }
 
   @media (max-width: 600px) {
-   align-items: flex-start;
-   margin-left:50px;
-
+   /* align-items: flex-start; */
 }
 `
 

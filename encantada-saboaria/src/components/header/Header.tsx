@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   MainHeader,
   MenuButton,
@@ -17,6 +17,7 @@ import {
   ButtonLeft,
   ButtonRight,
   CartBody,
+  EmptyCartP,
 } from "./Styles";
 import logo2 from "../../assets/logo2.png";
 import {
@@ -40,34 +41,39 @@ import {
   Button,
   useDisclosure,
   Input,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
 import SearchDrower from "../SearchDrower/SearchDrower";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import CardCarrinhoHeader from "../CardCarrinhoHeader/CardCarrinhoHeader";
 import { IProducts } from "../../pages/homepage/Homepage";
 import { CartPurchase } from "../../Global/GlobalState";
 import ModalLogin from "../ModalLogin/ModalLogin";
+import ModalRegister from "../ModalRegister/ModalRegister";
+import ModalForgot from "../ModalForgot/ModalForgot";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const functionOpen = useDisclosure();
-  const loginOpen = useDisclosure();
-  const btnRef:any = React.useRef()
-  const { total } = useGlobal();
+  const btnRef: any = React.useRef();
+  const { total, loginOpen, forgotOpen, registerOpen } = useGlobal();
   const [totalCart, setTotalCart] = useState(0);
- 
-  const cartProducts = total && total.map((product: any) => {
-    return(<CardCarrinhoHeader
-    key={product.id}
-            id={product.id}
-            nome={product.nome}
-            descricao={product.descricao}
-            foto={product.foto}
-            preco={product.preco}
-            quantidade={product.quantidade}
-    />)
-  })
+
+  const cartProducts =
+    total &&
+    total.map((product: any) => {
+      return (
+        <CardCarrinhoHeader
+          key={product.id}
+          id={product.id}
+          nome={product.nome}
+          descricao={product.descricao}
+          foto={product.foto}
+          preco={product.preco}
+          quantidade={product.quantidade}
+        />
+      );
+    });
 
   useEffect(() => {
     let totalCartReduce;
@@ -101,7 +107,7 @@ const Header = () => {
           <p onClick={() => goTo(navigate, "/contato")}>Contato</p>
         </Option>
       </MenuOptions>
-      <SearchDrower functionOpen={functionOpen}/>
+      <SearchDrower functionOpen={functionOpen} />
       <MenuItens>
         <IconContext.Provider
           value={{ className: "global-class-name", size: "2em" }}
@@ -140,37 +146,69 @@ const Header = () => {
                 <MenuItem><HiOutlineHeart/></MenuItem>
                 <MenuItem><HiOutlineShoppingBag/></MenuItem> */}
       </MenuItens>
-      <ModalLogin loginOpen={loginOpen}/>
+      <ModalLogin
+        loginOpen={loginOpen}
+        forgotOpen={forgotOpen}
+        registerOpen={registerOpen}
+      />
+      <ModalForgot forgotOpen={forgotOpen} loginOpen={loginOpen} />
+      <ModalRegister registerOpen={registerOpen} loginOpen={loginOpen} />
       <Drawer
-          size="sm"
-          isOpen={isOpen}
-          placement='right'
-          onClose={onClose}
-          finalFocusRef={btnRef}
-        >
-          <DrawerOverlay />
-          <DrawerContent sx={{backgroundColor:"#f8f9fa"}}>
-            <DrawerCloseButton sx={{left: 0, marginLeft:"10px", marginRight:"10px", color:"black"}}/>
-            <CartTop>
-                <CartInsideTop><p>Carrinho de compras</p></CartInsideTop>
-                <CartTopNumber>{total.length}</CartTopNumber>
-            </CartTop>
-            <CartBody>
-              {cartProducts}
-            </CartBody>
-            <CartBottom>
+        size="sm"
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay bg="blackAlpha.700" />
+        <DrawerContent sx={{ backgroundColor: "#f8f9fa" }}>
+          <DrawerCloseButton
+            sx={{
+              left: 0,
+              marginLeft: "10px",
+              marginRight: "10px",
+              color: "black",
+            }}
+          />
+          <CartTop>
+            <CartInsideTop>
+              <p>Carrinho de compras</p>
+            </CartInsideTop>
+            <CartTopNumber>{total.length}</CartTopNumber>
+          </CartTop>
+          {cartProducts.length > 0 ? (
+            <>
+              <CartBody>{cartProducts}</CartBody>
+              <CartBottom>
                 <Total>
                   <p>Total:</p>
-                  <p style={{color:"pink"}}>R${totalCart}</p>
+                  <p style={{ color: "pink" }}>R${totalCart}</p>
                 </Total>
                 <Buttons>
-                  <ButtonLeft>Ver Carrinho</ButtonLeft>
-                  <ButtonRight>Finalizar compra</ButtonRight>
+                  <ButtonLeft
+                    onClick={() => {
+                      goTo(navigate, "/carrinho");
+                      onClose();
+                    }}
+                  >
+                    Ver Carrinho
+                  </ButtonLeft>
+                  <ButtonRight
+                    onClick={() => {
+                      goTo(navigate, "/compras");
+                      onClose();
+                    }}
+                  >
+                    Finalizar compra
+                  </ButtonRight>
                 </Buttons>
-            </CartBottom>
-          </DrawerContent>
-        </Drawer>
-
+              </CartBottom>
+            </>
+          ) : (
+            <EmptyCartP>Nenhum produto no carrinho.</EmptyCartP>
+          )}
+        </DrawerContent>
+      </Drawer>
     </MainHeader>
   );
 };
