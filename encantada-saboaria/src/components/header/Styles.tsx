@@ -18,6 +18,10 @@ export const MainHeader = styled.div`
   user-select: none;
   z-index:5;
   letter-spacing:1px;
+
+  @media (max-width: 600px) {
+    height:50px;
+  }
 `;
 
 
@@ -32,6 +36,11 @@ export const MenuButton = styled.div`
   @media (max-width: 1200px) {
     display: flex;
   }
+
+   @media (max-width: 600px) {
+    height:40px;
+    width:40px;
+  }
 `;
 
 export const MenuLogo = styled.img`
@@ -39,6 +48,11 @@ export const MenuLogo = styled.img`
   width: 180px;
   background-color: white;
   margin-left: 20px;
+
+  @media (max-width: 600px) {
+    height:40px;
+    width:120px;
+  }
 `;
 
 export const MenuOptions = styled.div`
@@ -108,6 +122,7 @@ export const MenuItens = styled.div`
   justify-content: space-between;
 
   @media (max-width: 1200px) {
+    width:120px;
    justify-content: space-evenly;
   }
 `;
@@ -125,6 +140,11 @@ export const MenuItem = styled.a`
   :hover {
     color: #efbae1;
     cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    font-size:12px;
+    
   }
 `;
 

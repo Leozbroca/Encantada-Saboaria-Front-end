@@ -160,7 +160,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         totalCart,
         forgotOpen,
         registerOpen,
-        loginOpen
+        loginOpen,
         errorCartEmpty,
       }}
     >
