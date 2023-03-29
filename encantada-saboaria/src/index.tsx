@@ -6,6 +6,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./constants/Theme";
 import GlobalState from "./Global/GlobalState";
+import { customTheme } from "./constants/CustomThemeChakra";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <ChakraProvider>
+      <ChakraProvider theme={customTheme}>
         <GlobalState>
           <App />
         </GlobalState>

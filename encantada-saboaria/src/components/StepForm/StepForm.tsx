@@ -16,33 +16,39 @@ import {
   InputGroup,
   Textarea,
   FormHelperText,
+  Stack,
+  HStack,
+  useRadio,
+  useRadioGroup,
+  Image,
+  chakra,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { states } from "./BrasilStates";
 import { useForm } from "../../hooks/useForm";
+import { IForm1 } from "./Interfaces/IForm1";
+import { IAdressCep, IFullAdress } from "./Interfaces/IAdressCep";
+import { IMethodPayment } from "./Interfaces/IMethodsPayment";
+import { IMethod, methodsPayments } from "./MethodPayments";
+import {
+  MainMethod,
+  MethodStyled,
+  ProductsPurchase,
+  TotalCash,
+} from "./Styled";
+import { CartPurchase } from "../../Global/GlobalState";
+import { useGlobal } from "../../Global/GlobalStateContext";
+import CardCartPurchase from "../CardCartPurchase/CardCartPurchase";
+import DetailPayment from "./DetailsPayment";
+import { IForm3 } from "./Interfaces/IForm3";
 
-interface IForm1 {
-  form: any;
-  onChangeForm: (event: any) => void;
-  setNumberCep: React.Dispatch<React.SetStateAction<string>>;
-  numberCep: string;
-  invalidCep: boolean;
-  setCep: React.Dispatch<React.SetStateAction<string>>;
-  cep: string;
-}
-interface IAdressCep {
-  bairro: string | undefined;
-  cep: string | undefined;
-  complemento: string | undefined;
-  localidade: string | undefined;
-  logradouro: string | undefined;
-  uf: string | undefined;
-}
-
-interface IFullAdress extends IAdressCep {
-  numero: number | undefined;
+interface IModal2 {
+  allMethodPayment: IMethod[];
+  setMethodPayment: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Form1 = ({
@@ -182,211 +188,105 @@ const Form1 = ({
   );
 };
 
-const Form2 = () => {
+const Form2 = ({ allMethodPayment, setMethodPayment }: IModal2) => {
+  function CustomRadio(props: any) {
+    const { image, name, ...radioProps } = props;
+
+    const { state, getInputProps, getCheckboxProps, htmlProps, getLabelProps } =
+      useRadio(radioProps);
+
+    return (
+      <chakra.label
+        cursor="pointer"
+        width={"100%"}
+        border={"1px solid #efbae1"}
+        bg={state.isChecked ? "#fbceef" : "transparent"}
+      >
+        <input {...getInputProps({})} hidden />
+        <Box
+          {...getCheckboxProps()}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"space-evenly"}
+          rounded="full"
+          height={"50px"}
+        >
+          <Image src={image} rounded="full" {...getLabelProps()} />
+          <p>{props.namePayment}</p>
+        </Box>
+      </chakra.label>
+    );
+  }
+
+  const toast = useToast({
+    variant: "toast",
+  });
+
+  const handleChange = (value: any) => {
+    toast({
+      title: `Você escolheu o método de pagamento:  ${value}!`,
+      duration: 2000,
+    });
+    setMethodPayment(value);
+  };
+
+  const { value, getRadioProps } = useRadioGroup({
+    onChange: handleChange,
+  });
+
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
-        User Details
+        Como prefere pagar?
       </Heading>
-      <FormControl as={GridItem} colSpan={[6, 3]}>
-        <FormLabel
-          htmlFor="country"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: "gray.50",
-          }}
+      <Stack>
+        <HStack
+          flexDirection={"column"}
+          justifyContent={"space-between"}
+          height={"160px"}
         >
-          Country / Region
-        </FormLabel>
-        <Select
-          id="country"
-          name="country"
-          autoComplete="country"
-          placeholder="Select option"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        >
-          <option>United States</option>
-          <option>Canada</option>
-          <option>Mexico</option>
-        </Select>
-      </FormControl>
-
-      <FormControl as={GridItem} colSpan={6}>
-        <FormLabel
-          htmlFor="street_address"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: "gray.50",
-          }}
-          mt="2%"
-        >
-          Street address
-        </FormLabel>
-        <Input
-          type="text"
-          name="street_address"
-          id="street_address"
-          autoComplete="street-address"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        />
-      </FormControl>
-
-      <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
-        <FormLabel
-          htmlFor="city"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: "gray.50",
-          }}
-          mt="2%"
-        >
-          City
-        </FormLabel>
-        <Input
-          type="text"
-          name="city"
-          id="city"
-          autoComplete="city"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        />
-      </FormControl>
-
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-        <FormLabel
-          htmlFor="state"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: "gray.50",
-          }}
-          mt="2%"
-        >
-          State / Province
-        </FormLabel>
-        <Input
-          type="text"
-          name="state"
-          id="state"
-          autoComplete="state"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        />
-      </FormControl>
-
-      <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-        <FormLabel
-          htmlFor="postal_code"
-          fontSize="sm"
-          fontWeight="md"
-          color="gray.700"
-          _dark={{
-            color: "gray.50",
-          }}
-          mt="2%"
-        >
-          ZIP / Postal
-        </FormLabel>
-        <Input
-          type="text"
-          name="postal_code"
-          id="postal_code"
-          autoComplete="postal-code"
-          focusBorderColor="brand.400"
-          shadow="sm"
-          size="sm"
-          w="full"
-          rounded="md"
-        />
-      </FormControl>
+          {allMethodPayment.map((payment: IMethod) => {
+            return (
+              <CustomRadio
+                id={payment.id}
+                key={payment.name}
+                image={payment.image}
+                namePayment={payment.name}
+                {...getRadioProps({ value: payment.id })}
+              />
+            );
+          })}
+        </HStack>
+      </Stack>
     </>
   );
 };
 
-const Form3 = () => {
+const Form3 = ({ fullAdress, methodPayment }: IForm3) => {
+  const { total, totalCart } = useGlobal();
+
+  const cartProducts =
+    total &&
+    total.map((product: CartPurchase) => {
+      return <CardCartPurchase key={product.id} {...product} />;
+    });
+
   return (
     <>
       <Heading w="100%" textAlign={"center"} fontWeight="normal">
-        Social Handles
+        Revise e confirme a sua compra
       </Heading>
-      <SimpleGrid columns={1} spacing={6}>
-        <FormControl as={GridItem} colSpan={[3, 2]}>
-          <FormLabel
-            fontSize="sm"
-            fontWeight="md"
-            color="gray.700"
-            _dark={{
-              color: "gray.50",
-            }}
-          >
-            Website
-          </FormLabel>
-          <InputGroup size="sm">
-            <InputLeftAddon
-              bg="gray.50"
-              _dark={{
-                bg: "gray.800",
-              }}
-              color="gray.500"
-              rounded="md"
-            >
-              http://
-            </InputLeftAddon>
-            <Input
-              type="tel"
-              placeholder="www.example.com"
-              focusBorderColor="brand.400"
-              rounded="md"
-            />
-          </InputGroup>
-        </FormControl>
-
-        <FormControl id="email" mt={1}>
-          <FormLabel
-            fontSize="sm"
-            fontWeight="md"
-            color="gray.700"
-            _dark={{
-              color: "gray.50",
-            }}
-          >
-            About
-          </FormLabel>
-          <Textarea
-            placeholder="you@example.com"
-            rows={3}
-            shadow="sm"
-            focusBorderColor="brand.400"
-            fontSize={{
-              sm: "sm",
-            }}
-          />
-          <FormHelperText>
-            Brief description for your profile. URLs are hyperlinked.
-          </FormHelperText>
-        </FormControl>
-      </SimpleGrid>
+      <ProductsPurchase>
+        <TotalCash>
+          Voce pagará no total{" "}
+          {new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          }).format(totalCart)}
+        </TotalCash>
+        {cartProducts.length > 0 ? cartProducts : <p>Não há produtos</p>}
+        <DetailPayment fullAdress={fullAdress} methodPayment={methodPayment} />
+      </ProductsPurchase>
     </>
   );
 };
@@ -398,6 +298,11 @@ export default function StepForm() {
   const [cep, setCep] = useState("");
   const [numberCep, setNumberCep] = useState("");
   const [invalidCep, setInvalidCep] = useState(false);
+  const [fullAdress, setFullAdress] = useState<IFullAdress>();
+  const [methodPayment, setMethodPayment] = useState<string>("");
+  const [allMethodPayment, setAllMethodPayment] =
+    useState<IMethod[]>(methodsPayments);
+  const { sendPayment, totalCart, errorCartEmpty } = useGlobal();
 
   const adress: IAdressCep = {
     bairro: "",
@@ -410,18 +315,15 @@ export default function StepForm() {
 
   const { form, onChangeForm, setForm, clean } = useForm(adress);
 
-  const [fullAdress, setFullAdress] = useState<IFullAdress>();
-
   async function searchCep() {
     if (cep.length === 8) {
       await axios
         .get(`https://viacep.com.br/ws/${cep}/json/`)
         .then((response) => {
-          console.log("res", response.data);
           if (response.data.erro) {
             setInvalidCep(true);
             clean();
-            setNumberCep("")
+            setNumberCep("");
           } else {
             setForm({
               bairro: response.data.bairro,
@@ -437,6 +339,24 @@ export default function StepForm() {
     }
   }
 
+  // async function getMethodPayment() {
+  //   await axios
+  //     .get(`https://api.mercadopago.com/v1/payment_methods`, {
+  //       headers: {
+  //         Authorization: `Bearer ${process.env.TOKEN_KEY_MERCADO_PAGO!}`,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response.data.message);
+  //     });
+  // }
+  // useEffect(() => {
+  //   getMethodPayment();
+  // }, []);
+
   useEffect(() => {
     searchCep();
   }, [cep]);
@@ -445,11 +365,20 @@ export default function StepForm() {
     setFullAdress({ ...form, cep: cep, numero: Number(numberCep) });
   }
 
-  console.log("full Adress",fullAdress);
-  
-
   return (
     <>
+      {errorCartEmpty ? (
+        toast({
+          position: "top",
+          title: "Carrinho vazio",
+          description: `${errorCartEmpty}`,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        })
+      ) : (
+        <></>
+      )}
       <Box
         borderWidth="1px"
         rounded="lg"
@@ -457,7 +386,6 @@ export default function StepForm() {
         maxWidth={900}
         flexGrow={1}
         p={6}
-        m="10px auto"
         as="form"
       >
         <Progress
@@ -480,9 +408,12 @@ export default function StepForm() {
             cep={cep}
           />
         ) : step === 2 ? (
-          <Form2 />
+          <Form2
+            allMethodPayment={allMethodPayment}
+            setMethodPayment={setMethodPayment}
+          />
         ) : (
-          <Form3 />
+          <Form3 fullAdress={fullAdress} methodPayment={methodPayment} />
         )}
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
@@ -500,40 +431,34 @@ export default function StepForm() {
               >
                 Back
               </Button>
-              <Button
-                w="7rem"
-                isDisabled={step === 3}
-                onClick={() => {
-                  setStep(step + 1);
-                  if (step === 3) {
-                    setProgress(100);
-                  } else {
-                    setProgress(progress + 33.33);
-                  }
-                  sendValues();
-                }}
-                colorScheme="teal"
-                variant="outline"
-              >
-                Next
-              </Button>
+              {step === 3 ? null : (
+                <Button
+                  w="7rem"
+                  isDisabled={step === 3}
+                  onClick={() => {
+                    setStep(step + 1);
+                    if (step === 3) {
+                      setProgress(100);
+                    } else {
+                      setProgress(progress + 33.33);
+                    }
+                    sendValues();
+                  }}
+                  colorScheme="teal"
+                  variant="outline"
+                >
+                  Next
+                </Button>
+              )}
             </Flex>
             {step === 3 ? (
               <Button
-                w="7rem"
+                w="8rem"
                 colorScheme="red"
                 variant="solid"
-                onClick={() => {
-                  toast({
-                    title: "Account created.",
-                    description: "We've created your account for you.",
-                    status: "success",
-                    duration: 3000,
-                    isClosable: true,
-                  });
-                }}
+                onClick={() => sendPayment({ methodPayment, totalCart })}
               >
-                Submit
+                Finalizar compra
               </Button>
             ) : null}
           </Flex>

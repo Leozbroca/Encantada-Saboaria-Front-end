@@ -54,7 +54,13 @@ const SearchDrower = (props: any) => {
   }, [name]);
 
   const productSearchScreen = productDetail.map((product) => {
-    return <CardSearchProduct key={product._id} {...product} onClose={props.functionOpen.onClose} />;
+    return (
+      <CardSearchProduct
+        key={product._id}
+        {...product}
+        onClose={props.functionOpen.onClose}
+      />
+    );
   });
 
   return (
