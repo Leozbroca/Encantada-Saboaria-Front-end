@@ -7,25 +7,8 @@ import ProductDetail from "../../components/ProductDetail/ProductDetailt";
 
 import { Url } from "../../constants/Url";
 import { MainGallery, MainProduct } from "./Styles";
-
-export interface Iingredients {
-  id: string;
-  nome: string;
-  __v: number;
-  _id: string;
-}
-
-export interface IProductDetail {
-  _id: string;
-  nome: string;
-  foto: string;
-  preco: number;
-  descricao: string;
-  quantidade: number;
-  tamanho: string;
-  categoria_id?: string;
-  essencia_id?: string;
-}
+import { IProductDetail } from "./interface/IProductDetail";
+import { Iingredients } from "./interface/IIngredients";
 
 const Product = () => {
   const { id } = useParams();

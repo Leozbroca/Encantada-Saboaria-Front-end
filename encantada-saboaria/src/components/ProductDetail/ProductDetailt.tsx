@@ -15,11 +15,12 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 import { MdLocalShipping } from "react-icons/md";
-import { Iingredients, IProductDetail } from "../../pages/product/Product";
 import { ImageDetail, Star } from "./Styles";
 import BasicRating from "../StarRate/Star";
 import { CartPurchase } from "../../Global/GlobalState";
 import { useGlobal } from "../../Global/GlobalStateContext";
+import { IProductDetail } from "../../pages/product/interface/IProductDetail";
+import { Iingredients } from "../../pages/product/interface/IIngredients";
 
 interface IProdcutDetail {
   productDetail: IProductDetail | undefined;

@@ -10,14 +10,15 @@ import {
 import { Url } from "../../constants/Url";
 import axios from "axios";
 import {
+  InputSearch,
   MainDraweHeader,
   MainProductSeach,
   SearchInit,
   SearchNotFound,
 } from "./Styles";
-import { IProductDetail } from "../../pages/product/Product";
 import CardSearchProduct from "../CardSearchProduct/CardSearchProduct";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { IProductDetail } from "../../pages/product/interface/IProductDetail";
 
 const SearchDrower = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -71,14 +72,15 @@ const SearchDrower = (props: any) => {
         isOpen={props.functionOpen.isOpen}
       >
         <DrawerOverlay />
-        <DrawerContent minHeight={"40%"} display={"flex"} alignItems={"center"}>
+        <DrawerContent minHeight={"40%"} display={"flex"} alignItems={"center"} padding={"10px"}>
           <MainDraweHeader>
             <DrawerHeader
               borderBottomWidth="1px"
               width={"100%"}
-              textAlign={"center"}
+              flexGrow={1}
+              display={"flex"}
             >
-              Busque produtos
+              Buscar Produtos
             </DrawerHeader>
             <IconButton
               aria-label="Search database"
@@ -87,6 +89,8 @@ const SearchDrower = (props: any) => {
             />
           </MainDraweHeader>
           <Input
+          size={"lg"}
+          padding={"10px"}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Procure o nome dos produtos"

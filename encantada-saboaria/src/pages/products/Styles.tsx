@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import banner from "../../assets/bannerV2-bg.jpg";
+import { device } from "../../constants/breakpoints";
 
 export const Main = styled.div`
   width: 100%;
@@ -19,14 +20,12 @@ export const Main = styled.div`
 export const ButtonFilter = styled.div`
   width: 70%;
   height: 70px;
-  /* padding: 10px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const OptionSelect = styled.option`
-`;
+export const OptionSelect = styled.option``;
 export const PhotoBackgroundProduct = styled.div`
   width: 100%;
   height: 300px;
@@ -71,22 +70,33 @@ export const MainFilterProduct = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  padding:10px;
+
+  @media ${device.mobileS} {
+    display:flex;
+    align-items:start; 
+  }
 `;
 export const Filter = styled.div``;
 export const ProductsScreen = styled.div`
-  display: grid;
-  /* flex-wrap: wrap; */
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  align-items:center;
+  justify-content:center;
   gap: 50px;
   padding: 20px;
   width: 70%;
+
+  @media ${device.mobileS} {
+    width:100%;
+  }
 `;
 
 export const Pagination = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 `;
 
 export const ProductNotFound = styled.div`

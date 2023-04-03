@@ -1,6 +1,5 @@
 import { Card, CardBody, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { IProductDetail } from "../../pages/product/Product";
 import { goTo } from "../../routes/Coordinator";
 import { formatPrice } from "../CartProductCart/PrinceTag";
 
