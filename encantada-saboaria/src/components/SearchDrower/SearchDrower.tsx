@@ -72,7 +72,12 @@ const SearchDrower = (props: any) => {
         isOpen={props.functionOpen.isOpen}
       >
         <DrawerOverlay />
-        <DrawerContent minHeight={"40%"} display={"flex"} alignItems={"center"} padding={"10px"}>
+        <DrawerContent
+          minHeight={"40%"}
+          display={"flex"}
+          alignItems={"center"}
+          padding={"10px"}
+        >
           <MainDraweHeader>
             <DrawerHeader
               borderBottomWidth="1px"
@@ -89,8 +94,8 @@ const SearchDrower = (props: any) => {
             />
           </MainDraweHeader>
           <Input
-          size={"lg"}
-          padding={"10px"}
+            size={"lg"}
+            padding={"10px"}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Procure o nome dos produtos"

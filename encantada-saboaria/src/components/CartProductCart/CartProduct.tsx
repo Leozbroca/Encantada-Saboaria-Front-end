@@ -34,6 +34,8 @@ interface ItotalCart {
 const CartProduct = ({ total }: ItotalCart) => {
   const navigate = useNavigate();
 
+  const productsCartStorage:CartPurchase[] | null = JSON.parse(window.localStorage.getItem("products")!)
+
   return (
     <Box
       maxW={{ base: "3xl", lg: "7xl" }}
@@ -52,8 +54,8 @@ const CartProduct = ({ total }: ItotalCart) => {
           </Heading>
 
           <Stack spacing="6">
-            {total.length > 0 ? (
-              total.map((item: CartPurchase) => (
+            {productsCartStorage && productsCartStorage.length > 0 ? (
+              productsCartStorage.map((item: CartPurchase) => (
                 <CartItem key={item.id} {...item} />
               ))
             ) : (

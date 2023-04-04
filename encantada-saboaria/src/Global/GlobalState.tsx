@@ -48,8 +48,8 @@ export interface ProductContextData {
   sendPayment(total: any): Promise<void>;
   totalCart: number;
   loginOpen: IModal;
-  forgotOpen:IModal;
-  registerOpen:IModal;
+  forgotOpen: IModal;
+  registerOpen: IModal;
   errorCartEmpty: string;
 }
 
@@ -67,6 +67,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
     if (!findProduct) {
       newProductShip.push(item);
       setTotal(newProductShip);
+      localStorage.setItem("products", JSON.stringify(newProductShip));
     } else {
       const novoCart = newProductShip.map((itemCart: CartPurchase) => {
         if (itemCart.id === item.id) {
@@ -83,6 +84,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         return itemCart;
       });
       setTotal(novoCart);
+      localStorage.setItem("products", JSON.stringify(novoCart));
     }
   };
 
@@ -90,7 +92,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
     const findIndexProduct = total.findIndex((product) => product.id === id);
     const newCart = [...total];
     newCart.splice(findIndexProduct, 1);
-
+    window.localStorage.setItem("products",JSON.stringify(newCart))
     setTotal(newCart);
   };
 
@@ -129,7 +131,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         console.log(response.data);
         window.location.href =
           response.data.point_of_interaction.transaction_data.ticket_url;
-          setErrorCartEmpty("")
+        setErrorCartEmpty("");
       })
       .catch((error) => {
         if (
@@ -144,11 +146,10 @@ const GlobalState = ({ children }: ProductProviderProps) => {
       });
   }
 
-
   const forgotOpen = useDisclosure();
   const registerOpen = useDisclosure();
   const loginOpen = useDisclosure();
-  
+
   return (
     <GlobalStateContext.Provider
       value={{
