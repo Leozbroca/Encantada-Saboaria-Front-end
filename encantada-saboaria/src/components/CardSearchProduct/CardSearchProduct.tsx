@@ -14,7 +14,7 @@ const CardSearchProduct = (product: any) => {
       marginTop={"5px"}
       cursor={"pointer"}
       onClick={() => {
-        goTo(navigate, `/produto/${product._id}`);
+        goTo(navigate, `/product/${product._id}`);
         product.onClose();
       }}
     >
