@@ -7,18 +7,12 @@ import {
 } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { useGlobal } from "../../Global/GlobalStateContext";
-import { CartPurchase } from "../../Global/GlobalState";
 import { goTo } from "../../routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "@chakra-ui/react";
+import IProps from "../../interface/IProps";
+import ICartPurchase from "../../interface/ICartPurchase"
 
-interface IProps {
-  id: string;
-  nome: string;
-  foto: string;
-  preco: number;
-  descricao: string;
-}
 export default function CardProduto({
   nome,
   foto,
@@ -28,7 +22,7 @@ export default function CardProduto({
 }: IProps) {
   const { addToCart } = useGlobal();
 
-  const objetoCart: CartPurchase = {
+  const objetoCart: ICartPurchase = {
     id,
     total: preco,
     nome,
@@ -38,7 +32,6 @@ export default function CardProduto({
     quantidade:1
   };
   const navigate = useNavigate();
-  // onClick={()=>goTo(navigate,`/produto/${id}`)}
   return (
     <Main>
       <Photo
@@ -59,7 +52,7 @@ export default function CardProduto({
             </IconRow>
           </Tooltip>
           <Tooltip hasArrow label="Página do produto" placement="top">
-            <IconRow onClick={() => goTo(navigate, `/produto/${id}`)}>
+            <IconRow onClick={() => goTo(navigate, `/product/${id}`)}>
               <IconContext.Provider
                 value={{ className: "global-class-name", size: "1.5em" }}
               >

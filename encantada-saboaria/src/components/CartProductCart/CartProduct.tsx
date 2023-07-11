@@ -10,26 +10,12 @@ import {
   useColorModeValue as mode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CartPurchase } from "../../Global/GlobalState";
 import { goTo } from "../../routes/Coordinator";
 import { CartItem } from "./CartItem";
 import { CartOrderSummary } from "./CartOrderSummary";
-
-interface Cart {
-  id: string;
-  price: number;
-  currency: string;
-  name: string;
-  description: string;
-  quantity: number;
-  imageUrl: string;
-}
-
-interface ItotalCart {
-  total: CartPurchase[];
-}
+import ICartPurchase from "../../interface/ICartPurchase";
+import ItotalCart from "../../interface/ITotalCart";
 
 const CartProduct = ({ total }: ItotalCart) => {
   const navigate = useNavigate();
@@ -53,7 +39,7 @@ const CartProduct = ({ total }: ItotalCart) => {
 
           <Stack spacing="6">
             {total.length > 0 ? (
-              total.map((item: CartPurchase) => (
+              total.map((item: ICartPurchase) => (
                 <CartItem key={item.id} {...item} />
               ))
             ) : (

@@ -7,25 +7,8 @@ import ProductDetail from "../../components/ProductDetail/ProductDetailt";
 
 import { Url } from "../../constants/Url";
 import { MainGallery, MainProduct } from "./Styles";
-
-export interface Iingredients {
-  id: string;
-  nome: string;
-  __v: number;
-  _id: string;
-}
-
-export interface IProductDetail {
-  _id: string;
-  nome: string;
-  foto: string;
-  preco: number;
-  descricao: string;
-  quantidade: number;
-  tamanho: string;
-  categoria_id?: string;
-  essencia_id?: string;
-}
+import IProductDetail from "../../interface/IProductDetail";
+import IIngredients from "../../interface/IIngredients";
 
 const Product = () => {
   const { id } = useParams();
@@ -59,7 +42,7 @@ const Product = () => {
     },
   ]);
 
-  const [ingredients, setIngredients] = useState<Iingredients[]>([
+  const [ingredients, setIngredients] = useState<IIngredients[]>([
     { __v: 0, id: "", _id: "", nome: "" },
   ]);
 
@@ -67,17 +50,18 @@ const Product = () => {
     const getProductDetail = async () => {
       try {
         const result = await axios.get(`${Url}/product/${id}`);
+
         setProductDetail({
-          _id: result.data.newProductId._id,
-          nome: result.data.newProductId.nome,
-          foto: result.data.newProductId.foto,
-          preco: result.data.newProductId.preco,
-          descricao: result.data.newProductId.descricao,
-          quantidade: result.data.newProductId.quantidade,
-          tamanho: result.data.newProductId.tamanho,
+          _id: result.data.product._id,
+          nome: result.data.product.nome,
+          foto: result.data.product.foto,
+          preco: result.data.product.preco,
+          descricao: result.data.product.descricao,
+          quantidade: result.data.product.quantidade,
+          tamanho: result.data.product.tamanho,
         });
         setProductRelativeDetail(result.data.productRelative);
-        setIngredients(result.data.newProductId.ingredients);
+        setIngredients(result.data.productIngredients);
       } catch (error) {
         console.log(error);
       }

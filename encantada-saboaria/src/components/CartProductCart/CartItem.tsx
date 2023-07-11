@@ -8,20 +8,14 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { CartPurchase } from "../../Global/GlobalState";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import { CartProductMeta } from "./CartProductMeta";
+import ICartPurchase from "../../interface/ICartPurchase";
+import { formatPrice } from "../../utils/formatPrice";
 
-export function formatPrice(value: number) {
-  const formatter = new Intl.NumberFormat("pt-BR", {
-    currency: "BRL",
-    style: "currency",
-    maximumFractionDigits: 2,
-  });
-  return formatter.format(value);
-}
 
-export const CartItem = (props: CartPurchase) => {
+
+export const CartItem = (props: ICartPurchase) => {
   const { id, nome, descricao, foto, preco } = props;
   const { addToCart, removeToCart } = useGlobal();
   const [quantidade, setQuantidade] = useState(1);
@@ -46,7 +40,7 @@ export const CartItem = (props: CartPurchase) => {
   useEffect(() => {
     let totalCart;
     totalCart = quantidade * Number(preco);
-    const objetoCart: CartPurchase = {
+    const objetoCart: ICartPurchase = {
       id: id,
       total: totalCart,
       nome,

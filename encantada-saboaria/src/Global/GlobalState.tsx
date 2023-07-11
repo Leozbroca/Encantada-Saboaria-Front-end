@@ -1,47 +1,24 @@
 import { ReactNode, useState } from "react";
 import { urlMercadoPago } from "../constants/Url";
 import GlobalStateContext from "./GlobalStateContext";
+import ICartPurchase from "../interface/ICartPurchase";
 
 interface ProductProviderProps {
   children: ReactNode;
 }
 
-export interface InterfaceProducts {
-  categoria_id: string;
-  descricao: string;
-  essencia_id: string;
-  foto: string;
-  ingredientes: string;
-  nome: string;
-  preco: number;
-  quantidade: number;
-  tamanho: string;
-  id: string;
-}
-
-export interface CartPurchase {
-  id: string | undefined;
-  total: number;
-  nome: string | undefined;
-  descricao: string | undefined;
-  foto: string | undefined;
-  preco: number | undefined;
-  quantidade: number | undefined
-}
-
 export interface ProductContextData {
-  total: CartPurchase[];
-  setTotal: React.Dispatch<React.SetStateAction<CartPurchase[]>>;
-  removeToCart: (id: string) => void
-  addToCart: (item: CartPurchase) => void;
-  sendPayment(total:any): Promise<void>
+  total: ICartPurchase[];
+  setTotal: React.Dispatch<React.SetStateAction<ICartPurchase[]>>;
+  removeToCart: (id: string) => void;
+  addToCart: (item: ICartPurchase) => void;
+  sendPayment(total: any): Promise<void>;
 }
 
 const GlobalState = ({ children }: ProductProviderProps) => {
-  const [total, setTotal] = useState<CartPurchase[]>([]);
+  const [total, setTotal] = useState<ICartPurchase[]>([]);
 
-  
-  const addToCart = (item: CartPurchase) => {
+  const addToCart = (item: ICartPurchase) => {
     const newProductShip = [...total];
 
     let findProduct = newProductShip.find((product) => product.id === item.id);
@@ -51,7 +28,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
       newProductShip.push(item);
       setTotal(newProductShip);
     } else {
-      const novoCart = newProductShip.map((itemCart: CartPurchase) => {
+      const novoCart = newProductShip.map((itemCart: ICartPurchase) => {
         if (itemCart.id === item.id) {
           return {
             id: item.id,
@@ -60,7 +37,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
             descricao: item.descricao,
             foto: item.foto,
             preco: item.preco,
-            quantidade: item.quantidade
+            quantidade: item.quantidade,
           };
         }
         return itemCart;
@@ -71,13 +48,12 @@ const GlobalState = ({ children }: ProductProviderProps) => {
 
   const removeToCart = (id: string) => {
     const findIndexProduct = total.findIndex((product) => product.id === id);
-    console.log(id)
+
     const newCart = [...total];
     newCart.splice(findIndexProduct, 1);
-    
+
     setTotal(newCart);
   };
-
 
   // "additional_info": {
   //   "items": [
@@ -141,9 +117,9 @@ const GlobalState = ({ children }: ProductProviderProps) => {
   // "payment_method_id": "visa",
   // "token": "ff8080814c11e237014c1ff593b57b4d",
   // "transaction_amount": 58.8
-  async function sendPayment(total:any) {
+  async function sendPayment(total: any) {
     const body = {
-      transaction_amount:total,
+      transaction_amount: total,
       description: "produtos da compra",
       payment_method_id: "pix",
       payer: {
@@ -174,7 +150,9 @@ const GlobalState = ({ children }: ProductProviderProps) => {
   }
 
   return (
-    <GlobalStateContext.Provider value={{ addToCart, total, setTotal , removeToCart, sendPayment}}>
+    <GlobalStateContext.Provider
+      value={{ addToCart, total, setTotal, removeToCart, sendPayment }}
+    >
       {children}
     </GlobalStateContext.Provider>
   );

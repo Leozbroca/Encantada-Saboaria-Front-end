@@ -20,8 +20,8 @@ import {
 } from "./Styled";
 import axios from "axios";
 import { Url } from "../../constants/Url";
-import { ICategory } from "../footer/Footer";
 import { IFilter } from "../../pages/products/ProductPage";
+import ICategory from "../../interface/ICategory";
 
 interface PropsModalFilter {
   isOpen: boolean;

@@ -2,15 +2,8 @@ import React from "react";
 import { Main, Photo, InfoProduct, NameAndDelete, Icon } from "./Styles";
 import { BsTrash } from "react-icons/bs";
 import { useGlobal } from "../../Global/GlobalStateContext";
+import IProps from "../../interface/IProps";
 
-interface IProps {
-  id: string;
-  nome: string;
-  foto: string;
-  preco: number;
-  descricao: string;
-  quantidade: number
-}
 
 export default function CardCarrinhoHeader({
   nome,

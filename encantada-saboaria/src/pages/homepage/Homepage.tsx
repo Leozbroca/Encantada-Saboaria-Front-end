@@ -1,6 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
-
 import {
   MainDiv,
   Slide,
@@ -8,11 +6,6 @@ import {
   SlideRow,
   ButtonShop1,
   ButtonShop2,
-  Option,
-  OptionName,
-  OptionCategory,
-  OptionCategories,
-  OptionCategoryIcon,
   BestSellerMain,
   BestSellerButtons,
   BestSellerName,
@@ -32,35 +25,16 @@ import {
   InstagramText,
   EncantadaText,
 } from "./Styles";
-import slid from "../../assets/slide.webp";
 import CardProduto from "../../components/CardProduct/CardProduto";
 import Product3 from "../../components/Product3/Products3";
 import Gallery from "../../components/Carousel/Carousel";
-import GalleryMain from "../../components/Carousel/CarouselMain";
-
-import { IconContext } from "react-icons";
-import { FaSoap } from "react-icons/fa";
-import { ImDroplet } from "react-icons/im";
-import { GiDelicatePerfume, GiCandleFlame } from "react-icons/gi";
 import { useState } from "react";
 import useRequestData from "../../hooks/useRequestData";
 import { Url } from "../../constants/Url";
 import ScrollTop from "../../components/ScrollTop/ScrollTop";
-
-export interface IProducts {
-  _id: string;
-  categoria_id: string;
-  descricao: string;
-  foto: string;
-  ingredientes: string;
-  nome: string;
-  preco: number;
-  quantidade: number;
-  tamanho: string;
-}
+import IProducts from "../../interface/IProducts";
 
 const HomePage = () => {
-  const [NewColor, SetNewColor] = useState("black");
   const [BackgColor1, SetBackgColor1] = useState("#efbae1");
   const [BackgColor2, SetBackgColor2] = useState("transparent");
   const [BackgColor3, SetBackgColor3] = useState("transparent");
@@ -71,7 +45,6 @@ const HomePage = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const products: IProducts[] = useRequestData([], `${Url}/products`);
 
-  
   const goToPag1 = () => {
     SetBackgColor1("#efbae1");
     SetBackgColor2("transparent");
@@ -109,6 +82,7 @@ const HomePage = () => {
           nome={product.nome}
           foto={product.foto}
           preco={product.preco}
+          quantidade={0}
         />
       );
     }
@@ -116,8 +90,8 @@ const HomePage = () => {
 
   return (
     <MainDiv>
-        {/* <GalleryMain/> */}
-        <Slide>
+      {/* <GalleryMain/> */}
+      <Slide>
         <SlideMain>
           <h2>Soapin Store</h2>
           <h1>Handmade Soap</h1>
@@ -135,56 +109,6 @@ const HomePage = () => {
           </SlideRow>
         </SlideMain>
       </Slide>
-
-      {/* <Option>
-        <OptionName>Shop By Category</OptionName>
-        <OptionCategory>
-          <OptionCategories>
-            <IconContext.Provider
-              value={{ className: "global-class-name", size: "3em" }}
-            >
-              <OptionCategoryIcon
-                className="color-div"
-                style={{ color: NewColor }}
-              >
-                <FaSoap />
-              </OptionCategoryIcon>
-            </IconContext.Provider>
-
-            <p className="hover-div">Sabonetes</p>
-          </OptionCategories>
-          <OptionCategories>
-            <IconContext.Provider
-              value={{ className: "global-class-name", size: "3em" }}
-            >
-              <OptionCategoryIcon>
-                <GiDelicatePerfume />
-              </OptionCategoryIcon>
-            </IconContext.Provider>
-            <p>Difusor de aromas</p>
-          </OptionCategories>
-          <OptionCategories>
-            <IconContext.Provider
-              value={{ className: "global-class-name", size: "3em" }}
-            >
-              <OptionCategoryIcon>
-                <ImDroplet />
-              </OptionCategoryIcon>
-            </IconContext.Provider>
-            <p>Água para lenços</p>
-          </OptionCategories>
-          <OptionCategories>
-            <IconContext.Provider
-              value={{ className: "global-class-name", size: "3em" }}
-            >
-              <OptionCategoryIcon>
-                <GiCandleFlame />
-              </OptionCategoryIcon>
-            </IconContext.Provider>
-            <p>Velas Aromáticas</p>
-          </OptionCategories>
-        </OptionCategory>
-      </Option> */}
 
       <BestSellerMain>
         <BestSellerName>

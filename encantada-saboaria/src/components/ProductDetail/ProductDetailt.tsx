@@ -15,15 +15,16 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 import { MdLocalShipping } from "react-icons/md";
-import { Iingredients, IProductDetail } from "../../pages/product/Product";
 import { ImageDetail, Star } from "./Styles";
 import BasicRating from "../StarRate/Star";
-import { CartPurchase } from "../../Global/GlobalState";
 import { useGlobal } from "../../Global/GlobalStateContext";
+import ICartPurchase from "../../interface/ICartPurchase";
+import IProductDetail from "../../interface/IProductDetail";
+import IIngredients from "../../interface/IIngredients";
 
 interface IProdcutDetail {
   productDetail: IProductDetail | undefined;
-  ingredients: Iingredients[];
+  ingredients: IIngredients[];
 }
 
 export default function ProductDetail({
@@ -32,14 +33,14 @@ export default function ProductDetail({
 }: IProdcutDetail) {
   const { addToCart } = useGlobal();
 
-  const objetoCart: CartPurchase = {
+  const objetoCart: ICartPurchase = {
     id: productDetail?._id,
     total: Number(productDetail?.preco),
     nome: productDetail?.nome,
     descricao: productDetail?.descricao,
     foto: productDetail?.foto,
     preco: productDetail?.preco,
-    quantidade: productDetail?.quantidade
+    quantidade: productDetail?.quantidade,
   };
 
   const ingredientsScreen = ingredients.map((ingredient, index) => {

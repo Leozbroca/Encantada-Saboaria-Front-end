@@ -15,9 +15,9 @@ import {
   SearchInit,
   SearchNotFound,
 } from "./Styles";
-import { IProductDetail } from "../../pages/product/Product";
 import CardSearchProduct from "../CardSearchProduct/CardSearchProduct";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import IProductDetail from "../../interface/IProductDetail";
 
 const SearchDrower = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();

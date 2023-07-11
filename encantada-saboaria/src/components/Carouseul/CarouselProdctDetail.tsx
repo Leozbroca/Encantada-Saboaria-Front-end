@@ -1,8 +1,8 @@
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { MainProductDetailCarousel } from "./Styles";
-import { IProductDetail } from "../../pages/product/Product";
 import CardProduto from "../CardProduct/CardProduto";
+import IProductDetail from "../../interface/IProductDetail";
 
 const responsive = {
   400: { items: 1 },
@@ -17,19 +17,19 @@ interface ICarouselProduct {
 }
 
 const CarouselProductDetail = ({ productRelativeDetail }: ICarouselProduct) => {
-
   const items = productRelativeDetail.map(
     (product: IProductDetail, index: number) => {
-        return (
-            <CardProduto
-              key={product._id}
-              descricao={product.descricao}
-              id={product._id}
-              nome={product.nome}
-              foto={product.foto}
-              preco={product.preco}
-            />
-          );
+      return (
+        <CardProduto
+          key={product._id}
+          descricao={product.descricao}
+          id={product._id}
+          nome={product.nome}
+          foto={product.foto}
+          preco={product.preco}
+          quantidade={0}
+        />
+      );
     }
   );
 
