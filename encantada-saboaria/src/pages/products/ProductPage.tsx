@@ -29,7 +29,7 @@ export interface IFilter {
   _id: string;
 }
 const ProductPage = () => {
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = useState(1);
   const [priceFilter, setPriceFilter] = useState("crescente");
   const [priceCategory, setPriceCategory] = useState(0);
   const [filterEssence, setFilterEssence] = useState<IFilter>({

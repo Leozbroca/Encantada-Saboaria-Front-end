@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import slid from "../../assets/slide.webp";
 import back from "../../assets/back7.png";
-import product from "../../assets/producto1.avif";
+import product from "../../assets/wish.png";
 import banner from "../../assets/bannerV2-bg.jpg"
 
 export const MainDiv = styled.div`

@@ -126,7 +126,7 @@ const Header = () => {
         <IconContext.Provider
           value={{ className: "global-class-name", size: "2em" }}
         >
-          <MenuItemFlex>
+          <MenuItemFlex onClick={() => goTo(navigate, `/desejo`)}>
             <HiOutlineHeart />
           </MenuItemFlex>
         </IconContext.Provider>
@@ -138,11 +138,6 @@ const Header = () => {
             <HiOutlineShoppingBag />
           </MenuItem>
         </IconContext.Provider>
-
-        {/* <MenuItem><HiOutlineMagnifyingGlass/></MenuItem> */}
-        {/* <MenuItem><HiOutlineUser/></MenuItem>
-                <MenuItem><HiOutlineHeart/></MenuItem>
-                <MenuItem><HiOutlineShoppingBag/></MenuItem> */}
       </MenuItens>
       <ModalLogin
         loginOpen={loginOpen}
