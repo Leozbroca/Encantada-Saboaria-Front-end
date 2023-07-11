@@ -9,11 +9,12 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { useGlobal } from "../../Global/GlobalStateContext";
+import { formatPrice } from "../../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
 import { urlMercadoPago } from "../../constants/Url";
-import { useGlobal } from "../../Global/GlobalStateContext";
 import { goTo } from "../../routes/Coordinator";
-import { formatPrice } from "./CartItem";
+
 
 type OrderSummaryItemProps = {
   label: string;
@@ -44,7 +45,6 @@ export const CartOrderSummary = (props: any) => {
     totalCartReduce = total.reduce((item, current) => item + current.total, 0);
     setTotalCart(totalCartReduce);
   }, [total]);
-
 
   return (
     <Stack spacing="8" borderWidth="1px" rounded="lg" padding="8" width="full">

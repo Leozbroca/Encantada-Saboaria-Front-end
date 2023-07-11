@@ -40,11 +40,11 @@ import {
   ProductsPurchase,
   TotalCash,
 } from "./Styled";
-import { CartPurchase } from "../../Global/GlobalState";
 import { useGlobal } from "../../Global/GlobalStateContext";
-import CardCartPurchase from "../CardCartPurchase/CardCartPurchase";
 import DetailPayment from "./DetailsPayment";
 import { IForm3 } from "./Interfaces/IForm3";
+import ICartPurchase from "../../interface/ICartPurchase"
+import CardCartPurchase from "../CardCartPurchase/CardCartPurchase";
 
 interface IModal2 {
   allMethodPayment: IMethod[];
@@ -267,7 +267,7 @@ const Form3 = ({ fullAdress, methodPayment }: IForm3) => {
 
   const cartProducts =
     total &&
-    total.map((product: CartPurchase) => {
+    total.map((product: ICartPurchase) => {
       return <CardCartPurchase key={product.id} {...product} />;
     });
 
@@ -338,24 +338,6 @@ export default function StepForm() {
         .catch((error) => {});
     }
   }
-
-  // async function getMethodPayment() {
-  //   await axios
-  //     .get(`https://api.mercadopago.com/v1/payment_methods`, {
-  //       headers: {
-  //         Authorization: `Bearer ${process.env.TOKEN_KEY_MERCADO_PAGO!}`,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.data.message);
-  //     });
-  // }
-  // useEffect(() => {
-  //   getMethodPayment();
-  // }, []);
 
   useEffect(() => {
     searchCep();

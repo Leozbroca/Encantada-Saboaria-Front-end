@@ -1,9 +1,7 @@
 import { Card, CardBody, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { IProductDetail } from "../../pages/product/Product";
 import { goTo } from "../../routes/Coordinator";
-import { formatPrice } from "../CartProductCart/PrinceTag";
-
+import { formatPrice } from "../../utils/formatPrice";
 const CardSearchProduct = (product: any) => {
   const navigate = useNavigate();
 
@@ -16,7 +14,7 @@ const CardSearchProduct = (product: any) => {
       marginTop={"5px"}
       cursor={"pointer"}
       onClick={() => {
-        goTo(navigate, `/produto/${product._id}`);
+        goTo(navigate, `/product/${product._id}`);
         product.onClose();
       }}
     >

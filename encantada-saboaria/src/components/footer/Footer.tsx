@@ -22,11 +22,7 @@ import logo from "../../assets/logo1.png";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
 import { BurnImg } from "./Styles";
-
-export interface ICategory {
-  nome: string;
-  _id: string;
-}
+import ICategory from "../../interface/ICategory"
 
 const Footer = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);

@@ -45,8 +45,6 @@ import {
 import SearchDrower from "../SearchDrower/SearchDrower";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import CardCarrinhoHeader from "../CardCarrinhoHeader/CardCarrinhoHeader";
-import { IProducts } from "../../pages/homepage/Homepage";
-import { CartPurchase } from "../../Global/GlobalState";
 import ModalLogin from "../ModalLogin/ModalLogin";
 import ModalRegister from "../ModalRegister/ModalRegister";
 import ModalForgot from "../ModalForgot/ModalForgot";
@@ -130,7 +128,7 @@ const Header = () => {
         <IconContext.Provider
           value={{ className: "global-class-name", size: "2em" }}
         >
-          <MenuItemFlex>
+          <MenuItemFlex onClick={() => goTo(navigate, `/desejo`)}>
             <HiOutlineHeart />
           </MenuItemFlex>
         </IconContext.Provider>
@@ -142,11 +140,6 @@ const Header = () => {
             <HiOutlineShoppingBag />
           </MenuItem>
         </IconContext.Provider>
-
-        {/* <MenuItem><HiOutlineMagnifyingGlass/></MenuItem> */}
-        {/* <MenuItem><HiOutlineUser/></MenuItem>
-                <MenuItem><HiOutlineHeart/></MenuItem>
-                <MenuItem><HiOutlineShoppingBag/></MenuItem> */}
       </MenuItens>
       <ModalLogin
         loginOpen={loginOpen}

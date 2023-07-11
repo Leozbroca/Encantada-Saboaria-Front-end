@@ -5,31 +5,31 @@ import CardProduto from "../../components/CardProduct/CardProduto";
 import ModalFilter from "../../components/modalFilter/modalFilter";
 import { Url } from "../../constants/Url";
 import useRequestData from "../../hooks/useRequestData";
-import { IProducts } from "../homepage/Homepage";
+
 import { AiFillFilter } from "react-icons/ai";
 import {
   Filter,
   Main,
   Pagination,
   ProductsScreen,
-  SpanPagination,
   ProductNotFound,
   MainFilterProduct,
   ButtonFilter,
   PhotoBackgroundProduct,
   ButtonOfferProduct,
-  OptionSelect,
+  OptionSelect
 } from "./Styles";
 import { Select, Stack } from "@chakra-ui/react";
 import PaginationOutlined from "../../components/Pagination/pagination";
 import React from "react";
+import IProducts from "../../interface/IProducts";
 
 export interface IFilter {
   nome: string;
   _id: string;
 }
 const ProductPage = () => {
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = useState(1);
   const [priceFilter, setPriceFilter] = useState("crescente");
   const [priceCategory, setPriceCategory] = useState(0);
   const [filterEssence, setFilterEssence] = useState<IFilter>({
@@ -101,6 +101,7 @@ const ProductPage = () => {
                   nome={product.nome}
                   foto={product.foto}
                   preco={product.preco}
+                  quantidade={0}
                 />
               );
             })

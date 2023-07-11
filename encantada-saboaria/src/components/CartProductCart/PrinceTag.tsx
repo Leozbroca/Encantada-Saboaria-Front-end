@@ -1,34 +1,12 @@
-import {
-  HStack,
-  StackProps,
-  Text,
-  TextProps,
-  useColorModeValue as mode,
-} from "@chakra-ui/react";
+import { HStack, Text, useColorModeValue as mode } from "@chakra-ui/react";
 import { ReactNode } from "react";
-
-interface PriceTagProps {
-  quantidade: number;
-  currency: string;
-  price: number;
-  salePrice?: number;
-  rootProps?: StackProps;
-  priceProps?: TextProps;
-  salePriceProps?: TextProps;
-}
+import IPriceTagProps from "../../interface/IPriceTags";
+import { formatPrice } from "../../utils/formatPrice";
 
 export type FormatPriceOptions = { locale?: string; currency?: string };
 
-export function formatPrice(value: number) {
-  const formatter = new Intl.NumberFormat("pt-BR", {
-    currency: "BRL",
-    style: "currency",
-    maximumFractionDigits: 2,
-  });
-  return formatter.format(value);
-}
 
-export const PriceTag = (props: PriceTagProps) => {
+export const PriceTag = (props: IPriceTagProps) => {
   const {
     quantidade,
     price,
@@ -56,5 +34,3 @@ const Price = (props: PriceProps) => {
     </Text>
   );
 };
-
-

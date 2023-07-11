@@ -2,11 +2,11 @@ import { useDisclosure } from "@chakra-ui/react";
 import { ReactNode, useEffect, useState } from "react";
 import { urlMercadoPago } from "../constants/Url";
 import GlobalStateContext from "./GlobalStateContext";
+import ICartPurchase from "../interface/ICartPurchase";
 
 interface ProductProviderProps {
   children: ReactNode;
 }
-
 export interface IModal {
   isOpen: boolean;
   onOpen: () => void;
@@ -17,48 +17,26 @@ export interface IModal {
   getDisclosureProps: (props?: any) => any;
 }
 
-export interface InterfaceProducts {
-  categoria_id: string;
-  descricao: string;
-  essencia_id: string;
-  foto: string;
-  ingredientes: string;
-  nome: string;
-  preco: number;
-  quantidade: number;
-  tamanho: string;
-  id: string;
-}
-
-export interface CartPurchase {
-  id: string | undefined;
-  total: number;
-  nome: string | undefined;
-  descricao: string | undefined;
-  foto: string | undefined;
-  preco: number | undefined;
-  quantidade: number | undefined;
-}
-
 export interface ProductContextData {
-  total: CartPurchase[];
-  setTotal: React.Dispatch<React.SetStateAction<CartPurchase[]>>;
+  total: ICartPurchase[];
+  setTotal: React.Dispatch<React.SetStateAction<ICartPurchase[]>>;
   removeToCart: (id: string) => void;
-  addToCart: (item: CartPurchase) => void;
+  addToCart: (item: ICartPurchase) => void;
   sendPayment(total: any): Promise<void>;
   totalCart: number;
   loginOpen: IModal;
-  forgotOpen:IModal;
-  registerOpen:IModal;
+  forgotOpen: IModal;
+  registerOpen: IModal;
   errorCartEmpty: string;
 }
 
+
 const GlobalState = ({ children }: ProductProviderProps) => {
-  const [total, setTotal] = useState<CartPurchase[]>([]);
+  const [total, setTotal] = useState<ICartPurchase[]>([]);
   const [totalCart, setTotalCart] = useState(0);
   const [errorCartEmpty, setErrorCartEmpty] = useState("");
 
-  const addToCart = (item: CartPurchase) => {
+  const addToCart = (item: ICartPurchase) => {
     const newProductShip = [...total];
 
     let findProduct = newProductShip.find((product) => product.id === item.id);
@@ -67,8 +45,9 @@ const GlobalState = ({ children }: ProductProviderProps) => {
     if (!findProduct) {
       newProductShip.push(item);
       setTotal(newProductShip);
+      localStorage.setItem("products", JSON.stringify(newProductShip));
     } else {
-      const novoCart = newProductShip.map((itemCart: CartPurchase) => {
+      const novoCart = newProductShip.map((itemCart: ICartPurchase) => {
         if (itemCart.id === item.id) {
           return {
             id: item.id,
@@ -83,22 +62,20 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         return itemCart;
       });
       setTotal(novoCart);
+      localStorage.setItem("products", JSON.stringify(novoCart));
     }
   };
 
   const removeToCart = (id: string) => {
     const findIndexProduct = total.findIndex((product) => product.id === id);
+
     const newCart = [...total];
     newCart.splice(findIndexProduct, 1);
 
     setTotal(newCart);
   };
 
-  useEffect(() => {
-    let totalCartReduce;
-    totalCartReduce = total.reduce((item, current) => item + current.total, 0);
-    setTotalCart(totalCartReduce);
-  }, [total]);
+ 
 
   async function sendPayment(total: any) {
     const body = {
@@ -129,7 +106,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         console.log(response.data);
         window.location.href =
           response.data.point_of_interaction.transaction_data.ticket_url;
-          setErrorCartEmpty("")
+        setErrorCartEmpty("");
       })
       .catch((error) => {
         if (
@@ -142,13 +119,12 @@ const GlobalState = ({ children }: ProductProviderProps) => {
           );
         }
       });
-  }
-
-
+    }
+  
   const forgotOpen = useDisclosure();
   const registerOpen = useDisclosure();
   const loginOpen = useDisclosure();
-  
+
   return (
     <GlobalStateContext.Provider
       value={{
@@ -160,7 +136,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         totalCart,
         forgotOpen,
         registerOpen,
-        loginOpen
+        loginOpen,
         errorCartEmpty,
       }}
     >

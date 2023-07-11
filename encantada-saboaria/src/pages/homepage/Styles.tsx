@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import slid from "../../assets/slide.webp";
 import back from "../../assets/back7.png";
-import product from "../../assets/producto1.avif";
+import product from "../../assets/wish.png";
 import banner from "../../assets/bannerV2-bg.jpg"
 
 export const MainDiv = styled.div`
@@ -47,13 +47,11 @@ export const Slide = styled.div`
     height: 60vh;
   }
 
-  @media (max-width: 1000px) {
-    height: 50vh;
+  @media (max-width: 600px) {
+    margin-top:50px;
   }
 
-  @media (max-width: 800px) {
-    height: 40vh;
-  }
+
 `;
 
 export const SlideMain = styled.div`
@@ -263,13 +261,13 @@ export const BestSellerName = styled.div`
 export const BestSellerButtons = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  max-width: 300px;
+  justify-content: space-around;
+  width:400px;
   margin-top: 10px;
   flex-wrap: wrap;
 
-  @media (max-width: 600px) {
-
+  @media (max-width: 500px) {
+    width:280px;
 }
 
 `;
@@ -288,6 +286,10 @@ export const ButtonSeller = styled.button`
   :hover{
     cursor:pointer;
   }
+
+  @media (max-width: 500px) {
+    margin-bottom:8px;
+}
 `;
 
 export const BestSellerProducts = styled.div`

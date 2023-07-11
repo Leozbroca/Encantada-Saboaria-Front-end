@@ -1,11 +1,11 @@
+import ICartPurchase from "../../interface/ICartPurchase";
 import { Main, Photo, InfoProduct, Icon } from "./Styles";
-import { CartPurchase } from "../../Global/GlobalState";
 
 export default function CardCartPurchase({
   foto,
   quantidade,
   total,
-}: CartPurchase) {
+}: ICartPurchase) {
   return (
     <Main>
       <Photo
