@@ -11,6 +11,10 @@ import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import { formatPrice } from "../../utils/formatPrice";
+import { useNavigate } from "react-router-dom";
+import { urlMercadoPago } from "../../constants/Url";
+import { goTo } from "../../routes/Coordinator";
+
 
 type OrderSummaryItemProps = {
   label: string;
@@ -31,8 +35,10 @@ const OrderSummaryItem = (props: OrderSummaryItemProps) => {
 };
 
 export const CartOrderSummary = (props: any) => {
-  const { total, sendPayment } = useGlobal();
+  const { total } = useGlobal();
   const [totalCart, setTotalCart] = useState(0);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     let totalCartReduce;
@@ -65,7 +71,7 @@ export const CartOrderSummary = (props: any) => {
         size="lg"
         fontSize="md"
         rightIcon={<FaArrowRight />}
-        onClick={() => sendPayment(total)}
+        onClick={() => goTo(navigate,"/compras")}
       >
         Comprar
       </Button>

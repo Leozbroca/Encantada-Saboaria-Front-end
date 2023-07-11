@@ -5,6 +5,7 @@ import Contact from "../pages/contact/Contact";
 import HomePage from "../pages/homepage/Homepage";
 import Product from "../pages/product/Product";
 import ProductPage from "../pages/products/ProductPage";
+import Purchase from "../pages/purchase/Purchase";
 
 const Router = () => {
     return(

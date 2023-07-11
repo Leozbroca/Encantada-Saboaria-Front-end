@@ -10,6 +10,7 @@ import {
 import { Url } from "../../constants/Url";
 import axios from "axios";
 import {
+  InputSearch,
   MainDraweHeader,
   MainProductSeach,
   SearchInit,
@@ -54,7 +55,13 @@ const SearchDrower = (props: any) => {
   }, [name]);
 
   const productSearchScreen = productDetail.map((product) => {
-    return <CardSearchProduct key={product._id} {...product} onClose={props.functionOpen.onClose} />;
+    return (
+      <CardSearchProduct
+        key={product._id}
+        {...product}
+        onClose={props.functionOpen.onClose}
+      />
+    );
   });
 
   return (
@@ -65,14 +72,20 @@ const SearchDrower = (props: any) => {
         isOpen={props.functionOpen.isOpen}
       >
         <DrawerOverlay />
-        <DrawerContent minHeight={"40%"} display={"flex"} alignItems={"center"}>
+        <DrawerContent
+          minHeight={"40%"}
+          display={"flex"}
+          alignItems={"center"}
+          padding={"10px"}
+        >
           <MainDraweHeader>
             <DrawerHeader
               borderBottomWidth="1px"
               width={"100%"}
-              textAlign={"center"}
+              flexGrow={1}
+              display={"flex"}
             >
-              Busque produtos
+              Buscar Produtos
             </DrawerHeader>
             <IconButton
               aria-label="Search database"
@@ -81,6 +94,8 @@ const SearchDrower = (props: any) => {
             />
           </MainDraweHeader>
           <Input
+            size={"lg"}
+            padding={"10px"}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Procure o nome dos produtos"

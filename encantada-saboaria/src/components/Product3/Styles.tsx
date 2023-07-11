@@ -51,6 +51,7 @@ p{
     margin:0;
     font-size:1rem;
     margin-bottom:5px;
+    max-width:320px;
 }
 
 .price{

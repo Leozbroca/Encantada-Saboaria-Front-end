@@ -8,6 +8,8 @@ export const Main = styled.div`
   align-items: center;
   font-family: "Bree Serif", serif;
 
+
+
   .nome {
     font-size: 18px;
     margin: 0px;
@@ -43,6 +45,7 @@ export const Photo = styled.div`
       cursor: pointer;
     }
   }
+
 `;
 
 export const DivRow = styled.div`

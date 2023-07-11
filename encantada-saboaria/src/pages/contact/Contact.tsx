@@ -104,10 +104,19 @@ const Contact = () => {
             m={{ sm: 4, md: 16, lg: 10 }}
             p={{ sm: 5, md: 5, lg: 16 }}
           >
-            <Box p={4}>
-              <Wrap spacing={{ base: 20, sm: 3, md: 5, lg: 20 }}>
+            <Box p={4} display={"flex"}>
+              <Wrap
+                spacing={{ base: 20, sm: 3, md: 5, lg: 20 }}
+                display={"flex"}
+                justifyContent={"space-around"}
+              >
                 <WrapItem>
-                  <Box>
+                  <Box
+                    display={"flex"}
+                    flexDirection={"column"}
+                    alignItems={"center"}
+                    width={"100%"}
+                  >
                     <Heading>Contato</Heading>
                     <Text mt={{ sm: 3, md: 3, lg: 5 }} color="gray.500">
                       Preencha os dados abaixo
@@ -233,7 +242,11 @@ const Contact = () => {
                             onChange={onChangeForm}
                           />
                         </FormControl>
-                        <FormControl id="name" float="right">
+                        <FormControl
+                          id="name"
+                          float="right"
+                          textAlign={"center"}
+                        >
                           <Button
                             onClick={onSubmitForm}
                             variant="solid"

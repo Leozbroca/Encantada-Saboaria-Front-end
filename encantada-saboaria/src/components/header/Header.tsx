@@ -17,6 +17,7 @@ import {
   ButtonLeft,
   ButtonRight,
   CartBody,
+  EmptyCartP,
 } from "./Styles";
 import logo2 from "../../assets/logo2.png";
 import {
@@ -44,13 +45,16 @@ import {
 import SearchDrower from "../SearchDrower/SearchDrower";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import CardCarrinhoHeader from "../CardCarrinhoHeader/CardCarrinhoHeader";
+import ModalLogin from "../ModalLogin/ModalLogin";
+import ModalRegister from "../ModalRegister/ModalRegister";
+import ModalForgot from "../ModalForgot/ModalForgot";
 
 const Header = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const functionOpen = useDisclosure();
   const btnRef: any = React.useRef();
-  const { total } = useGlobal();
+  const { total, loginOpen, forgotOpen, registerOpen } = useGlobal();
   const [totalCart, setTotalCart] = useState(0);
 
   const cartProducts =
@@ -114,7 +118,7 @@ const Header = () => {
         <IconContext.Provider
           value={{ className: "global-class-name", size: "2em" }}
         >
-          <MenuItemFlex>
+          <MenuItemFlex onClick={loginOpen.onOpen}>
             <HiOutlineUser />
           </MenuItemFlex>
         </IconContext.Provider>
@@ -140,7 +144,13 @@ const Header = () => {
                 <MenuItem><HiOutlineHeart/></MenuItem>
                 <MenuItem><HiOutlineShoppingBag/></MenuItem> */}
       </MenuItens>
-
+      <ModalLogin
+        loginOpen={loginOpen}
+        forgotOpen={forgotOpen}
+        registerOpen={registerOpen}
+      />
+      <ModalForgot forgotOpen={forgotOpen} loginOpen={loginOpen} />
+      <ModalRegister registerOpen={registerOpen} loginOpen={loginOpen} />
       <Drawer
         size="sm"
         isOpen={isOpen}
@@ -148,7 +158,7 @@ const Header = () => {
         onClose={onClose}
         finalFocusRef={btnRef}
       >
-        <DrawerOverlay />
+        <DrawerOverlay bg="blackAlpha.700" />
         <DrawerContent sx={{ backgroundColor: "#f8f9fa" }}>
           <DrawerCloseButton
             sx={{
@@ -164,17 +174,37 @@ const Header = () => {
             </CartInsideTop>
             <CartTopNumber>{total.length}</CartTopNumber>
           </CartTop>
-          <CartBody>{cartProducts}</CartBody>
-          <CartBottom>
-            <Total>
-              <p>Total:</p>
-              <p style={{ color: "pink" }}>R${totalCart}</p>
-            </Total>
-            <Buttons>
-              <ButtonLeft>Ver Carrinho</ButtonLeft>
-              <ButtonRight>Finalizar compra</ButtonRight>
-            </Buttons>
-          </CartBottom>
+          {cartProducts.length > 0 ? (
+            <>
+              <CartBody>{cartProducts}</CartBody>
+              <CartBottom>
+                <Total>
+                  <p>Total:</p>
+                  <p style={{ color: "pink" }}>R${totalCart}</p>
+                </Total>
+                <Buttons>
+                  <ButtonLeft
+                    onClick={() => {
+                      goTo(navigate, "/carrinho");
+                      onClose();
+                    }}
+                  >
+                    Ver Carrinho
+                  </ButtonLeft>
+                  <ButtonRight
+                    onClick={() => {
+                      goTo(navigate, "/compras");
+                      onClose();
+                    }}
+                  >
+                    Finalizar compra
+                  </ButtonRight>
+                </Buttons>
+              </CartBottom>
+            </>
+          ) : (
+            <EmptyCartP>Nenhum produto no carrinho.</EmptyCartP>
+          )}
         </DrawerContent>
       </Drawer>
     </MainHeader>

@@ -12,13 +12,15 @@ export const MainDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+
 `;
 
 export const Slide = styled.div`
@@ -45,13 +47,11 @@ export const Slide = styled.div`
     height: 60vh;
   }
 
-  @media (max-width: 1000px) {
-    height: 50vh;
+  @media (max-width: 600px) {
+    margin-top:50px;
   }
 
-  @media (max-width: 800px) {
-    height: 40vh;
-  }
+
 `;
 
 export const SlideMain = styled.div`
@@ -261,10 +261,15 @@ export const BestSellerName = styled.div`
 export const BestSellerButtons = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  width: 500px;
+  justify-content: space-around;
+  width:400px;
   margin-top: 10px;
   flex-wrap: wrap;
+
+  @media (max-width: 500px) {
+    width:280px;
+}
+
 `;
 
 export const ButtonSeller = styled.button`
@@ -281,6 +286,10 @@ export const ButtonSeller = styled.button`
   :hover{
     cursor:pointer;
   }
+
+  @media (max-width: 500px) {
+    margin-bottom:8px;
+}
 `;
 
 export const BestSellerProducts = styled.div`
@@ -310,7 +319,7 @@ flex-direction: row;
 @media (max-width: 600px) {
   flex-direction: column;
   width:100%;
-  margin-bottom:250px;
+  margin-bottom:650px;
 }
 `
 
@@ -426,9 +435,7 @@ margin-top:50px;
   }
 
   @media (max-width: 600px) {
-   align-items: flex-start;
-   margin-left:50px;
-
+   /* align-items: flex-start; */
 }
 `
 

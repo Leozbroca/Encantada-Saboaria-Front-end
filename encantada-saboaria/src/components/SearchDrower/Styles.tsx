@@ -1,10 +1,17 @@
+import { Input , chakra } from "@chakra-ui/react";
 import styled from "styled-components";
 
 export const MainDraweHeader = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 `
+
+export const InputSearch = chakra(Input,{
+    baseStyle:{
+        
+    }
+})
 
 export const MainProductSeach = styled.div`
     display: flex;

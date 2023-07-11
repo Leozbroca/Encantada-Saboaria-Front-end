@@ -20,6 +20,8 @@ import ItotalCart from "../../interface/ITotalCart";
 const CartProduct = ({ total }: ItotalCart) => {
   const navigate = useNavigate();
 
+  const productsCartStorage:ICartPurchase[] | null = JSON.parse(window.localStorage.getItem("products")!)
+
   return (
     <Box
       maxW={{ base: "3xl", lg: "7xl" }}
@@ -38,8 +40,8 @@ const CartProduct = ({ total }: ItotalCart) => {
           </Heading>
 
           <Stack spacing="6">
-            {total.length > 0 ? (
-              total.map((item: ICartPurchase) => (
+            {productsCartStorage && productsCartStorage.length > 0 ? (
+              productsCartStorage.map((item: ICartPurchase) => (
                 <CartItem key={item.id} {...item} />
               ))
             ) : (
