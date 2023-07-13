@@ -24,6 +24,12 @@ import {
   DivColumn2,
   InstagramText,
   EncantadaText,
+  Option,
+  OptionName,
+  OptionCategory,
+  OptionCategories,
+  OptionCategoryIcon,
+  Div2
 } from "./Styles";
 import CardProduto from "../../components/CardProduct/CardProduto";
 import Product3 from "../../components/Product3/Products3";
@@ -35,8 +41,13 @@ import ScrollTop from "../../components/ScrollTop/ScrollTop";
 import IProducts from "../../interface/IProducts";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
+import { IconContext } from "react-icons";
+import { FaSoap } from "react-icons/fa";
+import { ImDroplet } from "react-icons/im";
+import { GiDelicatePerfume, GiCandleFlame } from "react-icons/gi";
 
 const HomePage = () => {
+  const [NewColor, SetNewColor] = useState("black");
   const [BackgColor1, SetBackgColor1] = useState("#efbae1");
   const [BackgColor2, SetBackgColor2] = useState("transparent");
   const [BackgColor3, SetBackgColor3] = useState("transparent");
@@ -113,6 +124,55 @@ const HomePage = () => {
           </SlideRow>
         </SlideMain>
       </Slide>
+
+      {/* <Option>
+        <OptionName>Shop By Category</OptionName>
+        <OptionCategory>
+          <OptionCategories>
+            <IconContext.Provider
+              value={{ className: "global-class-name", size: "3em" }}
+            >
+              <OptionCategoryIcon
+                className="color-div"
+                style={{ color: NewColor }}
+              >
+                <FaSoap />
+              </OptionCategoryIcon>
+            </IconContext.Provider>
+            <p className="hover-div">Sabonetes</p>
+          </OptionCategories>
+          <OptionCategories>
+            <IconContext.Provider
+              value={{ className: "global-class-name", size: "3em" }}
+            >
+              <OptionCategoryIcon>
+                <GiDelicatePerfume />
+              </OptionCategoryIcon>
+            </IconContext.Provider>
+            <p>Difusor de aromas</p>
+          </OptionCategories>
+          <OptionCategories>
+            <IconContext.Provider
+              value={{ className: "global-class-name", size: "3em" }}
+            >
+              <OptionCategoryIcon>
+                <ImDroplet />
+              </OptionCategoryIcon>
+            </IconContext.Provider>
+            <p>Água para lenços</p>
+          </OptionCategories>
+          <OptionCategories>
+            <IconContext.Provider
+              value={{ className: "global-class-name", size: "3em" }}
+            >
+              <OptionCategoryIcon>
+                <GiCandleFlame />
+              </OptionCategoryIcon>
+            </IconContext.Provider>
+            <p>Velas Aromáticas</p>
+          </OptionCategories>
+        </OptionCategory>
+      </Option> */}
 
       <BestSellerMain>
         <BestSellerName>

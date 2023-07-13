@@ -71,6 +71,10 @@ p{
     }
 }
 
+@media (max-width: 600px) {
+   width:120px;
+}
+
 `
 export const StarRow = styled.div`
 display:flex;

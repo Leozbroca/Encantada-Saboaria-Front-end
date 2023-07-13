@@ -33,18 +33,6 @@ export const Slide = styled.div`
   align-items: center;
   overflow: hidden;
 
-  @media (max-width: 1400px) {
-    height: 80vh;
-  }
-
-  @media (max-width: 1300px) {
-    height: 70vh;
-  }
-
-  @media (max-width: 1200px) {
-    height: 60vh;
-  }
-
   @media (max-width: 600px) {
     margin-top: 50px;
   }
@@ -64,6 +52,8 @@ export const SlideMain = styled.div`
   }
 
   @media (max-width: 1499px) {
+    width:100%;
+    margin-left: 90px;
     p,
     h1,
     h2,
@@ -90,6 +80,7 @@ export const SlideMain = styled.div`
   }
 
   @media (min-width: 1500px) {
+    width:100%;
     p,
     h1,
     h2,
@@ -114,6 +105,43 @@ export const SlideMain = styled.div`
       margin-bottom: 35px;
     }
   }
+  @media (max-width: 1200px) {
+    margin-left: 50px;
+  }
+  @media (max-width: 800px) {
+    margin-left: 25px;
+  }
+  @media (max-width: 700px) {
+    margin-left: -20px;
+  }
+  @media (max-width: 600px) {
+    margin-top: -200px;
+    margin-left: -50px;
+    width:100%;
+    p,
+    h1,
+    h2,
+    a {
+      margin: 0;
+      margin-left: 100px;
+    }
+    h2 {
+      font-size: 30px;
+      color: #666666;
+      text-decoration: bold;
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: 32px;
+      color: #000000;
+      margin-bottom: 25px;
+    }
+    p {
+      font-size: 18px;
+      color: #666666;
+      margin-bottom: 35px;
+    }
+  }
 `;
 
 export const SlideRow = styled.a`
@@ -121,6 +149,10 @@ export const SlideRow = styled.a`
   flex-direction: row;
   width: 340px;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 export const ButtonShop1 = styled.button`
@@ -146,7 +178,13 @@ export const ButtonShop1 = styled.button`
     transition: 0.5s;
     cursor: pointer;
   }
+
+  @media (max-width: 600px) {
+    margin-top:50px;
+  }
+  
 `;
+
 export const ButtonShop2 = styled.button`
   height: 45px;
   width: 160px;
@@ -169,6 +207,10 @@ export const ButtonShop2 = styled.button`
     background-color: #efbae1;
     transition: 0.5s;
     cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    margin-top:10px;
   }
 `;
 
@@ -301,6 +343,15 @@ export const Products = styled.div`
   height: 400px;
 `;
 
+export const Div2 = styled.div`
+margin:0;
+padding:0;
+width:100%;
+display:flex;
+flex-direction: column;
+flex-wrap: wrap;
+`
+
 export const TwoDiv = styled.div`
   width: 100%;
   height: 100vh;
@@ -308,12 +359,13 @@ export const TwoDiv = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media (max-width: 600px) {
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 650px;
-  }
-`;
+
+@media (max-width: 600px) {
+  flex-direction: column;
+  width:100%;
+  height:50vh;
+}
+`
 
 export const Offer1 = styled.div`
   width: 50%;
@@ -324,10 +376,12 @@ export const Offer1 = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 600px) {
-    width: 100%;
-    min-height: 100%;
-  }
+
+
+@media (max-width: 600px) {
+  width:100%;
+  min-height:100%;
+}
 
   h2 {
     font-size: 50px;
@@ -409,13 +463,14 @@ export const ButtonOffer = styled.button`
 `;
 
 export const DivRow = styled.div`
-  width: 95%;
-  max-width: 1400px;
-  height: 500px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 50px;
+width:95%;
+max-width: 1400px;
+height:500px;
+margin-top:50px;
+display:flex;
+flex-direction: row;
+justify-content: space-between;
+
 
   @media (max-width: 800px) {
     flex-direction: column;
@@ -423,11 +478,23 @@ export const DivRow = styled.div`
     align-items: center;
     height: 100%;
   }
-
+  @media (max-width: 700px) {
+   /* align-items: flex-start; */
+   margin-top:100px;
+}
   @media (max-width: 600px) {
-    /* align-items: flex-start; */
-  }
-`;
+   /* align-items: flex-start; */
+   margin-top:500px;
+}
+@media (max-width: 400px) {
+   /* align-items: flex-start; */
+   margin-top:350px;
+}
+@media (max-width: 200px) {
+   /* align-items: flex-start; */
+   margin-top:200px;
+}
+`
 
 export const DivColumn = styled.div`
   width: 30%;
@@ -480,11 +547,21 @@ export const PhotoBackground = styled.div`
     margin: 0;
   }
 
-  h1 {
-    color: white;
-    font-size: 40px;
+h1{
+  color:white;
+  font-size:40px;
+}
+
+  @media (max-width: 600px) {
+    text-align: center;
+    p{
+      font-size:20px;
+    }
+    h1{
+      font-size:30px;
+    }
   }
-`;
+`
 
 export const ButtonOffer2 = styled.button`
   min-width: 150px;
