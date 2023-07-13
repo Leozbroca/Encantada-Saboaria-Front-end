@@ -11,38 +11,41 @@ import {
   Text,
 } from "@chakra-ui/react";
 import react from "react";
+import IWish from "../../interface/IWish";
+import ICartPurchase from "../../interface/ICartPurchase";
+import { formatPrice } from "../../utils/formatPrice";
+import { ButtonWish } from "./Styles";
+import { useNavigate } from "react-router-dom";
+import { goTo } from "../../routes/Coordinator";
 
-const CardWish = () => {
+const CardWish = (wishProduct: ICartPurchase) => {
+  console.log("PROSP", wishProduct);
+  const navigate = useNavigate();
   return (
     <Card maxW="sm" margin={"10"}>
       <CardBody>
         <Image
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          alt="Green double couch with wooden legs"
+          src={wishProduct.foto}
+          alt={wishProduct.descricao}
           borderRadius="lg"
         />
         <Stack mt="6" spacing="3">
-          <Heading size="md">Living room Sofa</Heading>
-          <Text>
-            This sofa is perfect for modern tropical spaces, baroque inspired
-            spaces, earthy toned spaces and for people who love a chic design
-            with a sprinkle of vintage design.
-          </Text>
+          <Heading size="md">{wishProduct.nome}</Heading>
+          <Text>{wishProduct.descricao}</Text>
           <Text color="blue.600" fontSize="2xl">
-            $450
+            {formatPrice(Number(wishProduct.preco))}
           </Text>
         </Stack>
       </CardBody>
       <Divider />
       <CardFooter>
-        <ButtonGroup spacing="2">
-          <Button variant="solid" colorScheme="blue">
-            Buy now
-          </Button>
-          <Button variant="ghost" colorScheme="blue">
-            Add to cart
-          </Button>
-        </ButtonGroup>
+        <ButtonWish
+          className="NewArrivals"
+          style={{ backgroundColor: "#efbae1", color: "white" }}
+          onClick={() => goTo(navigate, `/product/${wishProduct.id}`)}
+        >
+          Página do produto
+        </ButtonWish>
       </CardFooter>
     </Card>
   );

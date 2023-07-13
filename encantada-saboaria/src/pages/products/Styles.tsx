@@ -76,6 +76,7 @@ export const MainFilterProduct = styled.div`
     display:flex;
     align-items:start; 
   }
+  
 `;
 export const Filter = styled.div``;
 export const ProductsScreen = styled.div`

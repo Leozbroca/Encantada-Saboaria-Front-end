@@ -2,7 +2,7 @@ import styled from "styled-components";
 import slid from "../../assets/slide.webp";
 import back from "../../assets/back7.png";
 import product from "../../assets/wish.png";
-import banner from "../../assets/bannerV2-bg.jpg"
+import banner from "../../assets/bannerV2-bg.jpg";
 
 export const MainDiv = styled.div`
   width: 100%;
@@ -19,8 +19,6 @@ export const MainDiv = styled.div`
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
-
 `;
 
 export const Slide = styled.div`
@@ -48,15 +46,13 @@ export const Slide = styled.div`
   }
 
   @media (max-width: 600px) {
-    margin-top:50px;
+    margin-top: 50px;
   }
-
-
 `;
 
 export const SlideMain = styled.div`
   margin-left: 100px;
-  margin-top:-100px;
+  margin-top: -100px;
   height: 35%;
   width: 50%;
   display: flex;
@@ -234,14 +230,12 @@ export const OptionCategoryIcon = styled.a`
   align-items: center;
   justify-content: center;
   transition: width 1s, height 1s;
-  #Teste:hover{
+  #Teste:hover {
     width: 150px;
     height: 150px;
   }
   cursor: pointer;
 `;
-
-
 
 export const BestSellerMain = styled.div`
   display: flex;
@@ -262,14 +256,13 @@ export const BestSellerButtons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width:400px;
+  width: 400px;
   margin-top: 10px;
   flex-wrap: wrap;
 
   @media (max-width: 500px) {
-    width:280px;
-}
-
+    width: 280px;
+  }
 `;
 
 export const ButtonSeller = styled.button`
@@ -281,268 +274,262 @@ export const ButtonSeller = styled.button`
   font-weight: 500;
   text-align: center;
   padding: 0 15px;
-  transition: all .25s linear 0s;
+  transition: all 0.25s linear 0s;
 
-  :hover{
-    cursor:pointer;
+  :hover {
+    cursor: pointer;
   }
 
   @media (max-width: 500px) {
-    margin-bottom:8px;
-}
+    margin-bottom: 8px;
+  }
 `;
 
 export const BestSellerProducts = styled.div`
-  display:flex;
-  flex-direction:row;
-  gap:20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top:50px;
+  margin-top: 50px;
   max-width: 1400px;
 `;
 
 export const Products = styled.div`
-border:1px solid red;
-width:300px;
-height:400px;
-`
+  border: 1px solid red;
+  width: 300px;
+  height: 400px;
+`;
 
 export const TwoDiv = styled.div`
-width:100%;
-height:100vh;
-margin-top:50px;
-display:flex;
-flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
 
-
-@media (max-width: 600px) {
-  flex-direction: column;
-  width:100%;
-  margin-bottom:650px;
-}
-`
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 650px;
+  }
+`;
 
 export const Offer1 = styled.div`
-width:50%;
-height:100vh;
-background-color: #f2f2f2;
-display:flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  width: 50%;
+  height: 100vh;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-@media (max-width: 600px) {
-  width:100%;
-  min-height:100%;
-}
+  @media (max-width: 600px) {
+    width: 100%;
+    min-height: 100%;
+  }
 
-h2{
-  font-size:50px;
-  letter-spacing:1px;
-  margin-bottom:0px;
-}
+  h2 {
+    font-size: 50px;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+  }
 
-.encantada{
-  margin:0px;
-  margin-bottom:10px
-}
+  .encantada {
+    margin: 0px;
+    margin-bottom: 10px;
+  }
 
-p{
-  color:gray;
-  margin-bottom:30px;
-}
-`
+  p {
+    color: gray;
+    margin-bottom: 30px;
+  }
+`;
 
 export const OfferInside = styled.div`
-width:70%;
-display:flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-@media (max-width: 1300px) {
-   h2{
-    font-size:25px;
-   }
+  @media (max-width: 1300px) {
+    h2 {
+      font-size: 25px;
+    }
   }
 
   @media (max-width: 800px) {
-   h2{
-    font-size:18px;
-   }
+    h2 {
+      font-size: 18px;
+    }
   }
-
-`
+`;
 
 export const Offer2 = styled.div`
-width:50%;
-height:100vh;
-background-image: url(${product});
-background-size: cover;
+  width: 50%;
+  height: 100vh;
+  background-image: url(${product});
+  background-size: cover;
 
-@media (max-width: 600px) {
-  width:100%;
-  min-height:100%;
-}
-`
+  @media (max-width: 600px) {
+    width: 100%;
+    min-height: 100%;
+  }
+`;
 
 export const ButtonOffer = styled.button`
   width: 250px;
   height: 50px;
   line-height: 40px;
-  font-size:18px;
+  font-size: 18px;
   letter-spacing: 1px;
-  border: 1px solid #111111;;
+  border: 1px solid #111111;
   font-weight: 500;
   text-align: center;
   padding: 0 15px;
-  transition: all .25s linear 0s;
+  transition: all 0.25s linear 0s;
 
-  :hover{
-    cursor:pointer;
+  :hover {
+    cursor: pointer;
   }
 
   @media (max-width: 1300px) {
-  font-size:12px;
-  width:150px;
-  height: 40px;
+    font-size: 12px;
+    width: 150px;
+    height: 40px;
   }
 
   @media (max-width: 800px) {
-  font-size:6px;
-  width:100px;
-  height: 30px;
-  line-height: 20px;
+    font-size: 6px;
+    width: 100px;
+    height: 30px;
+    line-height: 20px;
   }
-`
-
+`;
 
 export const DivRow = styled.div`
-width:95%;
-max-width: 1400px;
-height:500px;
-display:flex;
-flex-direction: row;
-justify-content: space-between;
-margin-top:50px;
+  width: 95%;
+  max-width: 1400px;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
 
-@media (max-width: 800px) {
+  @media (max-width: 800px) {
     flex-direction: column;
     justify-content: center;
-    align-items:center;
-    height:100%;
+    align-items: center;
+    height: 100%;
   }
 
   @media (max-width: 600px) {
-   /* align-items: flex-start; */
-}
-`
+    /* align-items: flex-start; */
+  }
+`;
 
 export const DivColumn = styled.div`
-width:30%;
-height:100%;
-display:flex;
-flex-direction:column;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
-@media (max-width: 800px) {
-    width:80%;
-    height:100%;
+  @media (max-width: 800px) {
+    width: 80%;
+    height: 100%;
   }
-  
-`
+`;
 
 export const DivName = styled.div`
-width:100%;
-height:10%;
-font-size:22px;
-display:flex;
-flex-direction:row;
-align-items: flex-end;
-letter-spacing: 1px;
-border-bottom: 1px solid rgba(0,0,0,0.2);
+  width: 100%;
+  height: 10%;
+  font-size: 22px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
   @media (max-width: 1000px) {
-   font-size:18px;
+    font-size: 18px;
   }
-`
+`;
 
 export const TopSaleProducts = styled.div`
-width:32%;
-height:100%;
-background-color: green;
-
-`
+  width: 32%;
+  height: 100%;
+  background-color: green;
+`;
 
 export const PhotoBackground = styled.div`
-width:95%;
-max-width:1400px;
-height:400px;
-background-image: url(${banner});
-background-size: cover;
+  width: 95%;
+  max-width: 1400px;
+  height: 400px;
+  background-image: url(${banner});
+  background-size: cover;
 
-display:flex;
-flex-direction: column;
-justify-content: center;
-align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-p{
-color:white;
-font-size: 28px;
-margin:0;
-}
+  p {
+    color: white;
+    font-size: 28px;
+    margin: 0;
+  }
 
-h1{
-  color:white;
-  font-size:40px;
-}
-`
+  h1 {
+    color: white;
+    font-size: 40px;
+  }
+`;
 
 export const ButtonOffer2 = styled.button`
   min-width: 150px;
   height: 50px;
   line-height: 40px;
-  font-size:15px;
+  font-size: 15px;
   letter-spacing: 1px;
   font-weight: 500;
   text-align: center;
   padding: 0 15px;
-  margin-top:20px;
-  transition: all .25s linear 0s;
-  background-color:white;
+  margin-top: 20px;
+  transition: all 0.25s linear 0s;
+  background-color: white;
 
-  :hover{
-    cursor:pointer;
-    transition: all .25s linear 0s;
-    color:white;
-    background-color:pink;
+  :hover {
+    cursor: pointer;
+    transition: all 0.25s linear 0s;
+    color: white;
+    background-color: pink;
   }
-`
+`;
 
 export const DivColumn2 = styled.div`
-height:85%;
-width:100%;
-display:flex;
-flex-direction:column;
+  height: 85%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 
-@media (max-width: 1250px) {
-    height:400px;
+  @media (max-width: 1250px) {
+    height: 400px;
   }
-`
+`;
 
 export const InstagramText = styled.h1`
-font-size:35px;
-text-align: center;
-margin-top:75px;
-`
+  font-size: 35px;
+  text-align: center;
+  margin-top: 75px;
+`;
 
 export const EncantadaText = styled.h1`
-font-size:24px;
-text-align: center;
-color:#efbae1;
-border-top:2px solid #efbae1;
-margin:0;
-margin-top:0px;
-padding-top:10px;
-`
-
+  font-size: 24px;
+  text-align: center;
+  color: #efbae1;
+  border-top: 2px solid #efbae1;
+  margin: 0;
+  margin-top: 0px;
+  padding-top: 10px;
+`;
