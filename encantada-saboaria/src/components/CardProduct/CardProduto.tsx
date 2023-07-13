@@ -11,7 +11,7 @@ import { goTo } from "../../routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "@chakra-ui/react";
 import IProps from "../../interface/IProps";
-import ICartPurchase from "../../interface/ICartPurchase"
+import ICartPurchase from "../../interface/ICartPurchase";
 
 export default function CardProduto({
   nome,
@@ -20,7 +20,7 @@ export default function CardProduto({
   id,
   descricao,
 }: IProps) {
-  const { addToCart } = useGlobal();
+  const { addToCart  , addToWish} = useGlobal();
 
   const objetoCart: ICartPurchase = {
     id,
@@ -29,9 +29,11 @@ export default function CardProduto({
     descricao,
     foto,
     preco,
-    quantidade:1
+    quantidade: 1,
   };
+
   const navigate = useNavigate();
+  
   return (
     <Main>
       <Photo
@@ -60,8 +62,12 @@ export default function CardProduto({
               </IconContext.Provider>
             </IconRow>
           </Tooltip>
-          <Tooltip hasArrow label="Adicionar à lista de desejos" placement="top">
-            <IconRow>
+          <Tooltip
+            hasArrow
+            label="Adicionar à lista de desejos"
+            placement="top"
+          >
+            <IconRow onClick={() => addToWish(objetoCart)}>
               <IconContext.Provider
                 value={{ className: "global-class-name", size: "1.5em" }}
               >

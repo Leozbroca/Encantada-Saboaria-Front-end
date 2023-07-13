@@ -28,13 +28,46 @@ export interface ProductContextData {
   forgotOpen: IModal;
   registerOpen: IModal;
   errorCartEmpty: string;
+  wish: ICartPurchase[];
+  addToWish: (item: ICartPurchase) => void;
 }
-
 
 const GlobalState = ({ children }: ProductProviderProps) => {
   const [total, setTotal] = useState<ICartPurchase[]>([]);
+  const [wish, setWish] = useState<ICartPurchase[]>([]);
   const [totalCart, setTotalCart] = useState(0);
   const [errorCartEmpty, setErrorCartEmpty] = useState("");
+
+  const addToWish = (item: ICartPurchase) => {
+    const newProductWish = [...wish];
+
+    let findWishProduct = newProductWish.find(
+      (product: ICartPurchase) => product.id === item.id
+    );
+
+    if (!findWishProduct) {
+      newProductWish.push(item);
+      setWish(newProductWish);
+      localStorage.setItem("Wish", JSON.stringify(newProductWish));
+    } else {
+      const newWish = newProductWish.map((itemCart: ICartPurchase) => {
+        if (itemCart.id === item.id) {
+          return {
+            id: item.id,
+            total: item.total,
+            nome: item.nome,
+            descricao: item.descricao,
+            foto: item.foto,
+            preco: item.preco,
+            quantidade: item.quantidade! + 1,
+          };
+        }
+        return itemCart;
+      });
+      setWish(newWish);
+      localStorage.setItem("Wish", JSON.stringify(newWish));
+    }
+  };
 
   const addToCart = (item: ICartPurchase) => {
     const newProductShip = [...total];
@@ -74,8 +107,6 @@ const GlobalState = ({ children }: ProductProviderProps) => {
 
     setTotal(newCart);
   };
-
- 
 
   async function sendPayment(total: any) {
     const body = {
@@ -119,8 +150,8 @@ const GlobalState = ({ children }: ProductProviderProps) => {
           );
         }
       });
-    }
-  
+  }
+
   const forgotOpen = useDisclosure();
   const registerOpen = useDisclosure();
   const loginOpen = useDisclosure();
@@ -138,6 +169,8 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         registerOpen,
         loginOpen,
         errorCartEmpty,
+        wish,
+        addToWish,
       }}
     >
       {children}
