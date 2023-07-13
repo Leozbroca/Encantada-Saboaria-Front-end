@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import wishPhoto from "../../assets/wish.png";
+import wishPhoto from "../../assets/backgroundWish.png";
 
 export const Main = styled.div`
   width: 100%;
@@ -41,7 +41,8 @@ export const PhotoBackgroundWish = styled.div`
 export const MainWishProduct = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   flex-wrap: wrap;
 `;
 

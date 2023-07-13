@@ -5,8 +5,6 @@ import { useGlobal } from "../../Global/GlobalStateContext";
 import ICartPurchase from "../../interface/ICartPurchase";
 
 const Wish = () => {
-  // const { wish } = useGlobal();
-  // console.log("WISH",wish)
   const wish: ICartPurchase[] | null = JSON.parse(
     localStorage.getItem("Wish")!
   );

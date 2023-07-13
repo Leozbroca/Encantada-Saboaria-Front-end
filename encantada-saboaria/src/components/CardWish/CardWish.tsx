@@ -19,15 +19,24 @@ import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
 
 const CardWish = (wishProduct: ICartPurchase) => {
-  console.log("PROSP", wishProduct);
   const navigate = useNavigate();
+
   return (
-    <Card maxW="sm" margin={"10"}>
-      <CardBody>
+    <Card
+      maxW="100%"
+      margin={"10"}
+      display={"flex"}
+      flexDirection={"row"}
+      justifyContent={"space-around"}
+      alignItems={"center"}
+    >
+      <CardBody display={"flex"} flexDirection={"row"}>
         <Image
+          boxSize="100px"
           src={wishProduct.foto}
           alt={wishProduct.descricao}
-          borderRadius="lg"
+          borderRadius="sm"
+          margin={"10px"}
         />
         <Stack mt="6" spacing="3">
           <Heading size="md">{wishProduct.nome}</Heading>
@@ -37,14 +46,21 @@ const CardWish = (wishProduct: ICartPurchase) => {
           </Text>
         </Stack>
       </CardBody>
-      <Divider />
+      {/* <Divider /> */}
       <CardFooter>
         <ButtonWish
           className="NewArrivals"
           style={{ backgroundColor: "#efbae1", color: "white" }}
           onClick={() => goTo(navigate, `/product/${wishProduct.id}`)}
         >
-          Página do produto
+          Página Produto
+        </ButtonWish>
+        <ButtonWish
+          className="NewArrivals"
+          style={{ backgroundColor: "#efbae1", color: "white" }}
+          onClick={() => goTo(navigate, `/product/${wishProduct.id}`)}
+        >
+          Apagar
         </ButtonWish>
       </CardFooter>
     </Card>

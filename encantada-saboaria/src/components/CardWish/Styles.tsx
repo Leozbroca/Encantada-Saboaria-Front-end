@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const ButtonWish = styled.button`
   text-transform: uppercase;
-  min-width: 100%;
+  min-width: 50%;
   height: 42px;
   line-height: 40px;
   border: 1px solid #efbae1;
@@ -11,6 +11,7 @@ export const ButtonWish = styled.button`
   text-align: center;
   padding: 0 15px;
   transition: all 0.25s linear 0s;
+  margin: 5px;
 
   :hover {
     cursor: pointer;
