@@ -1,7 +1,7 @@
 import { HStack, Text, useColorModeValue as mode } from "@chakra-ui/react";
 import { ReactNode } from "react";
-import IPriceTagProps from "../../interface/IPriceTags";
-import { formatPrice } from "../../utils/formatPrice";
+import IPriceTagProps from "../../../interface/IPriceTags";
+import { formatPrice } from "../../../utils/formatPrice";
 
 export type FormatPriceOptions = { locale?: string; currency?: string };
 

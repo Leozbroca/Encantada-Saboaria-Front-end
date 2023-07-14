@@ -16,7 +16,7 @@ import {
   SearchInit,
   SearchNotFound,
 } from "./Styles";
-import CardSearchProduct from "../CardSearchProduct/CardSearchProduct";
+import CardSearchProduct from "../CardComponents/CardSearchProduct/CardSearchProduct";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import IProductDetail from "../../interface/IProductDetail";
 

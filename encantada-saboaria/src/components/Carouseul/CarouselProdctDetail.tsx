@@ -1,7 +1,7 @@
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { MainProductDetailCarousel } from "./Styles";
-import CardProduto from "../CardProduct/CardProduto";
+import CardProduto from "../CardComponents/CardProduct/CardProduto";
 import IProductDetail from "../../interface/IProductDetail";
 
 const responsive = {

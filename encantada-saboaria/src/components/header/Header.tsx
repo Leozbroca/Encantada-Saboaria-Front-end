@@ -44,10 +44,10 @@ import {
 } from "@chakra-ui/react";
 import SearchDrower from "../SearchDrower/SearchDrower";
 import { useGlobal } from "../../Global/GlobalStateContext";
-import CardCarrinhoHeader from "../CardCarrinhoHeader/CardCarrinhoHeader";
-import ModalLogin from "../ModalLogin/ModalLogin";
-import ModalRegister from "../ModalRegister/ModalRegister";
-import ModalForgot from "../ModalForgot/ModalForgot";
+import CardCarrinhoHeader from "../CardComponents/CardCarrinhoHeader/CardCarrinhoHeader";
+import ModalLogin from "../ModalComponents/ModalLogin/ModalLogin";
+import ModalRegister from "../ModalComponents/ModalRegister/ModalRegister";
+import ModalForgot from "../ModalComponents/ModalForgot/ModalForgot";
 
 const Header = () => {
   const navigate = useNavigate();

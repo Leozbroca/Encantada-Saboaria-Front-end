@@ -19,9 +19,9 @@ import {
   PriceCategories,
 } from "./Styled";
 import axios from "axios";
-import { Url } from "../../constants/Url";
-import { IFilter } from "../../pages/products/ProductPage";
-import ICategory from "../../interface/ICategory";
+import { Url } from "../../../constants/Url";
+import { IFilter } from "../../../pages/products/ProductPage";
+import ICategory from "../../../interface/ICategory";
 
 interface PropsModalFilter {
   isOpen: boolean;

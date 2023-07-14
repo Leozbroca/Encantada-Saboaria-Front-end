@@ -1,8 +1,8 @@
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { useState } from "react";
-import CardProduto from "../../components/CardProduct/CardProduto";
-import ModalFilter from "../../components/modalFilter/modalFilter";
+import CardProduto from "../../components/CardComponents/CardProduct/CardProduto";
+import ModalFilter from "../../components/ModalComponents/modalFilter/modalFilter";
 import { Url } from "../../constants/Url";
 import useRequestData from "../../hooks/useRequestData";
 

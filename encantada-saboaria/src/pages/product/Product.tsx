@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Gallery from "../../components/Carousel/Carousel";
 import CarouselProductDetail from "../../components/Carouseul/CarouselProdctDetail";
-import ProductDetail from "../../components/ProductDetail/ProductDetailt";
+import ProductDetail from "../../components/CardComponents/ProductDetail/ProductDetailt";
 
 import { Url } from "../../constants/Url";
 import { MainGallery, MainProduct } from "./Styles";

@@ -20,22 +20,22 @@ import {
   StyledA,
   StyledDiv,
 } from "./Styles";
-import foto from "../../assets/logo2.png";
-import { useForm } from "../../hooks/useForm";
+import foto from "../../../assets/logo2.png";
+import { useForm } from "../../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../services/User";
+import { login } from "../../../services/User";
 import { useState } from "react";
-
 
 function ModalLogin(props: any) {
   const { form, onChangeForm, clean } = useForm({ email: "", password: "" });
-  const [isLoading, setIsLoading] = useState(false)
-  let navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false);
+  let navigate = useNavigate();
 
   const onSubmitForm = (event: any) => {
     event.preventDefault();
-    login(form, clean, navigate, setIsLoading)
+    login(form, clean, navigate, setIsLoading);
   };
+  
   return (
     <Modal
       isOpen={props.loginOpen.isOpen}

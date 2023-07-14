@@ -8,10 +8,10 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useGlobal } from "../../Global/GlobalStateContext";
+import { useGlobal } from "../../../Global/GlobalStateContext";
 import { CartProductMeta } from "./CartProductMeta";
-import ICartPurchase from "../../interface/ICartPurchase";
-import { formatPrice } from "../../utils/formatPrice";
+import ICartPurchase from "../../../interface/ICartPurchase";
+import { formatPrice } from "../../../utils/formatPrice";
 import { ButtonWish } from "../CardWish/Styles";
 import { DeleteIcon } from "@chakra-ui/icons";
 
@@ -50,7 +50,7 @@ export const CartItem = (props: ICartPurchase) => {
       preco,
       quantidade,
     };
-    addTo(total,objetoCart,setTotal,"products");
+    addTo(total, objetoCart, setTotal, "products");
   }, [quantidade]);
 
   return (
@@ -93,7 +93,8 @@ export const CartItem = (props: ICartPurchase) => {
         display={{ base: "flex", md: "none" }}
       >
         <ButtonWish
-          style={{ backgroundColor: "#fe0000", color: "white" }}
+          product={true}
+          style={{ color: "white" }}
           onClick={() => remove(String(id), total, setTotal, "products")}
         >
           <DeleteIcon />

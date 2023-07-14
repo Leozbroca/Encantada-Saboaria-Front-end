@@ -44,7 +44,7 @@ import { useGlobal } from "../../Global/GlobalStateContext";
 import DetailPayment from "./DetailsPayment";
 import { IForm3 } from "./Interfaces/IForm3";
 import ICartPurchase from "../../interface/ICartPurchase"
-import CardCartPurchase from "../CardCartPurchase/CardCartPurchase";
+import CardCartPurchase from "../CardComponents/CardCartPurchase/CardCartPurchase";
 
 interface IModal2 {
   allMethodPayment: IMethod[];

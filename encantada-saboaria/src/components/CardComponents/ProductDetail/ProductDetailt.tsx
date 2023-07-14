@@ -16,11 +16,11 @@ import {
 } from "@chakra-ui/react";
 import { MdLocalShipping } from "react-icons/md";
 import { ImageDetail, Star } from "./Styles";
-import BasicRating from "../StarRate/Star";
-import { useGlobal } from "../../Global/GlobalStateContext";
-import ICartPurchase from "../../interface/ICartPurchase";
-import IProductDetail from "../../interface/IProductDetail";
-import IIngredients from "../../interface/IIngredients";
+import BasicRating from "../../StarRate/Star";
+import { useGlobal } from "../../../Global/GlobalStateContext";
+import ICartPurchase from "../../../interface/ICartPurchase";
+import IProductDetail from "../../../interface/IProductDetail";
+import IIngredients from "../../../interface/IIngredients";
 
 interface IProdcutDetail {
   productDetail: IProductDetail | undefined;
