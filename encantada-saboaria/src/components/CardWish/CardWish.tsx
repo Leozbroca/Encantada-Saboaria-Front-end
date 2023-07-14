@@ -1,33 +1,41 @@
 import {
-  Button,
-  ButtonGroup,
   Card,
   CardBody,
   CardFooter,
-  Divider,
   Heading,
   Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
-import react from "react";
-import IWish from "../../interface/IWish";
 import ICartPurchase from "../../interface/ICartPurchase";
 import { formatPrice } from "../../utils/formatPrice";
 import { ButtonWish } from "./Styles";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
+import { DeleteIcon , SearchIcon } from "@chakra-ui/icons";
+import { useGlobal } from "../../Global/GlobalStateContext";
 
 const CardWish = (wishProduct: ICartPurchase) => {
-  console.log("PROSP", wishProduct);
   const navigate = useNavigate();
+
+  const { remove, wish, setWish } = useGlobal();
+
   return (
-    <Card maxW="sm" margin={"10"}>
-      <CardBody>
+    <Card
+      maxW="100%"
+      margin={"10"}
+      display={"flex"}
+      flexDirection={"row"}
+      justifyContent={"space-around"}
+      alignItems={"center"}
+    >
+      <CardBody display={"flex"} flexDirection={"row"}>
         <Image
+          boxSize="100px"
           src={wishProduct.foto}
           alt={wishProduct.descricao}
-          borderRadius="lg"
+          borderRadius="sm"
+          margin={"10px"}
         />
         <Stack mt="6" spacing="3">
           <Heading size="md">{wishProduct.nome}</Heading>
@@ -37,14 +45,18 @@ const CardWish = (wishProduct: ICartPurchase) => {
           </Text>
         </Stack>
       </CardBody>
-      <Divider />
       <CardFooter>
         <ButtonWish
-          className="NewArrivals"
           style={{ backgroundColor: "#efbae1", color: "white" }}
           onClick={() => goTo(navigate, `/product/${wishProduct.id}`)}
         >
-          Página do produto
+          <SearchIcon/>
+        </ButtonWish>
+        <ButtonWish
+          style={{ backgroundColor: "#fe0000", color: "white" }}
+          onClick={() => remove(String(wishProduct.id),wish,setWish,"Wish")}
+        >
+          <DeleteIcon />
         </ButtonWish>
       </CardFooter>
     </Card>

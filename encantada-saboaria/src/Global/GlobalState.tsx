@@ -18,94 +18,99 @@ export interface IModal {
 }
 
 export interface ProductContextData {
-  total: ICartPurchase[];
-  setTotal: React.Dispatch<React.SetStateAction<ICartPurchase[]>>;
-  removeToCart: (id: string) => void;
-  addToCart: (item: ICartPurchase) => void;
+  addTo: (
+    products: ICartPurchase[],
+    product: ICartPurchase,
+    setProducts: React.Dispatch<React.SetStateAction<ICartPurchase[]>>,
+    keyLocalStorage: string
+  ) => void;
   sendPayment(total: any): Promise<void>;
   totalCart: number;
   loginOpen: IModal;
   forgotOpen: IModal;
   registerOpen: IModal;
   errorCartEmpty: string;
+  total: ICartPurchase[];
+  setTotal: React.Dispatch<React.SetStateAction<ICartPurchase[]>>;
   wish: ICartPurchase[];
-  addToWish: (item: ICartPurchase) => void;
+  setWish: React.Dispatch<React.SetStateAction<ICartPurchase[]>>;
+  remove: (
+    id: string,
+    products: ICartPurchase[],
+    setProducts: React.Dispatch<React.SetStateAction<ICartPurchase[]>>,
+    keyLocalStorage: string
+  ) => void;
 }
 
 const GlobalState = ({ children }: ProductProviderProps) => {
-  const [total, setTotal] = useState<ICartPurchase[]>([]);
-  const [wish, setWish] = useState<ICartPurchase[]>([]);
   const [totalCart, setTotalCart] = useState(0);
   const [errorCartEmpty, setErrorCartEmpty] = useState("");
 
-  const addToWish = (item: ICartPurchase) => {
-    const newProductWish = [...wish];
+  const [total, setTotal] = useState<ICartPurchase[]>(() => {
+    const storageProduct = localStorage.getItem("products");
+    if (storageProduct) {
+      return JSON.parse(storageProduct);
+    }
+    return [];
+  });
 
-    let findWishProduct = newProductWish.find(
-      (product: ICartPurchase) => product.id === item.id
+  const [wish, setWish] = useState<ICartPurchase[]>(() => {
+    const storageWish = localStorage.getItem("Wish");
+    if (storageWish) {
+      return JSON.parse(storageWish);
+    }
+    return [];
+  });
+
+  const addTo = (
+    products: ICartPurchase[],
+    product: ICartPurchase,
+    setProducts: React.Dispatch<React.SetStateAction<ICartPurchase[]>>,
+    keyLocalStorage: string
+  ) => {
+    const newProduct = [...products];
+
+    let findProduct = newProduct.find(
+      (productFind) => productFind.id === product.id
     );
 
-    if (!findWishProduct) {
-      newProductWish.push(item);
-      setWish(newProductWish);
-      localStorage.setItem("Wish", JSON.stringify(newProductWish));
-    } else {
-      const newWish = newProductWish.map((itemCart: ICartPurchase) => {
-        if (itemCart.id === item.id) {
-          return {
-            id: item.id,
-            total: item.total,
-            nome: item.nome,
-            descricao: item.descricao,
-            foto: item.foto,
-            preco: item.preco,
-            quantidade: item.quantidade! + 1,
-          };
-        }
-        return itemCart;
-      });
-      setWish(newWish);
-      localStorage.setItem("Wish", JSON.stringify(newWish));
-    }
-  };
-
-  const addToCart = (item: ICartPurchase) => {
-    const newProductShip = [...total];
-
-    let findProduct = newProductShip.find((product) => product.id === item.id);
-
-    // Se nao achar o produto , enviar ele no array. Se achar , substituir ele pelo item novo vindo do objeto
     if (!findProduct) {
-      newProductShip.push(item);
-      setTotal(newProductShip);
-      localStorage.setItem("products", JSON.stringify(newProductShip));
+      newProduct.push(product);
+      setProducts(newProduct);
+      localStorage.setItem(`${keyLocalStorage}`, JSON.stringify(newProduct));
     } else {
-      const novoCart = newProductShip.map((itemCart: ICartPurchase) => {
-        if (itemCart.id === item.id) {
+      const novoCart = newProduct.map((itemCart: ICartPurchase) => {
+        if (itemCart.id === product.id) {
           return {
-            id: item.id,
-            total: item.total,
-            nome: item.nome,
-            descricao: item.descricao,
-            foto: item.foto,
-            preco: item.preco,
-            quantidade: item.quantidade,
+            id: product.id,
+            total: product.total,
+            nome: product.nome,
+            descricao: product.descricao,
+            foto: product.foto,
+            preco: product.preco,
+            quantidade: product.quantidade,
           };
         }
         return itemCart;
       });
-      setTotal(novoCart);
-      localStorage.setItem("products", JSON.stringify(novoCart));
+      setProducts(novoCart);
+      localStorage.setItem(`${keyLocalStorage}`, JSON.stringify(novoCart));
     }
   };
 
-  const removeToCart = (id: string) => {
-    const findIndexProduct = total.findIndex((product) => product.id === id);
+  const remove = (
+    id: string,
+    products: ICartPurchase[],
+    setProducts: React.Dispatch<React.SetStateAction<ICartPurchase[]>>,
+    keyLocalStorage: string
+  ) => {
+    const findIndexProduct = products.findIndex((product) => product.id === id);
 
-    const newCart = [...total];
-    newCart.splice(findIndexProduct, 1);
+    const newProduct = [...products];
+    newProduct.splice(findIndexProduct, 1);
 
-    setTotal(newCart);
+    setProducts(newProduct);
+    localStorage.setItem(`${keyLocalStorage}`, JSON.stringify(newProduct));
   };
 
   async function sendPayment(total: any) {
@@ -159,18 +164,18 @@ const GlobalState = ({ children }: ProductProviderProps) => {
   return (
     <GlobalStateContext.Provider
       value={{
-        addToCart,
+        remove,
         total,
         setTotal,
-        removeToCart,
+        wish,
+        setWish,
+        addTo,
         sendPayment,
         totalCart,
         forgotOpen,
         registerOpen,
         loginOpen,
         errorCartEmpty,
-        wish,
-        addToWish,
       }}
     >
       {children}

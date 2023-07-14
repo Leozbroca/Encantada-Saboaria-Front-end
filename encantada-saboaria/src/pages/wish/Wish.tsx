@@ -5,11 +5,7 @@ import { useGlobal } from "../../Global/GlobalStateContext";
 import ICartPurchase from "../../interface/ICartPurchase";
 
 const Wish = () => {
-  // const { wish } = useGlobal();
-  // console.log("WISH",wish)
-  const wish: ICartPurchase[] | null = JSON.parse(
-    localStorage.getItem("Wish")!
-  );
+  const { wish } = useGlobal();
 
   return (
     <Main>
@@ -18,7 +14,7 @@ const Wish = () => {
         <p>home {">"} Desejo</p>
       </PhotoBackgroundWish>
       <MainWishProduct>
-        {wish && wish.length > 0 ? (
+        {wish.length > 0 ? (
           wish.map((wishProduct: ICartPurchase) => {
             return <CardWish key={wishProduct.id} {...wishProduct} />;
           })
