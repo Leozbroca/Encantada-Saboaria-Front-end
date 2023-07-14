@@ -4,19 +4,16 @@ import { BsTrash } from "react-icons/bs";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import IProps from "../../interface/IProps";
 
-
 export default function CardCarrinhoHeader({
   nome,
   foto,
   preco,
   id,
   descricao,
-  quantidade
+  quantidade,
 }: IProps) {
+  const { remove, total, setTotal } = useGlobal();
 
-    const { removeToCart } = useGlobal();
-
-   
   return (
     <Main>
       <Photo
@@ -29,8 +26,9 @@ export default function CardCarrinhoHeader({
       <InfoProduct>
         <NameAndDelete>
           <p>{nome}</p>
-          <Icon onClick={() => removeToCart(id)}><BsTrash/></Icon>
-          
+          <Icon onClick={() => remove(id, total, setTotal, "products")}>
+            <BsTrash />
+          </Icon>
         </NameAndDelete>
         <p>Quantidade:{quantidade}</p>
         <p>Preço:{preco * quantidade}</p>

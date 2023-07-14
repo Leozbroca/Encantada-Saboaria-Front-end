@@ -1,25 +1,24 @@
 import {
-  Button,
-  ButtonGroup,
   Card,
   CardBody,
   CardFooter,
-  Divider,
   Heading,
   Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
-import react from "react";
-import IWish from "../../interface/IWish";
 import ICartPurchase from "../../interface/ICartPurchase";
 import { formatPrice } from "../../utils/formatPrice";
 import { ButtonWish } from "./Styles";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
+import { DeleteIcon , SearchIcon } from "@chakra-ui/icons";
+import { useGlobal } from "../../Global/GlobalStateContext";
 
 const CardWish = (wishProduct: ICartPurchase) => {
   const navigate = useNavigate();
+
+  const { remove, wish, setWish } = useGlobal();
 
   return (
     <Card
@@ -46,21 +45,18 @@ const CardWish = (wishProduct: ICartPurchase) => {
           </Text>
         </Stack>
       </CardBody>
-      {/* <Divider /> */}
       <CardFooter>
         <ButtonWish
-          className="NewArrivals"
           style={{ backgroundColor: "#efbae1", color: "white" }}
           onClick={() => goTo(navigate, `/product/${wishProduct.id}`)}
         >
-          Página Produto
+          <SearchIcon/>
         </ButtonWish>
         <ButtonWish
-          className="NewArrivals"
-          style={{ backgroundColor: "#efbae1", color: "white" }}
-          onClick={() => goTo(navigate, `/product/${wishProduct.id}`)}
+          style={{ backgroundColor: "#fe0000", color: "white" }}
+          onClick={() => remove(String(wishProduct.id),wish,setWish,"Wish")}
         >
-          Apagar
+          <DeleteIcon />
         </ButtonWish>
       </CardFooter>
     </Card>

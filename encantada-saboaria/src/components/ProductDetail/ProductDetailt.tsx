@@ -31,7 +31,7 @@ export default function ProductDetail({
   productDetail,
   ingredients,
 }: IProdcutDetail) {
-  const { addToCart } = useGlobal();
+  const {  total, setTotal, addTo } = useGlobal();
 
   const objetoCart: ICartPurchase = {
     id: productDetail?._id,
@@ -199,7 +199,7 @@ export default function ProductDetail({
             bg={useColorModeValue("gray.900", "gray.50")}
             color={useColorModeValue("white", "gray.900")}
             textTransform={"uppercase"}
-            onClick={() => addToCart(objetoCart)}
+            onClick={() =>  addTo(total,objetoCart,setTotal,"products")}
             _hover={{
               transform: "translateY(2px)",
               boxShadow: "lg",

@@ -12,12 +12,13 @@ import { useGlobal } from "../../Global/GlobalStateContext";
 import { CartProductMeta } from "./CartProductMeta";
 import ICartPurchase from "../../interface/ICartPurchase";
 import { formatPrice } from "../../utils/formatPrice";
-
-
+import { ButtonWish } from "../CardWish/Styles";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 export const CartItem = (props: ICartPurchase) => {
   const { id, nome, descricao, foto, preco } = props;
-  const { addToCart, removeToCart } = useGlobal();
+  const { remove, total, setTotal, addTo, wish, setWish } = useGlobal();
+
   const [quantidade, setQuantidade] = useState(1);
 
   const QuantitySelect = () => {
@@ -47,9 +48,9 @@ export const CartItem = (props: ICartPurchase) => {
       descricao,
       foto,
       preco,
-      quantidade
+      quantidade,
     };
-    addToCart(objetoCart);
+    addTo(total,objetoCart,setTotal,"products");
   }, [quantidade]);
 
   return (
@@ -79,7 +80,7 @@ export const CartItem = (props: ICartPurchase) => {
 
         <CloseButton
           aria-label={`Delete ${nome} from cart`}
-          onClick={() => removeToCart(String(id))}
+          onClick={() => remove(String(id), total, setTotal, "products")}
         />
       </Flex>
 
@@ -91,13 +92,13 @@ export const CartItem = (props: ICartPurchase) => {
         justify="space-between"
         display={{ base: "flex", md: "none" }}
       >
-        <Link
-          fontSize="sm"
-          textDecor="underline"
-          onClick={() => removeToCart(String(id))}
+        <ButtonWish
+          style={{ backgroundColor: "#fe0000", color: "white" }}
+          onClick={() => remove(String(id), total, setTotal, "products")}
         >
-          Deletar
-        </Link>
+          <DeleteIcon />
+        </ButtonWish>
+
         <QuantitySelect />
         <HStack spacing="1">
           <Text as="span" fontWeight="medium">

@@ -20,7 +20,8 @@ export default function CardProduto({
   id,
   descricao,
 }: IProps) {
-  const { addToCart  , addToWish} = useGlobal();
+  const { addTo, wish, total, setWish, setTotal } =
+    useGlobal();
 
   const objetoCart: ICartPurchase = {
     id,
@@ -33,7 +34,7 @@ export default function CardProduto({
   };
 
   const navigate = useNavigate();
-  
+
   return (
     <Main>
       <Photo
@@ -45,7 +46,7 @@ export default function CardProduto({
       >
         <DivRow className="divInvi">
           <Tooltip hasArrow label="Adicionar ao carrinho" placement="top">
-            <IconRow onClick={() => addToCart(objetoCart)}>
+            <IconRow onClick={() => addTo(total,objetoCart,setTotal,"products")}>
               <IconContext.Provider
                 value={{ className: "global-class-name", size: "1.5em" }}
               >
@@ -67,7 +68,7 @@ export default function CardProduto({
             label="Adicionar à lista de desejos"
             placement="top"
           >
-            <IconRow onClick={() => addToWish(objetoCart)}>
+            <IconRow onClick={() => addTo(wish,objetoCart,setWish,"Wish")}>
               <IconContext.Provider
                 value={{ className: "global-class-name", size: "1.5em" }}
               >
