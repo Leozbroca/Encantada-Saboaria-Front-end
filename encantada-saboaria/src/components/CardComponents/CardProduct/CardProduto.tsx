@@ -6,12 +6,13 @@ import {
   AiOutlineSearch,
 } from "react-icons/ai";
 import { IconContext } from "react-icons";
-import { useGlobal } from "../../Global/GlobalStateContext";
-import { goTo } from "../../routes/Coordinator";
+import { useGlobal } from "../../../Global/GlobalStateContext";
+import { goTo } from "../../../routes/Coordinator";
 import { useNavigate } from "react-router-dom";
-import { Tooltip } from "@chakra-ui/react";
-import IProps from "../../interface/IProps";
-import ICartPurchase from "../../interface/ICartPurchase";
+import { Tooltip, useDisclosure } from "@chakra-ui/react";
+import IProps from "../../../interface/IProps";
+import ICartPurchase from "../../../interface/ICartPurchase";
+import ModalCart from "../../ModalComponents/modalCart/modalCart";
 
 export default function CardProduto({
   nome,
@@ -20,8 +21,7 @@ export default function CardProduto({
   id,
   descricao,
 }: IProps) {
-  const { addTo, wish, total, setWish, setTotal } =
-    useGlobal();
+  const { addTo, wish, total, setWish, setTotal } = useGlobal();
 
   const objetoCart: ICartPurchase = {
     id,
@@ -35,8 +35,11 @@ export default function CardProduto({
 
   const navigate = useNavigate();
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Main>
+      <ModalCart isOpen={isOpen} onclose={onClose} product={objetoCart} />
       <Photo
         style={{
           backgroundImage: `url(${foto})`,
@@ -46,7 +49,12 @@ export default function CardProduto({
       >
         <DivRow className="divInvi">
           <Tooltip hasArrow label="Adicionar ao carrinho" placement="top">
-            <IconRow onClick={() => addTo(total,objetoCart,setTotal,"products")}>
+            <IconRow
+              onClick={() => {
+                addTo(total, objetoCart, setTotal, "products");
+                onOpen();
+              }}
+            >
               <IconContext.Provider
                 value={{ className: "global-class-name", size: "1.5em" }}
               >
@@ -68,7 +76,7 @@ export default function CardProduto({
             label="Adicionar à lista de desejos"
             placement="top"
           >
-            <IconRow onClick={() => addTo(wish,objetoCart,setWish,"Wish")}>
+            <IconRow onClick={() => addTo(wish, objetoCart, setWish, "Wish")}>
               <IconContext.Provider
                 value={{ className: "global-class-name", size: "1.5em" }}
               >

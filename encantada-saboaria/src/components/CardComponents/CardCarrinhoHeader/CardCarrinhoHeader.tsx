@@ -1,8 +1,8 @@
 import React from "react";
 import { Main, Photo, InfoProduct, NameAndDelete, Icon } from "./Styles";
 import { BsTrash } from "react-icons/bs";
-import { useGlobal } from "../../Global/GlobalStateContext";
-import IProps from "../../interface/IProps";
+import { useGlobal } from "../../../Global/GlobalStateContext";
+import IProps from "../../../interface/IProps";
 
 export default function CardCarrinhoHeader({
   nome,

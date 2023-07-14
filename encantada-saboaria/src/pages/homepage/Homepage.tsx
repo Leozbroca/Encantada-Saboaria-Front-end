@@ -29,9 +29,9 @@ import {
   OptionCategory,
   OptionCategories,
   OptionCategoryIcon,
-  Div2
+  Div2,
 } from "./Styles";
-import CardProduto from "../../components/CardProduct/CardProduto";
+import CardProduto from "../../components/CardComponents/CardProduct/CardProduto";
 import Product3 from "../../components/Product3/Products3";
 import Gallery from "../../components/Carousel/Carousel";
 import { useState } from "react";
@@ -45,6 +45,8 @@ import { IconContext } from "react-icons";
 import { FaSoap } from "react-icons/fa";
 import { ImDroplet } from "react-icons/im";
 import { GiDelicatePerfume, GiCandleFlame } from "react-icons/gi";
+import ModalCart from "../../components/ModalComponents/modalCart/modalCart";
+import { useDisclosure } from "@chakra-ui/react";
 
 const HomePage = () => {
   const [NewColor, SetNewColor] = useState("black");
@@ -58,7 +60,6 @@ const HomePage = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const products: IProducts[] = useRequestData([], `${Url}/products`);
   const navigate = useNavigate();
-  
 
   const goToPag1 = () => {
     SetBackgColor1("#efbae1");
@@ -201,9 +202,11 @@ const HomePage = () => {
             Top Rates
           </ButtonSeller>
         </BestSellerButtons>
+
         <BestSellerProducts>{productsList}</BestSellerProducts>
       </BestSellerMain>
 
+     
       <TwoDiv>
         <Offer1>
           <OfferInside>

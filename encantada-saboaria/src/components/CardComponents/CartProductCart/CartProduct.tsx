@@ -11,11 +11,11 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { goTo } from "../../routes/Coordinator";
+import { goTo } from "../../../routes/Coordinator";
 import { CartItem } from "./CartItem";
 import { CartOrderSummary } from "./CartOrderSummary";
-import ICartPurchase from "../../interface/ICartPurchase";
-import ItotalCart from "../../interface/ITotalCart";
+import ICartPurchase from "../../../interface/ICartPurchase";
+import ItotalCart from "../../../interface/ITotalCart";
 
 const CartProduct = ({ total }: ItotalCart) => {
   const navigate = useNavigate();

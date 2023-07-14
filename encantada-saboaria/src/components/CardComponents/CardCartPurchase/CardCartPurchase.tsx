@@ -1,4 +1,4 @@
-import ICartPurchase from "../../interface/ICartPurchase";
+import ICartPurchase from "../../../interface/ICartPurchase";
 import { Main, Photo, InfoProduct, Icon } from "./Styles";
 
 export default function CardCartPurchase({

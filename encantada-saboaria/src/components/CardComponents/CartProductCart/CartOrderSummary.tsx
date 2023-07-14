@@ -9,11 +9,11 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import { useGlobal } from "../../Global/GlobalStateContext";
-import { formatPrice } from "../../utils/formatPrice";
+import { useGlobal } from "../../../Global/GlobalStateContext";
+import { formatPrice } from "../../../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
-import { urlMercadoPago } from "../../constants/Url";
-import { goTo } from "../../routes/Coordinator";
+import { urlMercadoPago } from "../../../constants/Url";
+import { goTo } from "../../../routes/Coordinator";
 
 
 type OrderSummaryItemProps = {
