@@ -161,7 +161,7 @@ export const ButtonShop1 = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #00033D;
+  background-color: #46d1a8;
   border: none;
   transition: 0.5s;
 
