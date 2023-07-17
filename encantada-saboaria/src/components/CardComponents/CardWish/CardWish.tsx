@@ -7,13 +7,18 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { ButtonWish, MainCard } from "./Styles";
 import ICartPurchase from "../../../interface/ICartPurchase";
 import { formatPrice } from "../../../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../../routes/Coordinator";
 import { DeleteIcon, SearchIcon } from "@chakra-ui/icons";
 import { useGlobal } from "../../../Global/GlobalStateContext";
+import {
+  ButtonWish,
+  MainCard,
+  MaterialCardBody,
+  MaterialStack,
+} from "./Styles";
 
 const CardWish = (wishProduct: ICartPurchase) => {
   const navigate = useNavigate();
@@ -22,28 +27,25 @@ const CardWish = (wishProduct: ICartPurchase) => {
 
   return (
     <MainCard>
-      <CardBody
-        width={"100%"}
-        display={"flex"}
-        flexDirection={"row"}
-        alignItems={"center"}
+      <MaterialCardBody
       >
         <Image
-          boxSize="100px"
-          src={wishProduct.foto}
-          alt={wishProduct.descricao}
+          boxSize="200px"
           borderRadius="sm"
           margin={"10px"}
+          src={wishProduct.foto}
+          alt={wishProduct.descricao}
         />
-        <Stack display={"flex"} flexDirection={"column"} alignItems={"center"}>
-          <Text color="blue.600" fontSize="2xl">
+        <MaterialStack spacing={6}>
+          <Heading size="md">{wishProduct.nome}</Heading>
+          <Heading as="h5" size="sm" color={"#c8c5c5"}>
+            {wishProduct.descricao}
+          </Heading>
+          <Text color="blue.600" fontSize="2em">
             {formatPrice(Number(wishProduct.preco))}
           </Text>
-          <Heading size="md" margin={"10px"}>
-            {wishProduct.nome}
-          </Heading>
-        </Stack>
-      </CardBody>
+        </MaterialStack>
+      </MaterialCardBody>
       <CardFooter>
         <ButtonWish
           product={true}

@@ -50,8 +50,4 @@ export const MainWishProduct = styled.div`
     justify-content: center;
     height: 200px;
   }
-  /* @media (max-width: 500px) {
-    display: flex;
-    flex-direction: column;
-  } */
 `;

@@ -1,11 +1,34 @@
 import styled from "styled-components";
-import { Card } from "@chakra-ui/react";
+import { Card, CardBody, Stack } from "@chakra-ui/react";
 
 export const MainCard = styled(Card)`
-  width: 100%;
+  max-width: 100%;
   margin: 20px auto;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+`;
+
+export const MaterialCardBody = styled(CardBody)`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+`;
+export const MaterialStack = styled(Stack)`
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  color: #000;
+  align-items: flex-start;
+ 
 `;
 
 interface productColor {
