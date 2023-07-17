@@ -5,10 +5,8 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
-  useDisclosure,
 } from "@chakra-ui/react";
 import ICartPurchase from "../../../interface/ICartPurchase";
 import {
@@ -17,29 +15,32 @@ import {
   ProductPhoto,
   ProductButtonOptions,
   ButtonShopping,
+  StrongQtdShops,
 } from "./Styles";
 import { formatPrice } from "../../../utils/formatPrice";
 import { goTo } from "../../../routes/Coordinator";
 import { useNavigate } from "react-router-dom";
 import { useGlobal } from "../../../Global/GlobalStateContext";
-
-interface IModalCart {
-  isOpen: boolean;
-  onclose: () => void;
-  product: ICartPurchase;
-}
+import { CheckIcon } from "@chakra-ui/icons";
+import { IModalCart } from "../../../interface/IModalCart";
 
 const ModalCart = ({ isOpen, onclose, product }: IModalCart) => {
-    const { total } = useGlobal();
+  const { total , totalProductsCart} = useGlobal();
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <ModalMain size={"xl"} onClose={onclose} isOpen={isOpen} isCentered>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader color={"green"}>
-          Producto Adicionado no carrinho com sucesso !
+        <ModalHeader
+          color={"green"}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <CheckIcon margin={"5px"} /> Produto adicionado no carrinho com
+          sucesso !
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -51,10 +52,17 @@ const ModalCart = ({ isOpen, onclose, product }: IModalCart) => {
             </ProductPhoto>
 
             <ProductButtonOptions>
-              <p>Existe {total.length} item no seu carrinho</p>
-              <p>Total das compras : {formatPrice(Number(product.preco))}</p>
-              <ButtonShopping onClick={() => goTo(navigate, "/produtos")}>Continue Comprando</ButtonShopping>
-              <ButtonShopping onClick={() => goTo(navigate, "/carrinho")}>Ir para o carrinho</ButtonShopping>
+              <p>
+                Existe <StrongQtdShops>{total.length}</StrongQtdShops> item no
+                seu carrinho
+              </p>
+              <p>Valor total compras: <StrongQtdShops>{formatPrice(Number(totalProductsCart))}</StrongQtdShops></p>
+              <ButtonShopping onClick={() => goTo(navigate, "/produtos")}>
+                Continue Comprando
+              </ButtonShopping>
+              <ButtonShopping onClick={() => goTo(navigate, "/carrinho")}>
+                Ir para o carrinho
+              </ButtonShopping>
               {/* <ButtonShopping>Comprar</ButtonShopping> */}
             </ProductButtonOptions>
           </MainModalProduct>

@@ -54,8 +54,7 @@ const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const functionOpen = useDisclosure();
   const btnRef: any = React.useRef();
-  const { total, loginOpen, forgotOpen, registerOpen } = useGlobal();
-  const [totalCart, setTotalCart] = useState(0);
+  const { total, loginOpen, forgotOpen, registerOpen , totalProductsCart,setTotalProductsCart } = useGlobal();
 
   const cartProducts =
     total &&
@@ -76,7 +75,7 @@ const Header = () => {
   useEffect(() => {
     let totalCartReduce;
     totalCartReduce = total.reduce((item, current) => item + current.total, 0);
-    setTotalCart(totalCartReduce);
+    setTotalProductsCart(totalCartReduce);
   }, [total]);
 
   return (
@@ -177,7 +176,7 @@ const Header = () => {
               <CartBottom>
                 <Total>
                   <p>Total:</p>
-                  <p style={{ color: "pink" }}>R${totalCart}</p>
+                  <p style={{ color: "pink" }}>R${totalProductsCart}</p>
                 </Total>
                 <Buttons>
                   <ButtonLeft
