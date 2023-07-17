@@ -2,12 +2,10 @@ import styled from "styled-components";
 import { Card } from "@chakra-ui/react";
 
 export const MainCard = styled(Card)`
-  max-width: 100%;
+  width: 100%;
   margin: 20px auto;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
-  align-items: center;
 `;
 
 interface productColor {

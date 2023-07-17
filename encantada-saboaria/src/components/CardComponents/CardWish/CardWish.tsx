@@ -22,7 +22,12 @@ const CardWish = (wishProduct: ICartPurchase) => {
 
   return (
     <MainCard>
-      <CardBody width={"100%"} display={"flex"} flexDirection={"row"}>
+      <CardBody
+        width={"100%"}
+        display={"flex"}
+        flexDirection={"row"}
+        alignItems={"center"}
+      >
         <Image
           boxSize="100px"
           src={wishProduct.foto}
@@ -30,12 +35,13 @@ const CardWish = (wishProduct: ICartPurchase) => {
           borderRadius="sm"
           margin={"10px"}
         />
-        <Stack mt="6" spacing="3">
-          <Heading size="md">{wishProduct.nome}</Heading>
-          <Text>{wishProduct.descricao}</Text>
+        <Stack display={"flex"} flexDirection={"column"} alignItems={"center"}>
           <Text color="blue.600" fontSize="2xl">
             {formatPrice(Number(wishProduct.preco))}
           </Text>
+          <Heading size="md" margin={"10px"}>
+            {wishProduct.nome}
+          </Heading>
         </Stack>
       </CardBody>
       <CardFooter>
@@ -46,7 +52,7 @@ const CardWish = (wishProduct: ICartPurchase) => {
           <SearchIcon />
         </ButtonWish>
         <ButtonWish
-         product={false}
+          product={false}
           style={{ color: "white" }}
           onClick={() => remove(String(wishProduct.id), wish, setWish, "Wish")}
         >
