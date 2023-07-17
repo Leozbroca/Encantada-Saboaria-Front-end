@@ -2,14 +2,7 @@ import styled from "styled-components";
 import { Modal } from "@chakra-ui/react";
 import { device } from "../../../constants/breakpoints";
 
-export const ModalMain = styled(Modal)`
-  width: 100px;
-  && {
-    max-width: 100%;
-
-    background-color: red;
-  }
-`;
+export const ModalMain = styled(Modal)``;
 
 export const MainModalProduct = styled.div`
   width: 100%;
@@ -26,30 +19,36 @@ export const ProductPhoto = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   img {
     height: 200px;
     width: 200px;
   }
+  p::first-letter {
+    text-transform: uppercase;
+  }
 `;
 
 export const ProductButtonOptions = styled.div`
+  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
 `;
 
+export const StrongQtdShops = styled.strong`
+  color: #efbae1;
+`;
+
 export const ButtonShopping = styled.button`
-width:100%;
-transition: 0.5s;
-background-color: #fff;
-color:#000;
-font-size:18px;
-letter-spacing: 1px;
-border: 1px solid pink;
-border-radius: 10px;
-:hover{
+  width: 100%;
   transition: 0.5s;
-  background-color: pink;
-}
-`
+  background-color: #efbae1;
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid pink;
+  :hover {
+    filter: brightness(0.8);
+  }
+`;

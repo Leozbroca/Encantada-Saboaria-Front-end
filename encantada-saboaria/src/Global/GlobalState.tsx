@@ -26,12 +26,14 @@ export interface ProductContextData {
   ) => void;
   sendPayment(total: any): Promise<void>;
   totalCart: number;
+  totalProductsCart:number
   loginOpen: IModal;
   forgotOpen: IModal;
   registerOpen: IModal;
   errorCartEmpty: string;
   total: ICartPurchase[];
   setTotal: React.Dispatch<React.SetStateAction<ICartPurchase[]>>;
+  setTotalProductsCart:React.Dispatch<React.SetStateAction<number>>
   wish: ICartPurchase[];
   setWish: React.Dispatch<React.SetStateAction<ICartPurchase[]>>;
   remove: (
@@ -45,6 +47,8 @@ export interface ProductContextData {
 const GlobalState = ({ children }: ProductProviderProps) => {
   const [totalCart, setTotalCart] = useState(0);
   const [errorCartEmpty, setErrorCartEmpty] = useState("");
+  const [totalProductsCart, setTotalProductsCart] = useState(0);
+  
 
   const [total, setTotal] = useState<ICartPurchase[]>(() => {
     const storageProduct = localStorage.getItem("products");
@@ -170,6 +174,8 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         wish,
         setWish,
         addTo,
+        totalProductsCart,
+        setTotalProductsCart,
         sendPayment,
         totalCart,
         forgotOpen,
