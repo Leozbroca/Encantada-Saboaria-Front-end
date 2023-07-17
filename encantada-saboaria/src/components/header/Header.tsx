@@ -43,6 +43,7 @@ import ModalLogin from "../ModalComponents/ModalLogin/ModalLogin";
 import ModalRegister from "../ModalComponents/ModalRegister/ModalRegister";
 import ModalForgot from "../ModalComponents/ModalForgot/ModalForgot";
 
+
 const Header = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
