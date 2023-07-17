@@ -18,7 +18,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Url } from "../../constants/Url";
 
-import logo from "../../assets/logo1.png";
+import logo from "../../assets/logotipo.png";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
 import { BurnImg } from "./Styles";
@@ -44,7 +44,7 @@ const Footer = () => {
 
   const renderCategory = categories.map((category, index) => {
     return (
-      <Link _hover={{ color: " #efbae1" }} key={category._id} href={"#"}>
+      <Link  _hover={{ color: " #00033D" }} key={category._id} href={"#"}>
         {category.nome}
       </Link>
     );
@@ -94,6 +94,7 @@ const Footer = () => {
       </Text>
     );
   };
+
   const navigate = useNavigate();
 
   return (
@@ -115,12 +116,12 @@ const Footer = () => {
               Encantada.
             </Text>
             <Stack direction={"row"} spacing={6}>
-              {/* <SocialButton label={"Twitter"} href={"#"}>
+              <SocialButton label={"Twitter"} href={"#"}>
                 <FaTwitter />
               </SocialButton>
               <SocialButton label={"YouTube"} href={"#"}>
                 <FaYoutube />
-              </SocialButton> */}
+              </SocialButton>
               <SocialButton
                 label={"Instagram"}
                 href={"https://www.instagram.com/encantada_saboaria/"}
@@ -131,19 +132,19 @@ const Footer = () => {
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Ajuda e Informações</ListHeader>
-            <Link _hover={{ color: " #efbae1" }} onClick={()=>goTo(navigate,"/sobre")}>Sobre nos</Link>
-            <Link _hover={{ color: " #efbae1" }} href={"#"}>
+            <Link _hover={{ color: " #00033D" }} onClick={()=>goTo(navigate,"/sobre")}>Sobre nos</Link>
+            <Link _hover={{ color: " #00033D" }} href={"#"}>
               Politica de privacidade
             </Link>
-            <Link _hover={{ color: " #efbae1" }} href={"#"}>
+            <Link _hover={{ color: " #00033D" }} href={"#"}>
               Termos de condições
             </Link>
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Busca rapida de Produtos</ListHeader>
-            <Link _hover={{ color: " #efbae1" }} onClick={()=>goTo(navigate,"/produtos")}>Produtos</Link>
+            <Link _hover={{ color: " #00033D" }} onClick={()=>goTo(navigate,"/produtos")}>Produtos</Link>
             <Link
-              _hover={{ color: " #efbae1" }}
+              _hover={{ color: " #00033D" }}
               onClick={() => goTo(navigate, "/contato")}
             >
               Contato
@@ -165,10 +166,10 @@ const Footer = () => {
                 }}
               />
               <IconButton
-                bg={useColorModeValue("green.400", "green.800")}
-                color={useColorModeValue("white", "gray.800")}
+                bg={useColorModeValue("#00033D", "#00033D")}
+                color={useColorModeValue("white", "#00033D")}
                 _hover={{
-                  bg: "green.600",
+                  bg: "#00033D",
                 }}
                 aria-label="Subscribe"
                 icon={<BiMailSend />}

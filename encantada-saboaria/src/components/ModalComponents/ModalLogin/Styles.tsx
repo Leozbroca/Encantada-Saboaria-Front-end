@@ -38,7 +38,7 @@ transition:.5s;
 
 :hover{
     transition:.5s;
-    background-color:#efbae1;
+    background-color:#00033D;
 }
 `
 export const StyledA = styled.a`
@@ -47,7 +47,7 @@ transition:.5s;
 
 :hover{
     cursor:pointer;
-    color:#efbae1;
+    color:#00033D;
     transition:.5s;
 }
 `

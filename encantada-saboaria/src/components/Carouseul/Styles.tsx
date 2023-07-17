@@ -55,7 +55,7 @@ export const CoverImg = styled.div`
 
     :hover {
       cursor: pointer;
-      color: pink;
+      color: "#00033D";
       transition: all 1s ease;
     }
   }
@@ -261,7 +261,7 @@ export const ButtonShop1 = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #efbae1;
+  background-color: #00033D;
   border: none;
   transition: 0.5s;
 
@@ -297,7 +297,7 @@ export const ButtonShop2 = styled.button`
   }
 
   :hover {
-    background-color: #efbae1;
+    background-color: #00033D;
     transition: 0.5s;
     cursor: pointer;
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   MainHeader,
   MenuButton,
@@ -19,7 +19,7 @@ import {
   CartBody,
   EmptyCartP,
 } from "./Styles";
-import logo2 from "../../assets/logo2.png";
+import logoTipo from "../../assets/logotipo.png"
 import {
   HiOutlineMagnifyingGlass,
   HiOutlineUser,
@@ -30,17 +30,11 @@ import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
 import {
-  Box,
   Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Button,
   useDisclosure,
-  Input,
 } from "@chakra-ui/react";
 import SearchDrower from "../SearchDrower/SearchDrower";
 import { useGlobal } from "../../Global/GlobalStateContext";
@@ -54,7 +48,14 @@ const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const functionOpen = useDisclosure();
   const btnRef: any = React.useRef();
-  const { total, loginOpen, forgotOpen, registerOpen , totalProductsCart,setTotalProductsCart } = useGlobal();
+  const {
+    total,
+    loginOpen,
+    forgotOpen,
+    registerOpen,
+    totalProductsCart,
+    setTotalProductsCart,
+  } = useGlobal();
 
   const cartProducts =
     total &&
@@ -76,12 +77,12 @@ const Header = () => {
     let totalCartReduce;
     totalCartReduce = total.reduce((item, current) => item + current.total, 0);
     setTotalProductsCart(totalCartReduce);
-  }, [total]);
+  }, [setTotalProductsCart, total]);
 
   return (
     <MainHeader>
       <MenuButton />
-      <MenuLogo src={logo2} />
+      <MenuLogo src={logoTipo} />
       <MenuOptions>
         <Option>
           <span />
@@ -113,8 +114,6 @@ const Header = () => {
             <HiOutlineMagnifyingGlass />
           </MenuItem>
         </IconContext.Provider>
-
-        
 
         <IconContext.Provider
           value={{ className: "global-class-name", size: "2em" }}
@@ -176,7 +175,7 @@ const Header = () => {
               <CartBottom>
                 <Total>
                   <p>Total:</p>
-                  <p style={{ color: "pink" }}>R${totalProductsCart}</p>
+                  <p style={{ color: "#00033D" }}>R${totalProductsCart}</p>
                 </Total>
                 <Buttons>
                   <ButtonLeft

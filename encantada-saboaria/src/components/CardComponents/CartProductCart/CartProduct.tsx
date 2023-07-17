@@ -55,7 +55,7 @@ const CartProduct = ({ total }: ItotalCart) => {
           <HStack mt="6" fontWeight="semibold">
             <p>ou</p>
             <Link
-              color={mode("blue.500", "blue.200")}
+              color={mode("#00033D", "#00033D")}
               onClick={() => goTo(navigate, "/produtos")}
             >
               Continue comprando

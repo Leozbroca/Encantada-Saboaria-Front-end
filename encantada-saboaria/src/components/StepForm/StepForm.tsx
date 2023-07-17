@@ -199,7 +199,7 @@ const Form2 = ({ allMethodPayment, setMethodPayment }: IModal2) => {
       <chakra.label
         cursor="pointer"
         width={"100%"}
-        border={"1px solid #efbae1"}
+        border={"1px solid #00033D"}
         bg={state.isChecked ? "#fbceef" : "transparent"}
       >
         <input {...getInputProps({})} hidden />
@@ -372,7 +372,7 @@ export default function StepForm() {
       >
         <Progress
           hasStripe
-          colorScheme={"pink"}
+          colorScheme={"#00033D"}
           value={progress}
           mb="5%"
           mx="5%"

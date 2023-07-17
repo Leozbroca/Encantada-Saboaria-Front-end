@@ -203,7 +203,7 @@ export default function ProductDetail({
             _hover={{
               transform: "translateY(2px)",
               boxShadow: "lg",
-              background: "#efbae1",
+              background: "#00033D",
             }}
           >
             Adicionar no Carrinho

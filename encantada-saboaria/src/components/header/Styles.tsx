@@ -44,8 +44,8 @@ export const MenuButton = styled.div`
 `;
 
 export const MenuLogo = styled.img`
-  height: 60px;
-  width: 180px;
+  height: 80px;
+  width: 150px;
   background-color: white;
   margin-left: 20px;
 
@@ -77,14 +77,14 @@ export const Option = styled.a`
   transition: 0.5s;
 
   :hover {
-    color: #efbae1;
+    color: #00033D;
     cursor: pointer;
   }
 
   span {
     display: block;
     position: absolute;
-    background: #efbae1;
+    background: #00033D;
     transition: 0.5s;
   }
 
@@ -138,7 +138,7 @@ export const MenuItem = styled.a`
   transition: 0.5s;
 
   :hover {
-    color: #efbae1;
+    color: #00033D;
     cursor: pointer;
   }
 
@@ -158,7 +158,7 @@ export const MenuItemFlex = styled.div`
   transition: 0.5s;
 
   :hover {
-    color: #efbae1;
+    color: #00033D;
     cursor: pointer;
   }
 
@@ -259,7 +259,7 @@ letter-spacing: 1px;
 
 :hover{
   transition: 0.5s;
-  background-color: pink;
+  background-color: "#00033D";
 }
 `
 
@@ -273,7 +273,7 @@ letter-spacing: 1px;
 
 :hover{
   transition: 0.5s;
-  background-color: pink;
+  background-color: "#00033D";
 }
 `
 

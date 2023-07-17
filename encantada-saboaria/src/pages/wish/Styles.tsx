@@ -44,6 +44,12 @@ export const MainWishProduct = styled.div`
   flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
+  p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+  }
 `;
 
 

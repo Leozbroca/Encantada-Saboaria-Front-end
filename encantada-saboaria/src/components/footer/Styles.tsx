@@ -30,7 +30,7 @@ export const Menu = styled.div`
       text-transform: uppercase;
     }
     :hover {
-      color: #efbae1;
+      color: "#00033D";
       cursor: pointer;
     }
   }

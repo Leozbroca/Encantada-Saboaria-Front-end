@@ -19,7 +19,7 @@ export const Button = styled.div`
    padding-top:7px;
    z-index: 1;
    cursor: pointer;
-   color: pink;
+   color: "#00033D";
    transition: all .3s;
     text-align: center;
    background-color: white;

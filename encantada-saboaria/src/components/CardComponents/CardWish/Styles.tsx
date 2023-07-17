@@ -24,7 +24,7 @@ export const ButtonWish = styled.button<productColor>`
   padding: 0 15px;
   transition: all 0.25s linear 0s;
   margin: 5px;
-  background-color: ${(props) => (props.product ? "#efbae1" : "#fe0000")};
+  background-color: ${(props) => (props.product ? "#00033D" : "#fe0000")};
   color: #fff;
   :hover {
     cursor: pointer;

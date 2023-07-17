@@ -24,12 +24,6 @@ import {
   DivColumn2,
   InstagramText,
   EncantadaText,
-  Option,
-  OptionName,
-  OptionCategory,
-  OptionCategories,
-  OptionCategoryIcon,
-  Div2,
 } from "./Styles";
 import CardProduto from "../../components/CardComponents/CardProduct/CardProduto";
 import Product3 from "../../components/Product3/Products3";
@@ -41,50 +35,46 @@ import ScrollTop from "../../components/ScrollTop/ScrollTop";
 import IProducts from "../../interface/IProducts";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
-import { IconContext } from "react-icons";
-import { FaSoap } from "react-icons/fa";
-import { ImDroplet } from "react-icons/im";
-import { GiDelicatePerfume, GiCandleFlame } from "react-icons/gi";
-import ModalCart from "../../components/ModalComponents/modalCart/modalCart";
-import { useDisclosure } from "@chakra-ui/react";
+
 
 const HomePage = () => {
+  const [BackgColor1, SetBackgColor1] = useState("#00033D");
+  const [Color2, SetColor2] = useState("#00033D");
+  const [Color3, SetColor3] = useState("#00033D");
   const [NewColor, SetNewColor] = useState("black");
-  const [BackgColor1, SetBackgColor1] = useState("#efbae1");
   const [BackgColor2, SetBackgColor2] = useState("transparent");
   const [BackgColor3, SetBackgColor3] = useState("transparent");
   const [Color1, SetColor1] = useState("white");
-  const [Color2, SetColor2] = useState("#efbae1");
-  const [Color3, SetColor3] = useState("#efbae1");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+
   const products: IProducts[] = useRequestData([], `${Url}/products`);
   const navigate = useNavigate();
 
   const goToPag1 = () => {
-    SetBackgColor1("#efbae1");
+    SetBackgColor1("#00033D");
     SetBackgColor2("transparent");
     SetBackgColor3("transparent");
     SetColor1("white");
-    SetColor2("#efbae1");
-    SetColor3("#efbae1");
+    SetColor2("#00033D");
+    SetColor3("#00033D");
   };
 
   const goToPag2 = () => {
-    SetBackgColor2("#efbae1");
+    SetBackgColor2("#00033D");
     SetBackgColor1("transparent");
     SetBackgColor3("transparent");
-    SetColor1("#efbae1");
+    SetColor1("#00033D");
     SetColor2("white");
-    SetColor3("#efbae1");
+    SetColor3("#00033D");
   };
 
   const goToPag3 = () => {
-    SetBackgColor3("#efbae1");
+    SetBackgColor3("#00033D");
     SetBackgColor1("transparent");
     SetBackgColor2("transparent");
-    SetColor1("#efbae1");
-    SetColor2("#efbae1");
+    SetColor1("#00033D");
+    SetColor2("#00033D");
     SetColor3("white");
   };
 

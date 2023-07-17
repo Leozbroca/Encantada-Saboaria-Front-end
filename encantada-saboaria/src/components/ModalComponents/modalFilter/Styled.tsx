@@ -34,7 +34,7 @@ export const FilterEssenceP = styled.p`
     text-transform: uppercase;
   }
   :hover {
-    color: #efbae1;
+    color: #00033D;
     cursor: pointer;
   }
 `;

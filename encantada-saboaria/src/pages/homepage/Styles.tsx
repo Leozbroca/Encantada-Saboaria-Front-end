@@ -161,7 +161,7 @@ export const ButtonShop1 = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #efbae1;
+  background-color: #00033D;
   border: none;
   transition: 0.5s;
 
@@ -204,7 +204,7 @@ export const ButtonShop2 = styled.button`
   }
 
   :hover {
-    background-color: #efbae1;
+    background-color: "#00033D";
     transition: 0.5s;
     cursor: pointer;
   }
@@ -254,7 +254,7 @@ export const OptionCategories = styled.div`
     transition: 0.5s;
 
     :hover {
-      color: #efbae1;
+      color: #00033D;
       cursor: pointer;
     }
   }
@@ -312,7 +312,7 @@ export const ButtonSeller = styled.button`
   min-width: 110px;
   height: 42px;
   line-height: 40px;
-  border: 1px solid #efbae1;
+  border: 1px solid #00033D;
   font-weight: 500;
   text-align: center;
   padding: 0 15px;
@@ -581,7 +581,7 @@ export const ButtonOffer2 = styled.button`
     cursor: pointer;
     transition: all 0.25s linear 0s;
     color: white;
-    background-color: pink;
+    background-color:"#00033D";
   }
 `;
 
@@ -605,8 +605,8 @@ export const InstagramText = styled.h1`
 export const EncantadaText = styled.h1`
   font-size: 24px;
   text-align: center;
-  color: #efbae1;
-  border-top: 2px solid #efbae1;
+  color:"#00033D";
+  border-top: 2px solid "#00033D";
   margin: 0;
   margin-top: 0px;
   padding-top: 10px;

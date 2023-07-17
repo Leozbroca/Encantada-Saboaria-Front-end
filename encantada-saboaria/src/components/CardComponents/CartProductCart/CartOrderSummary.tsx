@@ -67,7 +67,9 @@ export const CartOrderSummary = (props: any) => {
         </Flex>
       </Stack>
       <Button
-        colorScheme="blue"
+        color="#fff"
+        backgroundColor="#00033D"
+        _hover={{ bg: '#22244f' }}
         size="lg"
         fontSize="md"
         rightIcon={<FaArrowRight />}
