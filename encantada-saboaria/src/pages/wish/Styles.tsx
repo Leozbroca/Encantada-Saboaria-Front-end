@@ -39,18 +39,15 @@ export const PhotoBackgroundWish = styled.div`
 `;
 
 export const MainWishProduct = styled.div`
-  width: 100%;
+  min-width: 50%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  p{
+  p {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 200px;
   }
 `;
-
-
-

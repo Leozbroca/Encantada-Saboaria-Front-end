@@ -25,7 +25,7 @@ import { CheckIcon } from "@chakra-ui/icons";
 import { IModalCart } from "../../../interface/IModalCart";
 
 const ModalCart = ({ isOpen, onclose, product }: IModalCart) => {
-  const { total , totalProductsCart} = useGlobal();
+  const { total, totalProductsCart } = useGlobal();
 
   const navigate = useNavigate();
 
@@ -56,7 +56,12 @@ const ModalCart = ({ isOpen, onclose, product }: IModalCart) => {
                 Existe <StrongQtdShops>{total.length}</StrongQtdShops> item no
                 seu carrinho
               </p>
-              <p>Valor total compras: <StrongQtdShops>{formatPrice(Number(totalProductsCart))}</StrongQtdShops></p>
+              <p>
+                Valor total compras:{" "}
+                <StrongQtdShops>
+                  {formatPrice(Number(totalProductsCart))}
+                </StrongQtdShops>
+              </p>
               <ButtonShopping onClick={() => goTo(navigate, "/produtos")}>
                 Continue Comprando
               </ButtonShopping>
@@ -67,9 +72,6 @@ const ModalCart = ({ isOpen, onclose, product }: IModalCart) => {
             </ProductButtonOptions>
           </MainModalProduct>
         </ModalBody>
-        {/* <ModalFooter>
-          <Button onClick={onclose}>Close</Button>
-        </ModalFooter> */}
       </ModalContent>
     </ModalMain>
   );
