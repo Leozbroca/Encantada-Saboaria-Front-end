@@ -8,8 +8,6 @@ export const Main = styled.div`
   align-items: center;
   font-family: "Bree Serif", serif;
 
-
-
   .nome {
     font-size: 18px;
     margin: 0px;
@@ -17,7 +15,7 @@ export const Main = styled.div`
     transition: 0.5s;
     :hover {
       transition: 0.5s;
-      color: pink;
+      color: "#00033D";
       cursor: pointer;
     }
   }
@@ -25,7 +23,7 @@ export const Main = styled.div`
   .preco {
     font-size: 18px;
     margin: 0px;
-    color: pink;
+    color: "#00033D";
   }
 `;
 
@@ -45,7 +43,6 @@ export const Photo = styled.div`
       cursor: pointer;
     }
   }
-
 `;
 
 export const DivRow = styled.div`
@@ -71,7 +68,7 @@ export const IconRow = styled.div`
 
   :hover {
     transition: 0.5s;
-    background-color: pink;
+    background-color: #00033D;
     color: white;
   }
 `;

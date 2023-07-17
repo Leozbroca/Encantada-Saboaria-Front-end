@@ -129,8 +129,8 @@ const Contact = () => {
                           width="200px"
                           variant="ghost"
                           color="#000000"
-                          _hover={{ border: "2px solid #efbae1" }}
-                          leftIcon={<MdPhone color="#efbae1" size="20px" />}
+                          _hover={{ border: "2px solid #00033D" }}
+                          leftIcon={<MdPhone color="#00033D" size="20px" />}
                         >
                           Cel.:(21) 98342-3931
                         </Button>
@@ -140,8 +140,8 @@ const Contact = () => {
                           width="200px"
                           variant="ghost"
                           color="#000000"
-                          _hover={{ border: "2px solid #efbae1" }}
-                          leftIcon={<MdEmail color="#efbae1" size="20px" />}
+                          _hover={{ border: "2px solid #00033D" }}
+                          leftIcon={<MdEmail color="#00033D" size="20px" />}
                         >
                           saboaria@gmail.com
                         </Button>
@@ -151,9 +151,9 @@ const Contact = () => {
                           width="200px"
                           variant="ghost"
                           color="#000000"
-                          _hover={{ border: "2px solid #efbae1" }}
+                          _hover={{ border: "2px solid #00033D" }}
                           leftIcon={
-                            <MdLocationOn color="#efbae1" size="20px" />
+                            <MdLocationOn color="#00033D" size="20px" />
                           }
                         >
                           Caçapava - São Paulo
@@ -171,7 +171,7 @@ const Contact = () => {
                         variant="ghost"
                         size="lg"
                         isRound={true}
-                        _hover={{ bg: "#efbae1" }}
+                        _hover={{ bg: "#fff" }}
                         icon={<MdFacebook size="28px" />}
                       />
                       <IconButton
@@ -179,7 +179,7 @@ const Contact = () => {
                         variant="ghost"
                         size="lg"
                         isRound={true}
-                        _hover={{ bg: "#efbae1" }}
+                        _hover={{ bg: "#fff" }}
                         icon={<AiFillInstagram size="28px" />}
                       />
                       <IconButton
@@ -187,7 +187,7 @@ const Contact = () => {
                         variant="ghost"
                         size="lg"
                         isRound={true}
-                        _hover={{ bg: "#efbae1" }}
+                        _hover={{ bg: "#fff" }}
                         icon={<AiTwotoneMail size="28px" />}
                       />
                     </HStack>
@@ -199,7 +199,7 @@ const Contact = () => {
                       <VStack spacing={5}>
                         <FormControl id="name">
                           <FormLabel>Nome Usuario</FormLabel>
-                          <InputGroup borderColor="#efbae1">
+                          <InputGroup borderColor="#00033D">
                             <InputLeftElement
                               pointerEvents="none"
                               children={<BsPerson color="gray.800" />}
@@ -215,7 +215,7 @@ const Contact = () => {
                         </FormControl>
                         <FormControl id="name">
                           <FormLabel>Email Usuario</FormLabel>
-                          <InputGroup borderColor="#efbae1">
+                          <InputGroup borderColor="#00033D">
                             <InputLeftElement
                               pointerEvents="none"
                               children={<MdOutlineEmail color="gray.800" />}
@@ -252,7 +252,7 @@ const Contact = () => {
                             variant="solid"
                             bg="#0B0E3F"
                             color="white"
-                            _hover={{ bg: "#efbae1" }}
+                            _hover={{ bg: "#00033D" }}
                           >
                             Send Message
                           </Button>

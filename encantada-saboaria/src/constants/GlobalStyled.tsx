@@ -2,6 +2,12 @@ import { createGlobalStyle } from 'styled-components'
 
 
 const GlobalStyle = createGlobalStyle`
+
+  :root{
+    --backgroundLogo:"#00033D" 
+    --letterLogo:"#FFC600"
+  }
+
   body {
     margin: 0;
     padding: 0;

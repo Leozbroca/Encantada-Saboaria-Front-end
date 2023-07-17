@@ -38,16 +38,16 @@ export const ProductButtonOptions = styled.div`
 `;
 
 export const StrongQtdShops = styled.strong`
-  color: #efbae1;
+  color: #00033D;
 `;
 
 export const ButtonShopping = styled.button`
   width: 100%;
   transition: 0.5s;
-  background-color: #efbae1;
+  background-color: #00033D;
   color: #fff;
   font-size: 18px;
-  border: 1px solid pink;
+  border: 1px solid "#00033D";
   :hover {
     filter: brightness(0.8);
   }

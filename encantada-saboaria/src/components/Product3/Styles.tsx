@@ -67,7 +67,7 @@ p{
     :hover{
         transition: .5s;
         cursor:pointer;
-        color: #efbae1;
+        color: #00033D;
     }
 }
 

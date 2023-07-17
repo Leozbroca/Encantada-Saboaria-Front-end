@@ -25,7 +25,7 @@ export const ButtonFilter = styled.div`
   justify-content: space-between;
 `;
 
-export const OptionSelect = styled.option``;
+export const OptionSelect = styled.option`color:#000`;
 export const PhotoBackgroundProduct = styled.div`
   width: 100%;
   height: 300px;
@@ -70,26 +70,25 @@ export const MainFilterProduct = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
-  padding:10px;
+  padding: 10px;
 
   @media ${device.mobileS} {
-    display:flex;
-    align-items:start; 
+    display: flex;
+    align-items: start;
   }
-  
 `;
 export const Filter = styled.div``;
 export const ProductsScreen = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   gap: 50px;
   padding: 20px;
   width: 70%;
 
   @media ${device.mobileS} {
-    width:100%;
+    width: 100%;
   }
 `;
 
@@ -112,20 +111,20 @@ export const ProductNotFound = styled.div`
 
 const colors = {
   white: "#ffffff",
-  pink: "#ebbaa9",
+  blue: "#00033D",
 };
 
 interface isActiveBoolean {
   isActive: boolean;
-  activeColor: "white" | "pink";
-  activeColor2: "white" | "pink";
+  activeColor: "white" | "blue";
+  activeColor2: "white" | "blue";
 }
 
 export const SpanPagination = styled.span<isActiveBoolean>`
-  /* margin: 10px; */
+  
   background: ${(props) =>
     props.isActive ? colors[props.activeColor] : colors[props.activeColor2]};
-  border-color: #ebbaa9;
+  border-color: "#00033D";
   color: #000;
   width: 42px;
   height: 42px;

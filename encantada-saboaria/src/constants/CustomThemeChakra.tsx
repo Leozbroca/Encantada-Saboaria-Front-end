@@ -7,7 +7,7 @@ export const customTheme = extendTheme({
         toast: {
           container: {
             color: "gray.50",
-            bg: "#efbae1",
+            bg: "#00033D",
           },
         },
       },

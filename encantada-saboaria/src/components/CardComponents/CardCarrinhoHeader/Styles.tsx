@@ -41,7 +41,7 @@ padding-right:10px;
 export const Icon = styled.a`
 transition:.5s;
 :hover{
-    color:pink;
+    color:"#00033D";
     cursor: pointer;
     transition:.5s;
 }

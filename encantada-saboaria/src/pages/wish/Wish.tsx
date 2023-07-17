@@ -19,7 +19,7 @@ const Wish = () => {
             return <CardWish key={wishProduct.id} {...wishProduct} />;
           })
         ) : (
-          <p>Não há produtos na lista de desejos</p>
+          <p >Não há produtos na lista de desejos...</p>
         )}
       </MainWishProduct>
     </Main>

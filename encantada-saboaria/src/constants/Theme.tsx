@@ -31,10 +31,4 @@ declare module '@mui/material/styles' {
    
   });
   
-//   export default function CustomStyles() {
-//     return (
-//       <ThemeProvider theme={theme}>
-//         <CustomCheckbox defaultChecked />
-//       </ThemeProvider>
-//     );
-//   }
+  

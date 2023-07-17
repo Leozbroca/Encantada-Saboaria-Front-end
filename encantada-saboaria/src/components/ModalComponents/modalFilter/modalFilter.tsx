@@ -94,12 +94,12 @@ const ModalFilter = ({
           h={4}
           {...getCheckboxProps()}
         >
-          {state.isChecked && <Box w={2} h={2} bg="#efbae1" />}
+          {state.isChecked && <Box w={2} h={2} bg="#00033D" />}
         </Flex>
         <Text
           color="gray.700"
           {...getLabelProps()}
-          _hover={{ color: "#efbae1" }}
+          _hover={{ color: "#00033D" }}
         >
           {new Intl.NumberFormat("pt-BR", {
             style: "currency",

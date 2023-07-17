@@ -62,20 +62,22 @@ const ProductPage = () => {
       </PhotoBackgroundProduct>
       <ButtonFilter>
         <Button
+          color="white"
+          background="#00033D"
           onClick={onToggle}
           fontSize="15px"
           leftIcon={<AiFillFilter />}
-          _hover={{ background: "#ebbaa9" }}
           variant="outline"
         >
           Filtro
         </Button>
         <Stack spacing={3}>
           <Select
+            color="white"
+            background="#00033D"
             value={priceFilter}
             onChange={(e) => setPriceFilter(e.target.value)}
             variant="outline"
-            _hover={{ color: "#efbae1", cursor: "pointer" }}
           >
             <OptionSelect value="crescente">Crescente</OptionSelect>
             <OptionSelect value="decrescente">Decrescente</OptionSelect>
