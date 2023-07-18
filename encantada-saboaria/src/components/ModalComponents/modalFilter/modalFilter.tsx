@@ -22,7 +22,7 @@ import axios from "axios";
 import { Url } from "../../../constants/Url";
 import { IFilter } from "../../../pages/products/ProductPage";
 import ICategory from "../../../interface/ICategory";
-
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 interface PropsModalFilter {
   isOpen: boolean;
   setFilterEssence: React.Dispatch<React.SetStateAction<IFilter>>;
@@ -59,6 +59,7 @@ const ModalFilter = ({
           setFilterEssence({ nome: category.nome, _id: category._id })
         }
       >
+        <ArrowForwardIcon />
         {category.nome}
       </FilterEssenceP>
     );
@@ -75,9 +76,6 @@ const ModalFilter = ({
         alignItems="center"
         gridColumnGap={2}
         maxW="60"
-        bg="green.50"
-        border="1px solid"
-        borderColor="black.500"
         rounded="lg"
         px={3}
         py={1}
@@ -122,7 +120,7 @@ const ModalFilter = ({
   return (
     <Main>
       <Collapse in={isOpen} animateOpacity>
-        <Box color="black" bg="lightgray" mt="4" rounded="md" shadow="md">
+        <Box color="black" mt="4" rounded="md" shadow="md">
           <Filter>
             <CategoriesFilter>
               <h1>Categorias</h1>
