@@ -1,6 +1,17 @@
 import styled from "styled-components";
 import banner from "../../assets/bannerV2-bg.jpg";
 import { device } from "../../constants/breakpoints";
+import { Button } from "@chakra-ui/button";
+
+export const FilterButton = styled(Button)`
+  font-size: "15px";
+  text-transform: uppercase;
+
+  :hover {
+    cursor: pointer;
+    filter: brightness(0.8);
+  }
+`;
 
 export const Main = styled.div`
   width: 100%;
@@ -25,7 +36,9 @@ export const ButtonFilter = styled.div`
   justify-content: space-between;
 `;
 
-export const OptionSelect = styled.option`color:#000`;
+export const OptionSelect = styled.option`
+  color: #000;
+`;
 export const PhotoBackgroundProduct = styled.div`
   width: 100%;
   height: 300px;
@@ -77,7 +90,9 @@ export const MainFilterProduct = styled.div`
     align-items: start;
   }
 `;
-export const Filter = styled.div``;
+export const Filter = styled.div`
+  /* visibility: hidden; */
+`;
 export const ProductsScreen = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -121,7 +136,6 @@ interface isActiveBoolean {
 }
 
 export const SpanPagination = styled.span<isActiveBoolean>`
-  
   background: ${(props) =>
     props.isActive ? colors[props.activeColor] : colors[props.activeColor2]};
   border-color: "#00033D";

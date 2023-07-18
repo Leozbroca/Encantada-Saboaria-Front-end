@@ -7,6 +7,7 @@ export const Filter = styled.div`
   width: 350px;
   min-height: 400px;
   font-family: SofiaPro;
+  
   h1 {
     font-size: 30px;
     text-align: center;
@@ -14,27 +15,35 @@ export const Filter = styled.div`
 `;
 
 export const CategoriesFilter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
   div {
-    padding: 15px;
+    display: inline-block;
+    font-size: 16px;
+    color: #333;
+    transition: font-size 0.3s, color 0.3s;
+    cursor: pointer;
   }
-  border-bottom: 1px solid black;
 `;
 export const PriceCategories = styled.div`
-  div{
-    padding: 10px;
-    
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  font-size: 1rem;
 `;
 export const FilterEssenceP = styled.p`
   margin: 0px 0 15px 0;
   font-weight: 700;
-  transition: 0.5s;
   font-size: 20px;
+
   ::first-letter {
     text-transform: uppercase;
   }
+
   :hover {
-    color: #00033D;
-    cursor: pointer;
+    font-size: 20px;
+    color: #00033d;
   }
 `;

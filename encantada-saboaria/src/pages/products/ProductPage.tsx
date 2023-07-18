@@ -17,12 +17,14 @@ import {
   ButtonFilter,
   PhotoBackgroundProduct,
   ButtonOfferProduct,
-  OptionSelect
+  OptionSelect,
+  FilterButton,
 } from "./Styles";
 import { Select, Stack } from "@chakra-ui/react";
 import PaginationOutlined from "../../components/Pagination/pagination";
 import React from "react";
 import IProducts from "../../interface/IProducts";
+import ModalFilterResponsive from "../../components/ModalComponents/modalFilterResponsive/modalFilterResponsive";
 
 export interface IFilter {
   nome: string;
@@ -38,7 +40,10 @@ const ProductPage = () => {
   });
   const { isOpen, onToggle } = useDisclosure();
 
-  const products: IProducts[] = useRequestData([], `${Url}/products?page=${page}`);
+  const products: IProducts[] = useRequestData(
+    [],
+    `${Url}/products?page=${page}`
+  );
 
   const productsList = products
     .filter((product: IProducts) =>
@@ -61,16 +66,15 @@ const ProductPage = () => {
         <p>home {">"} Produtos</p>
       </PhotoBackgroundProduct>
       <ButtonFilter>
-        <Button
+        <FilterButton
           color="white"
           background="#00033D"
           onClick={onToggle}
-          fontSize="15px"
           leftIcon={<AiFillFilter />}
           variant="outline"
         >
           Filtro
-        </Button>
+        </FilterButton>
         <Stack spacing={3}>
           <Select
             color="white"
@@ -84,10 +88,17 @@ const ProductPage = () => {
           </Select>
         </Stack>
       </ButtonFilter>
+      <Pagination>
+        <PaginationOutlined setPage={setPage} />
+      </Pagination>
       <MainFilterProduct>
         <Filter>
           <ModalFilter
             isOpen={isOpen}
+            setFilterEssence={setFilterEssence}
+            setPriceCategory={setPriceCategory}
+          />
+          <ModalFilterResponsive
             setFilterEssence={setFilterEssence}
             setPriceCategory={setPriceCategory}
           />
@@ -114,9 +125,6 @@ const ProductPage = () => {
           )}
         </ProductsScreen>
       </MainFilterProduct>
-      <Pagination>
-        <PaginationOutlined setPage={setPage} />
-      </Pagination>
     </Main>
   );
 };
