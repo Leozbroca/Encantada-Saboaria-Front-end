@@ -15,25 +15,31 @@ import ModalFilter from "../modalFilter/modalFilter";
 import { IFilter } from "../../../pages/products/ProductPage";
 
 interface PropsModalFilter {
-  isOpen?: boolean;
+  isOpen: boolean;
+  onClose: () => void;
   setFilterEssence: React.Dispatch<React.SetStateAction<IFilter>>;
   setPriceCategory: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ModalFilterResponsive = ({
+  isOpen,
+  onClose,
   setFilterEssence,
   setPriceCategory,
 }: PropsModalFilter) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <>
-      <Button colorScheme="teal" onClick={onOpen}>
-        Open
-      </Button>
-      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-        <DrawerOverlay />
-        <DrawerContent>
+      <Drawer size="sm" isOpen={isOpen} placement="left" onClose={onClose}>
+        <DrawerOverlay bg="blackAlpha.700" />
+        <DrawerContent sx={{ backgroundColor: "#f8f9fa" }}>
+          <DrawerCloseButton
+            sx={{
+              left: 0,
+              marginLeft: "10px",
+              marginRight: "10px",
+              color: "black",
+            }}
+          />
           <ModalFilter
             isOpen={isOpen}
             setFilterEssence={setFilterEssence}

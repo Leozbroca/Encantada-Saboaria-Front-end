@@ -38,7 +38,7 @@ const ProductPage = () => {
     nome: "",
     _id: "",
   });
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle , onClose} = useDisclosure();
 
   const products: IProducts[] = useRequestData(
     [],
@@ -59,6 +59,28 @@ const ProductPage = () => {
         ? firstProduct.preco - secondProduct.preco
         : secondProduct.preco - firstProduct.preco
     );
+
+  function filterWidthScreen() {
+    if (window.matchMedia("(max-width:767px)").matches) {
+      return (
+        <ModalFilterResponsive
+          isOpen={isOpen}
+          onClose={onClose}
+          setFilterEssence={setFilterEssence}
+          setPriceCategory={setPriceCategory}
+        />
+      );
+    } else {
+      return (
+        <ModalFilter
+          isOpen={isOpen}
+          setFilterEssence={setFilterEssence}
+          setPriceCategory={setPriceCategory}
+        />
+      );
+    }
+  }
+
   return (
     <Main>
       <PhotoBackgroundProduct>
@@ -92,17 +114,7 @@ const ProductPage = () => {
         <PaginationOutlined setPage={setPage} />
       </Pagination>
       <MainFilterProduct>
-        <Filter>
-          <ModalFilter
-            isOpen={isOpen}
-            setFilterEssence={setFilterEssence}
-            setPriceCategory={setPriceCategory}
-          />
-          <ModalFilterResponsive
-            setFilterEssence={setFilterEssence}
-            setPriceCategory={setPriceCategory}
-          />
-        </Filter>
+        <Filter>{filterWidthScreen()}</Filter>
         <ProductsScreen>
           {productsList.length > 0 ? (
             productsList.map((product: IProducts, index: number) => {
