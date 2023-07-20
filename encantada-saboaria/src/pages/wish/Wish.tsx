@@ -3,6 +3,7 @@ import { Main, PhotoBackgroundWish, MainWishProduct } from "./Styles";
 import CardWish from "../../components/CardComponents/CardWish/CardWish";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import ICartPurchase from "../../interface/ICartPurchase";
+import ScrollTop from "../../components/ScrollTop/ScrollTop";
 
 const Wish = () => {
   const { wish } = useGlobal();
@@ -22,6 +23,7 @@ const Wish = () => {
           <p >Não há produtos na lista de desejos...</p>
         )}
       </MainWishProduct>
+      <ScrollTop />
     </Main>
   );
 };

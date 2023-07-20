@@ -1,16 +1,19 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
+export const GlobalStyle = createGlobalStyle`
 
-const GlobalStyle = createGlobalStyle`
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
   :root{
-    --backgroundLogo:"#00033D" 
-    --letterLogo:"#FFC600"
+    --logo:#00033D
+    --letter-logo:#FFC600
   }
 
   body {
-    margin: 0;
-    padding: 0;
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
     background-color:white;
@@ -18,5 +21,3 @@ const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
   }
 `;
- 
-export default GlobalStyle

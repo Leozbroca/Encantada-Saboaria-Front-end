@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
-import { useDisclosure, Input, IconButton } from "@chakra-ui/react";
-
+import {
+  useDisclosure,
+  Input,
+  IconButton,
+  InputRightElement,
+  InputGroup,
+} from "@chakra-ui/react";
 import {
   Drawer,
   DrawerHeader,
@@ -17,14 +22,13 @@ import {
   SearchNotFound,
 } from "./Styles";
 import CardSearchProduct from "../CardComponents/CardSearchProduct/CardSearchProduct";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import IProductDetail from "../../interface/IProductDetail";
+import { CloseIcon, Search2Icon } from "@chakra-ui/icons";
 
 const SearchDrower = (props: any) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [name, setName] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [errorBoolean, setErrorBoolean] = useState<boolean>(false);
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const [errorBoolean, setErrorBoolean] = useState(false);
   const [productDetail, setProductDetail] = useState<IProductDetail[]>([
     {
       _id: "",
@@ -48,7 +52,7 @@ const SearchDrower = (props: any) => {
       })
       .catch((error) => {
         if (error.response.data.message) {
-          setError(error.response.data.message);
+          setError("Produto não encontrado");
           setErrorBoolean(true);
         }
       });
@@ -79,27 +83,29 @@ const SearchDrower = (props: any) => {
           padding={"10px"}
         >
           <MainDraweHeader>
-            <DrawerHeader
-              borderBottomWidth="1px"
-              width={"100%"}
-              flexGrow={1}
-              display={"flex"}
-            >
+            <DrawerHeader flexGrow={1} display={"flex"} fontSize={"2em"}>
               Buscar Produtos
             </DrawerHeader>
             <IconButton
               aria-label="Search database"
               onClick={props.functionOpen.onClose}
-              icon={<AiOutlineCloseCircle />}
+              icon={<CloseIcon />}
             />
           </MainDraweHeader>
-          <Input
-            size={"lg"}
-            padding={"10px"}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Procure o nome dos produtos"
-          />
+          <InputGroup width={"60%"}>
+            <Input
+              variant="flushed"
+              size={"lg"}
+              padding={"10px"}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Procure produtos"
+            />
+            <InputRightElement>
+              <Search2Icon color="gray.500" margin={"5px"} />
+            </InputRightElement>
+          </InputGroup>
+
           <MainProductSeach>
             {productDetail.length > 0 && errorBoolean === false ? (
               productSearchScreen
