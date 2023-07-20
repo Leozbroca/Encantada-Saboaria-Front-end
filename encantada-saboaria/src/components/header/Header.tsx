@@ -105,6 +105,10 @@ const Header = () => {
           <span />
           <p onClick={() => goTo(navigate, "/contato")}>Contato</p>
         </Option>
+        <Option>
+          <span />
+          <p onClick={() => goTo(navigate, "/faq")}>FAQs</p>
+        </Option>
       </MenuOptions>
       <SearchDrower functionOpen={functionOpen} />
       <MenuItens>
