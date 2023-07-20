@@ -1,26 +1,19 @@
-import {
-  Box,
-  Container,
-  Stack,
-  Text,
-  Image,
-  Flex,
-  VStack,
-  Button,
-  Heading,
-  SimpleGrid,
-  StackDivider,
-  useColorModeValue,
-  List,
-  ListItem,
-} from "@chakra-ui/react";
-import { MdLocalShipping } from "react-icons/md";
-import { ImageDetail, Star } from "./Styles";
-import BasicRating from "../../StarRate/Star";
+import { ImageDetail, ImagemProduct, Price, Star } from "./Styles";
 import { useGlobal } from "../../../Global/GlobalStateContext";
 import ICartPurchase from "../../../interface/ICartPurchase";
 import IProductDetail from "../../../interface/IProductDetail";
 import IIngredients from "../../../interface/IIngredients";
+import { ChangeEvent, useEffect, useState } from "react";
+import "./productDetail.css";
+import { formatPrice } from "../../../utils/formatPrice";
+import { MinusIcon, AddIcon } from "@chakra-ui/icons";
+
+import {
+  BsFillArrowLeftCircleFill,
+  BsFillArrowRightCircleFill,
+} from "react-icons/bs";
+import ModalCart from "../../ModalComponents/modalCart/modalCart";
+import { useDisclosure } from "@chakra-ui/react";
 
 interface IProdcutDetail {
   productDetail: IProductDetail | undefined;
@@ -31,7 +24,17 @@ export default function ProductDetail({
   productDetail,
   ingredients,
 }: IProdcutDetail) {
-  const {  total, setTotal, addTo } = useGlobal();
+  const { total, setTotal, addTo } = useGlobal();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [imageCount, setImageCount] = useState(0);
+  const breakpoint = 600;
+
+  const [imageStyle, setImageStyle] = useState({
+    backgroundImage: "",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+  });
 
   const objetoCart: ICartPurchase = {
     id: productDetail?._id,
@@ -43,178 +46,149 @@ export default function ProductDetail({
     quantidade: productDetail?.quantidade,
   };
 
-  const ingredientsScreen = ingredients.map((ingredient, index) => {
+  const allImages = [
+    `${productDetail?.foto}`,
+    `${productDetail?.foto}`,
+    `https://i.pinimg.com/originals/74/45/6c/74456c2bd47666329b9dee5dcad4ece7.png`,
+    `${productDetail?.foto}`,
+  ];
+
+  useEffect(() => {
+    setImageStyle((prevStyle) => ({
+      ...prevStyle,
+      backgroundImage: `url(${productDetail?.foto})`,
+    }));
+    function handleWindowSize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleWindowSize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowSize);
+    };
+  }, [productDetail?.foto]);
+
+  function replaceBackground(e: any) {
+    const selectedImageIndex = e.target.getAttribute("data-index");
+    setImageStyle((prevStyle) => ({
+      ...prevStyle,
+      backgroundImage: `url(${allImages[selectedImageIndex]})`,
+    }));
+
+    const selectedImage = document.querySelector(".image--selected");
+    if (selectedImage) selectedImage.classList.remove("image--selected");
+    e.target.classList.add("image--selected");
+  }
+
+  function handleImageHover(e: any) {
+    const { left, top, width, height } = e.target.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setImageStyle((prevStyle) => ({
+      ...prevStyle,
+      backgroundSize: "auto",
+      backgroundPosition: `${x}% ${y}%`,
+    }));
+  }
+
+  function handleMouseLeave(e: any) {
+    setImageStyle((prevStyle) => ({
+      ...prevStyle,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }));
+  }
+
+  const imagesForSlides = allImages.map((image, index) => {
     return (
-      <>
-        <List spacing={2}>
-          <ListItem>{ingredient.nome}</ListItem>
-        </List>
-      </>
+      <button key={index}>
+        <img
+          onClick={(e) => replaceBackground(e)}
+          data-index={index}
+          className={index == imageCount ? "image--selected" : ""}
+          src={`${image}`}
+        />
+      </button>
     );
   });
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Container maxW={"7xl"}>
-      <SimpleGrid
-        columns={{ base: 1, lg: 2 }}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 18, md: 24 }}
-      >
-        <Flex display={"flex"} flexDirection={"column"}>
-          <Image
-            rounded={"md"}
-            alt={"product image"}
-            src={productDetail?.foto}
-            fit={"cover"}
-            align={"center"}
-            w={"100%"}
-            h={{ base: "100%", sm: "400px", lg: "500px" }}
-          />
-          <ImageDetail>
-            <Image
-              boxSize={"200px"}
-              alt={"product image"}
-              src={productDetail?.foto}
-              fit={"cover"}
-              align={"center"}
-              w={"23%"}
-            />
-            <Image
-              boxSize={"200px"}
-              alt={"product image"}
-              src={productDetail?.foto}
-              fit={"cover"}
-              align={"center"}
-              w={"23%"}
-            />
-            <Image
-              boxSize={"200px"}
-              alt={"product image"}
-              src={productDetail?.foto}
-              fit={"cover"}
-              align={"center"}
-              w={"23%"}
-            />
-            <Image
-              boxSize={"200px"}
-              alt={"product image"}
-              src={productDetail?.foto}
-              fit={"cover"}
-              align={"center"}
-              w={"23%"}
-            />
-          </ImageDetail>
-        </Flex>
-        <Stack spacing={{ base: 6, md: 6 }}>
-          <Box as={"header"}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
-            >
-              {productDetail?.nome}
-            </Heading>
-            <Text
-              letterSpacing={"normal"}
-              color={useColorModeValue("gray.900", "gray.400")}
-              fontWeight={300}
-              fontSize={"2xl"}
-            >
-              {new Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              }).format(Number(productDetail?.preco))}
-            </Text>
-          </Box>
-
-          <Star>
-            <BasicRating />
-          </Star>
-
-          <Stack
-            spacing={{ base: 4, sm: 2 }}
-            direction={"column"}
-            divider={
-              <StackDivider
-                borderColor={useColorModeValue("gray.200", "gray.600")}
-              />
-            }
-          >
-            <VStack spacing={{ base: 4, sm: 6 }}>
-              <Text
-                color={useColorModeValue("gray.500", "gray.400")}
-                fontSize={"2xl"}
-                fontWeight={"300"}
-              >
-                {productDetail?.descricao}
-              </Text>
-            </VStack>
-            <Box>
-              <Text
-                fontSize={{ base: "16px", lg: "18px" }}
-                color={useColorModeValue("yellow.500", "yellow.300")}
-                fontWeight={"500"}
-                textTransform={"uppercase"}
-                mb={"4"}
-              >
-                Ingredientes
-              </Text>
-
-              <SimpleGrid
-                columns={{ base: 1, md: 2 }}
-                spacing={3}
-                color={useColorModeValue("gray.500", "gray.400")}
-              >
-                {ingredientsScreen}
-              </SimpleGrid>
-            </Box>
-            <Box>
-              <Text
-                fontSize={{ base: "16px", lg: "18px" }}
-                color={useColorModeValue("yellow.500", "yellow.300")}
-                fontWeight={"500"}
-                textTransform={"uppercase"}
-                mb={"4"}
-              >
-                Detalhes do produto
-              </Text>
-
-              <List spacing={2}>
-                <ListItem>
-                  <Text as={"span"} fontWeight={"bold"}>
-                    Tamanho:
-                  </Text>{" "}
-                  {productDetail?.tamanho}
-                </ListItem>
-              </List>
-            </Box>
-          </Stack>
-
-          <Button
-            rounded={"none"}
-            w={"full"}
-            mt={8}
-            size={"lg"}
-            py={"7"}
-            bg={useColorModeValue("gray.900", "gray.50")}
-            color={useColorModeValue("white", "gray.900")}
-            textTransform={"uppercase"}
-            onClick={() =>  addTo(total,objetoCart,setTotal,"products")}
-            _hover={{
-              transform: "translateY(2px)",
-              boxShadow: "lg",
-              background: "#00033D",
+    <main className="main">
+      <ModalCart isOpen={isOpen} onclose={onClose} product={objetoCart} />
+      <div className="image-section">
+        <div
+          className="product-image flex"
+          style={imageStyle}
+          onMouseMove={(e) =>
+            windowWidth > breakpoint ? handleImageHover(e) : () => false
+          }
+          onMouseOut={(e) =>
+            windowWidth > breakpoint ? handleMouseLeave(e) : () => false
+          }
+        >
+          <BsFillArrowLeftCircleFill
+            size={40}
+            style={{
+              margin: "10px",
             }}
-          >
-            Adicionar no Carrinho
-          </Button>
+            onClick={() => {
+              setImageCount((prevCount) => {
+                if (prevCount == 0) return allImages.length - 1;
+                else return (prevCount - 1) % allImages.length;
+              });
+              setImageStyle((prevStyle) => ({
+                ...prevStyle,
+                backgroundImage: `url(${allImages[imageCount]})`,
+              }));
+            }}
+          />
 
-          <Stack direction="row" alignItems="center" justifyContent={"center"}>
-            <MdLocalShipping />
-            <Text>Entrega a delivery</Text>
-          </Stack>
-        </Stack>
-      </SimpleGrid>
-    </Container>
+          <BsFillArrowRightCircleFill
+            size={40}
+            style={{
+              margin: "10px",
+            }}
+            onClick={() => {
+              setImageCount((prevCount) => (prevCount + 1) % allImages.length);
+              setImageStyle((prevStyle) => ({
+                ...prevStyle,
+                backgroundImage: `url(${allImages[imageCount]})`,
+              }));
+            }}
+          />
+        </div>
+        {windowWidth > breakpoint && (
+          <div className="product-image--slide">{imagesForSlides}</div>
+        )}
+      </div>
+      <div className="product-info">
+        <div>
+          <h1>{productDetail?.nome}</h1>
+          <p>{productDetail?.descricao}</p>
+        </div>
+
+        <div className="product-price">
+          <span className="product-price--rate">
+            {formatPrice(Number(productDetail?.preco))}
+          </span>
+        </div>
+        <div className="product-cart">
+          <Price>
+            <div>
+              <button
+                className="product-cart--button"
+                onClick={() => {
+                  addTo(total, objetoCart, setTotal, "products");
+                  onOpen();
+                }}
+              >
+                Add to Cart
+              </button>
+            </div>
+          </Price>
+        </div>
+      </div>
+    </main>
   );
 }

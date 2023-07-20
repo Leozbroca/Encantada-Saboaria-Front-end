@@ -7,7 +7,6 @@ export const MainDraweHeader = styled.div`
   align-items: center;
   margin-left: 30%;
   justify-content: space-between;
-  background-color: var(--letter-logo);
 
   @media (max-width: 500px) {
     width: 100%;

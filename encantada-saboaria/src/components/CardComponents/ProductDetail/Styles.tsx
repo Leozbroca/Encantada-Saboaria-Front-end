@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const Price = styled.div`
+  width:100%;
+`;
+
+export const ImagemProduct = styled.div`
+  width: 400px;
+  margin-inline: auto;
+  width: 100%;
+`;
+
 export const Star = styled.div`
   width: 95%;
   max-width: 140px;
