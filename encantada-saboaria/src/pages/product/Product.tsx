@@ -9,6 +9,7 @@ import { Url } from "../../constants/Url";
 import { MainGallery, MainProduct } from "./Styles";
 import IProductDetail from "../../interface/IProductDetail";
 import IIngredients from "../../interface/IIngredients";
+import ScrollTop from "../../components/ScrollTop/ScrollTop";
 
 const Product = () => {
   const { id } = useParams();
@@ -76,6 +77,7 @@ const Product = () => {
         <p>Produtos Relativos</p>
         <CarouselProductDetail productRelativeDetail={productRelativeDetail} />
       </MainGallery>
+      <ScrollTop />
     </MainProduct>
   );
 };

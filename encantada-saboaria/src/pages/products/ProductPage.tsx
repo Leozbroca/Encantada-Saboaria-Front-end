@@ -25,6 +25,7 @@ import PaginationOutlined from "../../components/Pagination/pagination";
 import React from "react";
 import IProducts from "../../interface/IProducts";
 import ModalFilterResponsive from "../../components/ModalComponents/modalFilterResponsive/modalFilterResponsive";
+import ScrollTop from "../../components/ScrollTop/ScrollTop";
 
 export interface IFilter {
   nome: string;
@@ -137,6 +138,7 @@ const ProductPage = () => {
           )}
         </ProductsScreen>
       </MainFilterProduct>
+      <ScrollTop />
     </Main>
   );
 };
