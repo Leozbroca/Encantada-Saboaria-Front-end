@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const MainProductDetail = styled.main`
   margin-bottom: 4rem;
+  
   @media (min-width: 600px) {
     width: 90%;
     max-width: 1000px;
