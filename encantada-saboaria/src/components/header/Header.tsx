@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MainHeader,
   MenuButton,
@@ -18,8 +18,10 @@ import {
   ButtonRight,
   CartBody,
   EmptyCartP,
+  MenuLogoResponsive,
+  MenuMain,
 } from "./Styles";
-import logoTipo from "../../assets/logotipo.png"
+import logoTipo from "../../assets/logotipo.png";
 import {
   HiOutlineMagnifyingGlass,
   HiOutlineUser,
@@ -42,7 +44,7 @@ import CardCarrinhoHeader from "../CardComponents/CardCarrinhoHeader/CardCarrinh
 import ModalLogin from "../ModalComponents/ModalLogin/ModalLogin";
 import ModalRegister from "../ModalComponents/ModalRegister/ModalRegister";
 import ModalForgot from "../ModalComponents/ModalForgot/ModalForgot";
-
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -82,34 +84,37 @@ const Header = () => {
 
   return (
     <MainHeader>
-      <MenuButton />
+      {/* <MenuButton /> */}
       <MenuLogo src={logoTipo} />
-      <MenuOptions>
-        <Option>
-          <span />
-          <p onClick={() => goTo(navigate, "/")}>Home</p>
-        </Option>
-        <Option>
-          <span />
-          <p onClick={() => goTo(navigate, "/produtos")}>Produtos</p>
-        </Option>
-        <Option>
-          <span />
-          <p onClick={() => goTo(navigate, "/carrinho")}>Carrinho</p>
-        </Option>
-        <Option>
-          <span />
-          <p onClick={() => goTo(navigate, "/sobre")}>Sobre</p>
-        </Option>
-        <Option>
-          <span />
-          <p onClick={() => goTo(navigate, "/contato")}>Contato</p>
-        </Option>
-        <Option>
-          <span />
-          <p onClick={() => goTo(navigate, "/faq")}>FAQs</p>
-        </Option>
-      </MenuOptions>
+      <MenuMain>
+        <MenuOptions>
+          <Option>
+            <span />
+            <a onClick={() => goTo(navigate, "/")}>Home</a>
+          </Option>
+          <Option>
+            <span />
+            <a onClick={() => goTo(navigate, "/produtos")}>Produtos</a>
+          </Option>
+          <Option>
+            <span />
+            <a onClick={() => goTo(navigate, "/carrinho")}>Carrinho</a>
+          </Option>
+          <Option>
+            <span />
+            <a onClick={() => goTo(navigate, "/sobre")}>Sobre</a>
+          </Option>
+          <Option>
+            <span />
+            <a onClick={() => goTo(navigate, "/contato")}>Contato</a>
+          </Option>
+          <Option>
+            <span />
+            <a onClick={() => goTo(navigate, "/faq")}>FAQs</a>
+          </Option>
+        </MenuOptions>
+      </MenuMain>
+      <MenuLogoResponsive>Saboaria Encantada</MenuLogoResponsive>
       <SearchDrower functionOpen={functionOpen} />
       <MenuItens>
         <IconContext.Provider

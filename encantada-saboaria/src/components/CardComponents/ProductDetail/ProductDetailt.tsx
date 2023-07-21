@@ -1,12 +1,19 @@
-import { ImageDetail, ImagemProduct, Price, Star } from "./Styles";
+import {
+  ImageSection,
+  MainProductDetail,
+  Price,
+  ProductCartButton,
+  ProductImage,
+  ProductInfo,
+  ProductPrice,
+} from "./Styles";
 import { useGlobal } from "../../../Global/GlobalStateContext";
 import ICartPurchase from "../../../interface/ICartPurchase";
 import IProductDetail from "../../../interface/IProductDetail";
 import IIngredients from "../../../interface/IIngredients";
-import { ChangeEvent, useEffect, useState } from "react";
-import "./productDetail.css";
+import { useEffect, useState } from "react";
 import { formatPrice } from "../../../utils/formatPrice";
-import { MinusIcon, AddIcon } from "@chakra-ui/icons";
+import "./productDetail.css";
 
 import {
   BsFillArrowLeftCircleFill,
@@ -114,11 +121,10 @@ export default function ProductDetail({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <main className="main">
+    <MainProductDetail>
       <ModalCart isOpen={isOpen} onclose={onClose} product={objetoCart} />
-      <div className="image-section">
-        <div
-          className="product-image flex"
+      <ImageSection>
+        <ProductImage
           style={imageStyle}
           onMouseMove={(e) =>
             windowWidth > breakpoint ? handleImageHover(e) : () => false
@@ -128,9 +134,10 @@ export default function ProductDetail({
           }
         >
           <BsFillArrowLeftCircleFill
-            size={40}
+            size={20}
             style={{
               margin: "10px",
+              cursor: "pointer",
             }}
             onClick={() => {
               setImageCount((prevCount) => {
@@ -145,9 +152,10 @@ export default function ProductDetail({
           />
 
           <BsFillArrowRightCircleFill
-            size={40}
+            size={20}
             style={{
               margin: "10px",
+              cursor: "pointer",
             }}
             onClick={() => {
               setImageCount((prevCount) => (prevCount + 1) % allImages.length);
@@ -157,38 +165,29 @@ export default function ProductDetail({
               }));
             }}
           />
-        </div>
+        </ProductImage>
         {windowWidth > breakpoint && (
           <div className="product-image--slide">{imagesForSlides}</div>
         )}
-      </div>
-      <div className="product-info">
+      </ImageSection>
+      <ProductInfo>
         <div>
           <h1>{productDetail?.nome}</h1>
           <p>{productDetail?.descricao}</p>
         </div>
 
-        <div className="product-price">
-          <span className="product-price--rate">
-            {formatPrice(Number(productDetail?.preco))}
-          </span>
-        </div>
-        <div className="product-cart">
-          <Price>
-            <div>
-              <button
-                className="product-cart--button"
-                onClick={() => {
-                  addTo(total, objetoCart, setTotal, "products");
-                  onOpen();
-                }}
-              >
-                Add to Cart
-              </button>
-            </div>
-          </Price>
-        </div>
-      </div>
-    </main>
+        <ProductPrice>{formatPrice(Number(productDetail?.preco))}</ProductPrice>
+        <Price>
+          <ProductCartButton
+            onClick={() => {
+              addTo(total, objetoCart, setTotal, "products");
+              onOpen();
+            }}
+          >
+            Adicionar no Carrinho
+          </ProductCartButton>
+        </Price>
+      </ProductInfo>
+    </MainProductDetail>
   );
 }
