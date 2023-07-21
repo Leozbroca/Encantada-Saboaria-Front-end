@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   MainHeader,
-  MenuButton,
   MenuLogo,
-  MenuOptions,
-  Option,
   MenuItens,
   MenuItem,
   MenuItemFlex,
-  CartTop,
-  CartInsideTop,
-  CartTopNumber,
-  CartBottom,
-  Total,
-  Buttons,
-  ButtonLeft,
-  ButtonRight,
-  CartBody,
-  EmptyCartP,
-  MenuLogoResponsive,
-  MenuMain,
+  MainIcons,
 } from "./Styles";
 import logoTipo from "../../assets/logotipo.png";
 import {
@@ -32,23 +18,29 @@ import { IconContext } from "react-icons";
 import { useNavigate } from "react-router-dom";
 import { goTo } from "../../routes/Coordinator";
 import {
-  Drawer,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
   useDisclosure,
+  Flex,
+  IconButton,
+  Collapse,
+  useColorModeValue,
+  Stack,
+  Button,
 } from "@chakra-ui/react";
+
 import SearchDrower from "../SearchDrower/SearchDrower";
 import { useGlobal } from "../../Global/GlobalStateContext";
 import CardCarrinhoHeader from "../CardComponents/CardCarrinhoHeader/CardCarrinhoHeader";
 import ModalLogin from "../ModalComponents/ModalLogin/ModalLogin";
 import ModalRegister from "../ModalComponents/ModalRegister/ModalRegister";
 import ModalForgot from "../ModalComponents/ModalForgot/ModalForgot";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { MobileNav, DesktopNav } from "./MenuComponent/menuComponent";
+import ModalCartComponent from "../ModalComponents/modalCartComponent/modalCartComponent";
+import IconButtonComponent from "./IconButton";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
+
   const functionOpen = useDisclosure();
   const btnRef: any = React.useRef();
   const {
@@ -56,6 +48,7 @@ const Header = () => {
     loginOpen,
     forgotOpen,
     registerOpen,
+    hamburguerOpen,
     totalProductsCart,
     setTotalProductsCart,
   } = useGlobal();
@@ -83,136 +76,101 @@ const Header = () => {
   }, [setTotalProductsCart, total]);
 
   return (
-    <MainHeader>
-      {/* <MenuButton /> */}
-      <MenuLogo src={logoTipo} />
-      <MenuMain>
-        <MenuOptions>
-          <Option>
-            <span />
-            <a onClick={() => goTo(navigate, "/")}>Home</a>
-          </Option>
-          <Option>
-            <span />
-            <a onClick={() => goTo(navigate, "/produtos")}>Produtos</a>
-          </Option>
-          <Option>
-            <span />
-            <a onClick={() => goTo(navigate, "/carrinho")}>Carrinho</a>
-          </Option>
-          <Option>
-            <span />
-            <a onClick={() => goTo(navigate, "/sobre")}>Sobre</a>
-          </Option>
-          <Option>
-            <span />
-            <a onClick={() => goTo(navigate, "/contato")}>Contato</a>
-          </Option>
-          <Option>
-            <span />
-            <a onClick={() => goTo(navigate, "/faq")}>FAQs</a>
-          </Option>
-        </MenuOptions>
-      </MenuMain>
-      <MenuLogoResponsive>Saboaria Encantada</MenuLogoResponsive>
-      <SearchDrower functionOpen={functionOpen} />
-      <MenuItens>
-        <IconContext.Provider
-          value={{ className: "global-class-name", size: "2em" }}
+    <>
+      <MainHeader>
+        <Flex
+          bg={useColorModeValue("white", "gray.800")}
+          color={useColorModeValue("gray.600", "white")}
+          width={"100%"}
+          py={{ base: 2 }}
+          px={{ base: 4 }}
+          borderStyle={"solid"}
+          borderColor={useColorModeValue("gray.200", "gray.900")}
+          align={"center"}
         >
-          <MenuItem onClick={functionOpen.onOpen}>
-            <HiOutlineMagnifyingGlass />
-          </MenuItem>
-        </IconContext.Provider>
+          <Flex
+            flex={{ base: 1, md: "auto" }}
+            ml={{ base: -2 }}
+            display={{ base: "flex", md: "none" }}
+          >
+            <IconButtonComponent hamburguerOpen={hamburguerOpen} />
+          </Flex>
+          <Flex
+            marginLeft={"10%"}
+            flex={{ base: 1 }}
+            justify={{ base: "center", md: "start" }}
+          >
+            <MenuLogo src={logoTipo} />
+            <Flex
+              alignItems={"center"}
+              display={{ base: "none", md: "flex" }}
+              ml={10}
+            >
+              <DesktopNav />
+            </Flex>
+          </Flex>
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={2}
+          >
+            <IconContext.Provider
+              value={{ className: "global-class-name", size: "2em" }}
+            >
+              <MenuItem onClick={functionOpen.onOpen}>
+                <HiOutlineMagnifyingGlass />
+              </MenuItem>
+            </IconContext.Provider>
 
-        <IconContext.Provider
-          value={{ className: "global-class-name", size: "2em" }}
-        >
-          <MenuItemFlex onClick={loginOpen.onOpen}>
-            <HiOutlineUser />
-          </MenuItemFlex>
-        </IconContext.Provider>
+            <IconContext.Provider
+              value={{ className: "global-class-name", size: "2em" }}
+            >
+              <MenuItemFlex onClick={loginOpen.onOpen}>
+                <HiOutlineUser />
+              </MenuItemFlex>
+            </IconContext.Provider>
 
-        <IconContext.Provider
-          value={{ className: "global-class-name", size: "2em" }}
-        >
-          <MenuItemFlex onClick={() => goTo(navigate, `/desejo`)}>
-            <HiOutlineHeart />
-          </MenuItemFlex>
-        </IconContext.Provider>
+            <IconContext.Provider
+              value={{ className: "global-class-name", size: "2em" }}
+            >
+              <MenuItemFlex onClick={() => goTo(navigate, `/desejo`)}>
+                <HiOutlineHeart />
+              </MenuItemFlex>
+            </IconContext.Provider>
 
-        <IconContext.Provider
-          value={{ className: "global-class-name", size: "2em" }}
-        >
-          <MenuItem onClick={onOpen} ref={btnRef}>
-            <HiOutlineShoppingBag />
-          </MenuItem>
-        </IconContext.Provider>
-      </MenuItens>
-      <ModalLogin
-        loginOpen={loginOpen}
-        forgotOpen={forgotOpen}
-        registerOpen={registerOpen}
-      />
-      <ModalForgot forgotOpen={forgotOpen} loginOpen={loginOpen} />
-      <ModalRegister registerOpen={registerOpen} loginOpen={loginOpen} />
-      <Drawer
-        size="sm"
-        isOpen={isOpen}
-        placement="right"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay bg="blackAlpha.700" />
-        <DrawerContent sx={{ backgroundColor: "#f8f9fa" }}>
-          <DrawerCloseButton
-            sx={{
-              left: 0,
-              marginLeft: "10px",
-              marginRight: "10px",
-              color: "black",
-            }}
-          />
-          <CartTop>
-            <CartInsideTop>
-              <p>Carrinho de compras</p>
-            </CartInsideTop>
-            <CartTopNumber>{total.length}</CartTopNumber>
-          </CartTop>
-          {cartProducts.length > 0 ? (
-            <>
-              <CartBody>{cartProducts}</CartBody>
-              <CartBottom>
-                <Total>
-                  <p>Total:</p>
-                  <p style={{ color: "#00033D" }}>R${totalProductsCart}</p>
-                </Total>
-                <Buttons>
-                  <ButtonLeft
-                    onClick={() => {
-                      goTo(navigate, "/carrinho");
-                      onClose();
-                    }}
-                  >
-                    Ver Carrinho
-                  </ButtonLeft>
-                  <ButtonRight
-                    onClick={() => {
-                      goTo(navigate, "/compras");
-                      onClose();
-                    }}
-                  >
-                    Finalizar compra
-                  </ButtonRight>
-                </Buttons>
-              </CartBottom>
-            </>
-          ) : (
-            <EmptyCartP>Nenhum produto no carrinho.</EmptyCartP>
-          )}
-        </DrawerContent>
-      </Drawer>
-    </MainHeader>
+            <IconContext.Provider
+              value={{ className: "global-class-name", size: "2em" }}
+            >
+              <MenuItem onClick={onOpen} ref={btnRef}>
+                <HiOutlineShoppingBag />
+              </MenuItem>
+            </IconContext.Provider>
+          </Stack>
+        </Flex>
+
+        <Collapse in={hamburguerOpen.isOpen} animateOpacity>
+          <MobileNav hamburguerOpen={hamburguerOpen} />
+        </Collapse>
+
+        <SearchDrower functionOpen={functionOpen} />
+        <ModalLogin
+          loginOpen={loginOpen}
+          forgotOpen={forgotOpen}
+          registerOpen={registerOpen}
+        />
+        <ModalForgot forgotOpen={forgotOpen} loginOpen={loginOpen} />
+        <ModalRegister registerOpen={registerOpen} loginOpen={loginOpen} />
+        <ModalCartComponent
+          isOpen={isOpen}
+          onClose={onClose}
+          btnRef={btnRef}
+          cartProducts={cartProducts}
+          total={total}
+          totalProductsCart={totalProductsCart}
+        />
+      </MainHeader>
+    </>
   );
 };
 

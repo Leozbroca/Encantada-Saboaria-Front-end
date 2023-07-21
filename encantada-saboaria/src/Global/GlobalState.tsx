@@ -26,14 +26,15 @@ export interface ProductContextData {
   ) => void;
   sendPayment(total: any): Promise<void>;
   totalCart: number;
-  totalProductsCart:number
+  totalProductsCart: number;
   loginOpen: IModal;
   forgotOpen: IModal;
   registerOpen: IModal;
+  hamburguerOpen: IModal;
   errorCartEmpty: string;
   total: ICartPurchase[];
   setTotal: React.Dispatch<React.SetStateAction<ICartPurchase[]>>;
-  setTotalProductsCart:React.Dispatch<React.SetStateAction<number>>
+  setTotalProductsCart: React.Dispatch<React.SetStateAction<number>>;
   wish: ICartPurchase[];
   setWish: React.Dispatch<React.SetStateAction<ICartPurchase[]>>;
   remove: (
@@ -48,7 +49,11 @@ const GlobalState = ({ children }: ProductProviderProps) => {
   const [totalCart, setTotalCart] = useState(0);
   const [errorCartEmpty, setErrorCartEmpty] = useState("");
   const [totalProductsCart, setTotalProductsCart] = useState(0);
-  
+
+  const forgotOpen = useDisclosure();
+  const registerOpen = useDisclosure();
+  const loginOpen = useDisclosure();
+  const hamburguerOpen = useDisclosure();
 
   const [total, setTotal] = useState<ICartPurchase[]>(() => {
     const storageProduct = localStorage.getItem("products");
@@ -161,10 +166,6 @@ const GlobalState = ({ children }: ProductProviderProps) => {
       });
   }
 
-  const forgotOpen = useDisclosure();
-  const registerOpen = useDisclosure();
-  const loginOpen = useDisclosure();
-
   return (
     <GlobalStateContext.Provider
       value={{
@@ -181,6 +182,7 @@ const GlobalState = ({ children }: ProductProviderProps) => {
         forgotOpen,
         registerOpen,
         loginOpen,
+        hamburguerOpen,
         errorCartEmpty,
       }}
     >
