@@ -2,7 +2,7 @@
 
 Este projeto serve como front-end de um site de vendas na área da beleza e cosméticos. 
 
-## :rocket: Começando
+## :rocket: Versão online -> https://encantada-saboaria-front-end.vercel.app/
 
 
 ### :wrench: Instalação
