@@ -11,14 +11,11 @@ Para instalá-lo em sua maquina , faça os comandos a seguir:
 
 ```
 * git clone https://github.com/Leozbroca/Encantada-Saboaria-Front-end.git
-* cd backEndSaboaria
+* cd encantada-saboaria
 * npm install
 * npm start
 ```
 
-## :gear: Executando os testes
-
-Para executar os testes , rode o comando:
 
 ## 🛠️ Construído com
 
