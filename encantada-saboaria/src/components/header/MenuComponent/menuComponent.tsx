@@ -28,7 +28,7 @@ import {
   StyledMenuA,
   StyledMenuDiv,
 } from "./Styles";
-
+import {Option} from "../Styles"
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 
@@ -55,7 +55,7 @@ export const DesktopNav = () => {
                   color: linkHoverColor,
                 }}
               >
-                {navItem.label}
+                <Option><span/>{navItem.label}</Option>
               </Link>
             </PopoverTrigger>
 
