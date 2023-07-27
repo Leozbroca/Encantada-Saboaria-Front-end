@@ -25,12 +25,14 @@ import ICategory from "../../../interface/ICategory";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 interface PropsModalFilter {
   isOpen: boolean;
+  onClose?:any;
   setFilterEssence: React.Dispatch<React.SetStateAction<IFilter>>;
   setPriceCategory: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ModalFilter = ({
   isOpen,
+  onClose,
   setFilterEssence,
   setPriceCategory,
 }: PropsModalFilter) => {
@@ -56,7 +58,7 @@ const ModalFilter = ({
       <FilterEssenceP
         key={category._id}
         onClick={() =>
-          setFilterEssence({ nome: category.nome, _id: category._id })
+         { setFilterEssence({ nome: category.nome, _id: category._id });onClose()}
         }
       >
         <ArrowForwardIcon />

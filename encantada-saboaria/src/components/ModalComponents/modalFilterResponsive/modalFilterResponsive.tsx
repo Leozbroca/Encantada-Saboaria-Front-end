@@ -42,6 +42,7 @@ const ModalFilterResponsive = ({
           />
           <ModalFilter
             isOpen={isOpen}
+            onClose={onClose}
             setFilterEssence={setFilterEssence}
             setPriceCategory={setPriceCategory}
           />

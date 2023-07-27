@@ -75,6 +75,7 @@ const ProductPage = () => {
       return (
         <ModalFilter
           isOpen={isOpen}
+          onClose={onClose}
           setFilterEssence={setFilterEssence}
           setPriceCategory={setPriceCategory}
         />

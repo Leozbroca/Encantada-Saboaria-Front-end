@@ -25,7 +25,7 @@ export const MobileNavItem = ({
   const navigate = useNavigate();
 
   return (
-    <Stack spacing={4} onClick={children && hamburguerOpen.onToggle}>
+    <Stack spacing={4} p={1}  onClick={children && hamburguerOpen.onToggle}>
       <Flex
         py={2}
         as={Link}
