@@ -39,7 +39,7 @@ import IconButtonComponent from "./IconButton";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const functionOpen = useDisclosure();
   const btnRef: any = React.useRef();
