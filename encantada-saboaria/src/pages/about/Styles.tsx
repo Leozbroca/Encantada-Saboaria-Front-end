@@ -133,6 +133,9 @@ height:400px;
 width:100%;
 background-color:black;
 opacity:0.5;
+display:flex;
+align-items: center;
+justify-content: center;
 `
 
 export const BehindBrand = styled.div`
@@ -201,4 +204,106 @@ p{
 font-size:16px;
 color: #969696;
 }
+`
+export const TripleSpace = styled.div`
+display:flex;
+flex-direction: row;
+justify-content: space-between;
+width:60%;
+
+`
+
+export const TripleInside = styled.div`
+width:30%;
+height:100%;
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+h1{
+  color:white;
+  font-size:30px;
+  margin-top:40px;
+}
+
+p{
+  color:white;
+  font-size:15px;
+  margin-top:20px;
+  text-align:center;
+}
+`
+
+export const Newsletter = styled.div`
+width:100vw;
+height:350px;
+background-color: #C6C6C6;
+display:flex;
+justify-content: center;
+align-items: center;
+`
+export const PartsLetter = styled.div`
+display:flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+height:60%;
+width:60%;
+`
+export const FirstPartLetter = styled.div`
+display:flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+height:100%;
+width:50%;
+`
+export const IconLetter = styled.div`
+padding:30px;
+border-right:3px solid white;
+margin-right:30px;
+
+`
+export const WriteLetter = styled.div`
+display:flex;
+flex-direction: column;
+h1{
+font-size: 26px;
+color:white;
+}
+p{
+  font-size: 20px;
+  margin-top:10px;
+  color:white;
+}
+`
+export const SecondPartLetter = styled.div`
+display:flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+height:100%;
+width:50%;
+`
+export const PartEmail = styled.input`
+    padding: 0 25px;
+    line-height: 60px;
+    height: 60px;
+    border-radius:5px;
+    :focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+  }
+`
+
+export const PartButton = styled.button`
+height: 60px;
+    border: 0;
+    padding: 0 45px;
+    letter-spacing: 3.2px;
+    text-transform: uppercase;
+    background-color: #000000;
+    color:white;
+    border-radius:0.25rem;
 `
