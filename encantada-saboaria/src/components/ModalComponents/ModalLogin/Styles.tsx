@@ -61,3 +61,25 @@ display:flex;
 justify-content: center;
 align-items: center;
 `
+
+export const StyledB = styled.a`
+color:#c5c4c4;
+transition:.5s;
+display:flex;
+flex-direction:row;
+justify-content:center;
+align-items:center;
+font-size:20px;
+letter-spacing:1px
+height:200px;
+
+p{
+    margin-left:5px;
+}
+
+:hover{
+    cursor:pointer;
+    color:#00033D;
+    transition:.5s;
+}
+`

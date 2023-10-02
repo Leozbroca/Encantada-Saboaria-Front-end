@@ -19,12 +19,15 @@ import {
   StyledButton,
   StyledA,
   StyledDiv,
+  StyledB,
 } from "./Styles";
 import foto from "../../../assets/logo2.png";
 import { useForm } from "../../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../services/User";
 import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { loginGmailFirebase } from "../../../services/Login";
 
 function ModalLogin(props: any) {
   const { form, onChangeForm, clean } = useForm({ email: "", password: "" });
@@ -36,6 +39,15 @@ function ModalLogin(props: any) {
     login(form, clean, navigate, setIsLoading);
   };
   
+  async function loginGmail(){
+    try {
+        const gmail = await loginGmailFirebase()
+        console.log("gmail",gmail)
+    } catch (error) {
+        console.log("error",error);
+    }
+}
+
   return (
     <Modal
       isOpen={props.loginOpen.isOpen}
@@ -83,6 +95,8 @@ function ModalLogin(props: any) {
               onChange={onChangeForm}
               required
             />
+            <StyledB onClick={() => loginGmail()}><FcGoogle/><p>Entrar com o Google</p></StyledB>
+            <br/>
             <StyledA
               onClick={() => {
                 props.forgotOpen.onOpen();
